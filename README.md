@@ -418,8 +418,8 @@ The package extracts 67 linguistic features organized into 16 categories based o
 | **N. Reduced forms and dispreferred structures**     |                                                                                                                                                          |
 | f\_59\_contractions                                | (n’existe pas vraiment ; “p’tit”, “t’es”, “t’as”... à l'oral)                                                                                                     |
 | f\_60\_that_deletion                               | suppression de “que” (“je pense il vient”)                                                                                                               |
-| f\_61\_stranded_preposition                        | Pour qui est-ce que tu as fait le gâteau? / L’homme que tu parles avec (exemples non standard en anglais : "Who did you bake that cake for?", "That's the person I'm having trouble with.") |
-| f\_62\_split_infinitive                            | “de vraiment comprendre”                                                                                                                                 |
+| f\_61\_stranded_preposition                        | "C'est la personne avec qui j'ai des problèmes." |
+| f\_62\_split_infinitive                            | “j'essaie de vraiment comprendre”                                                                                                                                 |
 | f\_63\_split_auxiliary                             | “a probablement été vu”                                                                                                                                  |
 | **O. Coordination**                                  |                                                                                                                                                          |
 | f\_64\_phrasal_coordination                        | "“N et N”, “Adj et Adj” (ex : ""de tels... et de tels..."", ""par... et par..."""                                                                        |
