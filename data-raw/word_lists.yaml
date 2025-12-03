@@ -51,14 +51,9 @@ pronoun_matchlist:
   - tout le monde
 proverb_object_pronouns:
   - le
-  - la
-  - les
+  - l'
+  - "le"
   - "l'"
-  - "l’"
-  - ce
-  - cela
-  - ça
-  - cela-même
 impersonal_verbs:
   - pleuvoir
   - neiger
@@ -169,7 +164,6 @@ nominalization_stoplist:
   - monument
   - aliment
   - ciment
-  - comment
   - mouvement
   - fondement
   - serment
@@ -222,10 +216,12 @@ nominalization_stoplist:
   
   # -esse endings
   - messe
+  - promesse
   
   # -isme endings
   - prisme
   - abîme
+
 gerund_stoplist:
   # Common adjectives ending in -ant
   - important
@@ -277,6 +273,7 @@ gerund_stoplist:
   - consultant
   - débutant
   - militant
+  - étudiant
   
   # If catching -ent endings too:
   - moment
@@ -303,7 +300,6 @@ gerund_stoplist:
   - client
   - accident
   - président
-  - étudiant
 nominalization_suffixes:
   - tion
   - sion
