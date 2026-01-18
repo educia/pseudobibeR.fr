@@ -26,10 +26,13 @@
 #' `french_examples` list the exact examples that guide every heuristic.
 #'
 #' ## Tense and aspect markers
-#' 
+#'
 #' \describe{
 #' \item{f_01_past_tense}{Verbs in a past-tense form (e.g., \emph{il parlait}).}
-#' \item{f_02_perfect_aspect}{Perfect aspect built with auxiliaries such as \emph{avoir} or \emph{etre} plus a past participle (e.g., \emph{j'ai fini}).}
+#' \item{f_02_perfect_aspect}{
+#'   Perfect aspect built with auxiliaries such as \emph{avoir} or \emph{etre}
+#'   plus a past participle (e.g., \emph{j'ai fini}).
+#' }
 #' \item{f_03_present_tense}{Finite verbs in the present tense (e.g., \emph{nous parlons}).}
 #' }
 #'
@@ -45,7 +48,10 @@
 #' \describe{
 #' \item{f_06_first_person_pronouns}{First-person pronouns (e.g., \emph{je}, \emph{nous}).}
 #' \item{f_07_second_person_pronouns}{Second-person pronouns (e.g., \emph{tu}, \emph{vous}).}
-#' \item{f_08_third_person_pronouns}{Third-person personal pronouns other than expletives (e.g., \emph{il}, \emph{elle}, \emph{ils}).}
+#' \item{f_08_third_person_pronouns}{
+#'   Third-person personal pronouns other than expletives
+#'   (e.g., \emph{il}, \emph{elle}, \emph{ils}).
+#' }
 #' \item{f_09_pronoun_it}{Impersonal or expletive subjects (e.g., \emph{il} in \emph{il faut} or \emph{il pleut}).}
 #' \item{f_10_demonstrative_pronoun}{Standalone demonstratives that replace a noun (e.g., \emph{celui-ci}).}
 #' \item{f_11_indefinite_pronouns}{Indefinite pronouns (e.g., \emph{quelqu'un}, \emph{personne}).}
@@ -70,7 +76,10 @@
 #'
 #' \describe{
 #' \item{f_17_agentless_passives}{Passive clauses without an explicit agent (e.g., \emph{La decision a ete prise}).}
-#' \item{f_18_by_passives}{Passive clauses with an expressed agent (e.g., \emph{La decision a ete prise par le directeur}).}
+#' \item{f_18_by_passives}{
+#'   Passive clauses with an expressed agent
+#'   (e.g., \emph{La decision a ete prise par le directeur}).
+#' }
 #' }
 #'
 #' ## Stative forms
@@ -84,19 +93,34 @@
 #'
 #' \describe{
 #' \item{f_21_that_verb_comp}{Verb complements introduced by \emph{que} (e.g., \emph{je pense qu'il vient}).}
-#' \item{f_22_that_adj_comp}{Adjectival complements introduced by \emph{que} (e.g., \emph{je suis heureux que tu sois la}).}
+#' \item{f_22_that_adj_comp}{
+#'   Adjectival complements introduced by \emph{que}
+#'   (e.g., \emph{je suis heureux que tu sois la}).
+#' }
 #' \item{f_23_wh_clause}{\emph{wh}-clauses such as \emph{ce que}, \emph{ce qui}.}
 #' \item{f_24_infinitives}{Infinitival clauses.}
 #' \item{f_25_present_participle}{Adverbial clauses headed by a present participle (e.g., \emph{en chantant}).}
 #' \item{f_26_past_participle}{Adverbial clauses headed by a past participle (e.g., \emph{construit en un an}).}
-#' \item{f_27_past_participle_whiz}{Post-nominal reduced relatives with past participles (e.g., \emph{la maison construite en 2020}).}
-#' \item{f_28_present_participle_whiz}{Post-nominal reduced relatives with present participles (e.g., \emph{les enfants jouant dans le parc}).}
+#' \item{f_27_past_participle_whiz}{
+#'   Post-nominal reduced relatives with past participles
+#'   (e.g., \emph{la maison construite en 2020}).
+#' }
+#' \item{f_28_present_participle_whiz}{
+#'   Post-nominal reduced relatives with present participles
+#'   (e.g., \emph{les enfants jouant dans le parc}).
+#' }
 #' \item{f_29_that_subj}{Subject relatives introduced by \emph{qui} following a noun.}
 #' \item{f_30_that_obj}{Object relatives introduced by \emph{que}.}
 #' \item{f_31_wh_subj}{Subject relatives with \emph{lequel/laquelle/...}.}
 #' \item{f_32_wh_obj}{Object relatives with \emph{dont}, \emph{lequel/laquelle/...}.}
-#' \item{f_33_pied_piping}{Pied-piping relatives including the preposition (e.g., \emph{la maniere dans laquelle il procede}).}
-#' \item{f_34_sentence_relatives}{Sentence relatives such as \emph{ce qui} following a clause (e.g., \emph{Il a reussi, ce qui est remarquable}).}
+#' \item{f_33_pied_piping}{
+#'   Pied-piping relatives including the preposition
+#'   (e.g., \emph{la maniere dans laquelle il procede}).
+#' }
+#' \item{f_34_sentence_relatives}{
+#'   Sentence relatives such as \emph{ce qui} following a clause
+#'   (e.g., \emph{Il a reussi, ce qui est remarquable}).
+#' }
 #' \item{f_35_because}{Causal subordinates (e.g., \emph{parce que}, \emph{car}).}
 #' \item{f_36_though}{Concessive subordinates (e.g., \emph{bien que}, \emph{meme si}).}
 #' \item{f_37_if}{Conditional subordinates (e.g., \emph{si}, \emph{a moins que}).}
@@ -169,7 +193,10 @@
 #'
 #' \describe{
 #' \item{f_66_neg_synthetic}{Synthetic negation with determiners or adjectives (e.g., \emph{aucun}, \emph{nul}).}
-#' \item{f_67_neg_analytic}{Analytic negation with \emph{ne} ... adverb (e.g., \emph{ne ... pas}, \emph{ne ... jamais}).}
+#' \item{f_67_neg_analytic}{
+#'   Analytic negation with \emph{ne} ... adverb
+#'   (e.g., \emph{ne ... pas}, \emph{ne ... jamais}).
+#' }
 #' }
 #'
 #' @param tokens A dataset of tokens created by `spacyr::spacy_parse()` or
@@ -200,10 +227,36 @@
 #' Moving-Average Type-Token Ratio (MATTR). *Journal of Quantitative
 #' Linguistics*, 17(2), 94-100. \doi{10.1080/09296171003643098}
 #' @examples
-#' # Parse the example documents provided with the package
+#' # Basic usage with pre-parsed samples
 #' biber(udpipe_samples)
-#'
 #' biber(spacy_samples)
+#'
+#' # Get raw counts instead of normalized rates
+#' raw_features <- biber(udpipe_samples, normalize = FALSE)
+#' head(raw_features[, 1:5])
+#'
+#' # Use different type-token ratio measures
+#' features_ttr <- biber(udpipe_samples, measure = "TTR")
+#' features_mattr <- biber(udpipe_samples, measure = "MATTR")
+#'
+#' # Skip type-token ratio calculation
+#' features_no_ttr <- biber(udpipe_samples, measure = "none")
+#'
+#' \dontrun{
+#' # Parse your own French text with udpipe
+#' library(udpipe)
+#' udmodel <- udpipe_load_model("french-gsd-ud-2.5-191206.udpipe")
+#' my_text <- "Voici un exemple de texte en français."
+#' parsed <- udpipe_annotate(udmodel, my_text, parser = "default", tagger = "default")
+#' features <- biber(parsed)
+#'
+#' # Or with spacyr (requires Python and spaCy installation)
+#' library(spacyr)
+#' spacy_initialize(model = "fr_core_news_sm")
+#' parsed_sp <- spacy_parse("Voici un exemple de texte.", dependency = TRUE, tag = TRUE, pos = TRUE)
+#' features_sp <- biber(parsed_sp)
+#' spacy_finalize()
+#' }
 #' @importFrom magrittr %>%
 #' @seealso [dict], [word_lists]
 #' @export
@@ -216,31 +269,75 @@ biber <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MSTTR", "none"),
 #' @export
 biber.spacyr_parsed <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MSTTR", "none"),
                                 normalize = TRUE) {
-  if ("dep_rel" %in% colnames(tokens) == F) stop("be sure to set 'dependency = T' when using spacy_parse")
-  if ("tag" %in% colnames(tokens) == F) stop("be sure to set 'tag = T' when using spacy_parse")
-  if ("pos" %in% colnames(tokens) == F) stop("be sure to set 'pos = T' when using spacy_parse")
+  # Input validation
+  if (is.null(tokens)) {
+    stop("'tokens' cannot be NULL. Please provide a valid spacyr_parsed object.", call. = FALSE)
+  }
+  
+  if (!is.data.frame(tokens)) {
+    stop("'tokens' must be a data frame. Got object of class: ", paste(class(tokens), collapse = ", "), call. = FALSE)
+  }
+  
+  if (nrow(tokens) == 0) {
+    stop("'tokens' is empty (0 rows). Please provide a data frame with parsed tokens.", call. = FALSE)
+  }
+  
+  required_cols <- c("doc_id", "token", "lemma", "pos", "tag", "dep_rel")
+  missing_cols <- setdiff(required_cols, colnames(tokens))
+  
+  if (length(missing_cols) > 0) {
+    if ("dep_rel" %in% missing_cols) {
+      stop("Column 'dep_rel' not found. Be sure to set 'dependency = TRUE' when using spacy_parse().", call. = FALSE)
+    }
+    if ("tag" %in% missing_cols) {
+      stop("Column 'tag' not found. Be sure to set 'tag = TRUE' when using spacy_parse().", call. = FALSE)
+    }
+    if ("pos" %in% missing_cols) {
+      stop("Column 'pos' not found. Be sure to set 'pos = TRUE' when using spacy_parse().", call. = FALSE)
+    }
+    stop("Missing required column(s): ", paste(missing_cols, collapse = ", "), 
+         ". Ensure 'tokens' is from spacyr::spacy_parse() with dependency=TRUE, tag=TRUE, pos=TRUE.", call. = FALSE)
+  }
 
   measure <- match.arg(measure)
 
-  return(parse_biber_features(tokens, measure, normalize, "spacy"))
+  parse_biber_features(tokens, measure, normalize, "spacy")
 }
 
 #' @rdname biber
 #' @export
 biber.udpipe_connlu <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MSTTR", "none"),
                                 normalize = TRUE) {
-
-  # implicitly depends on the data.frame method for udpipe_connlu from
-  # udpipe, so we have to put udpipe in Suggests and try to load it
+  # Check for udpipe package
   if (!requireNamespace("udpipe", quietly = TRUE)) {
-    stop("udpipe package must be installed to extract features from udpipe-tagged text")
+    stop("Package 'udpipe' must be installed to extract features from udpipe-tagged text.\n",
+         "Install it with: install.packages('udpipe')", call. = FALSE)
+  }
+  
+  # Input validation
+  if (is.null(tokens)) {
+    stop("'tokens' cannot be NULL. Please provide a valid udpipe_connlu object.", call. = FALSE)
   }
 
   udpipe_tks <- as.data.frame(tokens, stringsAsFactors = FALSE)
-
-  if ("dep_rel" %in% colnames(udpipe_tks) == F) stop("Be sure to set parser = 'default'")
-  if ("xpos" %in% colnames(udpipe_tks) == F) stop("Be sure to set tagger = 'default'")
-  if ("upos" %in% colnames(udpipe_tks) == F) stop("Be sure to set tagger = 'default'")
+  
+  if (nrow(udpipe_tks) == 0) {
+    stop("'tokens' is empty (0 rows). Please provide parsed tokens from udpipe_annotate().", call. = FALSE)
+  }
+  
+  required_cols <- c("doc_id", "token", "lemma", "upos", "xpos", "dep_rel")
+  missing_cols <- setdiff(required_cols, colnames(udpipe_tks))
+  
+  if (length(missing_cols) > 0) {
+    if ("dep_rel" %in% missing_cols) {
+      stop("Column 'dep_rel' not found. Be sure to set parser = 'default' in udpipe_annotate().", call. = FALSE)
+    }
+    if ("xpos" %in% missing_cols || "upos" %in% missing_cols) {
+      stop("Column 'upos' or 'xpos' not found. Be sure to set tagger = 'default' in udpipe_annotate().", call. = FALSE)
+    }
+    stop("Missing required column(s): ", paste(missing_cols, collapse = ", "),
+         ". Ensure 'tokens' is from udpipe_annotate() with tagger='default' and parser='default'.", call. = FALSE)
+  }
 
   measure <- match.arg(measure)
 
@@ -252,52 +349,41 @@ biber.udpipe_connlu <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MST
 
   udpipe_tks <- structure(udpipe_tks, class = c("spacyr_parsed", "data.frame"))
 
-  return(parse_biber_features(udpipe_tks, measure, normalize, "udpipe"))
+  parse_biber_features(udpipe_tks, measure, normalize, "udpipe")
 }
 
+#' Main feature extraction orchestrator
+#' 
+#' This function coordinates all feature extraction by calling the modular
+#' block functions and assembling the results.
+#' 
+#' @param tokens Annotated token data
+#' @param measure Type-token ratio measure
+#' @param normalize Whether to normalize counts
+#' @param engine Parser engine ("spacy" or "udpipe")
+#' @return Data frame of extracted features
+#' 
 #' @importFrom rlang .data :=
 #' @importFrom utils tail
+#' @keywords internal
 parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy", "udpipe")) {
   engine <- match.arg(engine)
+  
+  # Validate tokens data frame has required structure
+  if (!is.data.frame(tokens)) {
+    stop("'tokens' must be a data frame after processing.", call. = FALSE)
+  }
+  
+  if (nrow(tokens) == 0) {
+    stop("'tokens' is empty after processing. Cannot extract features from 0 tokens.", call. = FALSE)
+  }
+  
+  if (!"doc_id" %in% colnames(tokens)) {
+    stop("'tokens' must have a 'doc_id' column to identify documents.", call. = FALSE)
+  }
 
   dict_lookup <- dict
   word_lists_lookup <- word_lists
-
-  get_word_list <- function(name, default = character()) {
-    values <- word_lists_lookup[[name]]
-    if (is.null(values)) {
-      return(default)
-    }
-    values
-  }
-
-  normalize_terms <- function(values) {
-    stringr::str_replace_all(values, "_", " ")
-  }
-
-  dictionary_to_lemmas <- function(feature) {
-    if (!feature %in% names(dict_lookup)) {
-      return(character())
-    }
-    raw_terms <- as.list(dict_lookup[feature])
-    if (length(raw_terms) == 0) {
-      return(character())
-    }
-    raw_terms <- unname(unlist(raw_terms, recursive = TRUE, use.names = FALSE))
-    if (is.null(raw_terms) || length(raw_terms) == 0) {
-      return(character())
-    }
-    cleaned <- stringr::str_replace_all(raw_terms, "_", " ")
-    lemmas <- purrr::map_chr(cleaned, function(term) {
-      parts <- stringr::str_split(term, "\\s+")[[1]]
-      parts <- parts[nzchar(parts)]
-      if (length(parts) == 0) {
-        return(NA_character_)
-      }
-      stringr::str_to_lower(tail(parts, 1))
-    })
-    unique(stats::na.omit(lemmas))
-  }
 
   df <- list()
 
@@ -306,6 +392,11 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     dplyr::mutate(token = stringr::str_to_lower(.data$token)) %>%
     dplyr::mutate(pos = dplyr::if_else(.data$token == "\n", "PUNCT", .data$pos)) %>%
     dplyr::filter(.data$pos != "SPACE")
+  
+  # Check after filtering SPACE tokens
+  if (nrow(tokens) == 0) {
+    stop("No valid tokens found after filtering. Document may contain only whitespace.", call. = FALSE)
+  }
 
   if ("morph" %in% colnames(tokens)) {
     tokens <- tokens %>%
@@ -359,46 +450,46 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
       morph_number = extract_morph_value(.data$feats, "Number"),
       morph_person = extract_morph_value(.data$feats, "Person")
     )
-  
+
   tokens <- tokens %>%
     dplyr::arrange(.data$doc_id, .data$sentence_id, .data$token_id_int)
 
   doc_ids <- tokens %>% dplyr::distinct(.data$doc_id)
 
   proverb_pronouns <- normalize_terms(
-  get_word_list("proverb_object_pronouns", c("le", "la", "les", "ce", "cela", "\u00e7a"))
+    get_word_list(word_lists_lookup, "proverb_object_pronouns")
   )
 
   neg_synthetic_terms <- normalize_terms(
-    get_word_list("neg_synthetic_determiners", c("aucun", "aucune", "nul", "nulle", "ni", "sans"))
+    get_word_list(word_lists_lookup, "neg_synthetic_determiners")
   )
 
-  negation_particle_terms <- normalize_terms(get_word_list("negation_particles", c("ne")))
+  negation_particle_terms <- normalize_terms(get_word_list(word_lists_lookup, "negation_particles"))
   negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n\u2019"))
 
   negation_adverbs <- normalize_terms(
     get_word_list(
-      "neg_analytic_adverbs",
-  c("pas", "plus", "jamais", "gu\u00e8re", "point", "personne", "rien", "nullement")
+      word_lists_lookup,
+      "neg_analytic_adverbs"
     )
   )
 
   impersonal_verbs <- normalize_terms(
     get_word_list(
-      "impersonal_verbs",
-  c("pleuvoir", "neiger", "bruiner", "gr\u00ealer", "venter", "tonner", "geler")
+      word_lists_lookup,
+      "impersonal_verbs"
     )
   )
 
   weather_lemmas <- unique(c(impersonal_verbs, "bruiner", "tonner"))
   raising_verbs <- c("sembler", "para\u00eetre", "demeurer", "rester", "suffire", "convenir")
   wh_question_lemmas <- c(
-  "qui", "que", "quoi", "o\u00f9", "quand", "comment", "pourquoi",
+    "qui", "que", "quoi", "o\u00f9", "quand", "comment", "pourquoi",
     "lequel", "laquelle", "lesquels", "lesquelles",
     "quel", "quelle", "quels", "quelles", "combien"
   )
   relative_pronoun_candidates <- c(
-  "qui", "que", "quoi", "o\u00f9", "dont",
+    "qui", "que", "quoi", "o\u00f9", "dont",
     "lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles",
     "auquel", "auxquels", "auxquelles",
     "duquel", "desquels", "desquelles"
@@ -420,7 +511,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
 
   que_markers <- tokens %>%
     dplyr::filter(
-  .data$lemma %in% c("que", "qu'", "qu\u2019"),
+      .data$lemma %in% c("que", "qu'", "qu\u2019"),
       .data$dep_rel %in% c("mark", "expl", "obj"),
       !is.na(.data$head_token_id_int)
     ) %>%
@@ -450,10 +541,10 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     dplyr::summarise(text = paste(.data$token, collapse = " "), .groups = "drop")
 
   if (nrow(lexical_text) > 0) {
-  biber_tks <- quanteda::tokens(lexical_text$text, what = "word", remove_punct = FALSE)
+    biber_tks <- quanteda::tokens(lexical_text$text, what = "word", remove_punct = FALSE)
     names(biber_tks) <- lexical_text$doc_id
 
-    multiword_patterns <- get_word_list("multiword_patterns")
+    multiword_patterns <- get_word_list(word_lists_lookup, "multiword_patterns")
     if (length(multiword_patterns) > 0) {
       multi_phrases <- quanteda::phrase(multiword_patterns)
       biber_tks <- quanteda::tokens_compound(biber_tks, pattern = multi_phrases)
@@ -505,243 +596,50 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
       head_morph_tense = "morph_tense"
     )
 
-  perfect_candidates <- tokens %>%
-    dplyr::filter(
-      .data$pos %in% c("AUX", "VERB"),
-  .data$lemma %in% c("avoir", "\u00eatre"),
-      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^(aux|cop)"),
-      !is.na(.data$head_token_id_int)
-    ) %>%
-    dplyr::left_join(
-      head_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::mutate(
-      head_is_participle = (
-        .data$head_pos %in% c("VERB", "AUX") &
-          .data$head_morph_verbform == "Part" &
-          dplyr::coalesce(.data$head_morph_voice, "") != "Pass"
-      ) |
-        (
-          .data$head_pos %in% c("ADJ", "NOUN") &
-            stringr::str_detect(
-              dplyr::coalesce(.data$head_feats, ""),
-              "VerbForm=Part"
-            ) &
-            dplyr::coalesce(.data$head_morph_voice, "") != "Pass"
-        ) |
-        (
-          .data$head_pos == "NOUN" &
-            stringr::str_detect(
-              stringr::str_to_lower(dplyr::coalesce(.data$head_token, "")),
-              "(\u00e9|\u00e9e|\u00e9s|\u00e9es|i|ie|is|ies|u|ue|us|ues)$"
-            )
-        )
-    ) %>%
-    dplyr::filter(.data$head_is_participle) %>%
-    dplyr::distinct(.data$doc_id, .data$head_token_id_int, .keep_all = TRUE)
-
-  df[["f_02_perfect_aspect"]] <- perfect_candidates %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_02_perfect_aspect = "n")
-
-  pronoun_it_candidates <- tokens %>%
-    dplyr::filter(
-      .data$pos == "PRON",
-  .data$lemma %in% c("il", "ce", "cela", "\u00e7a"),
-      !is.na(.data$head_token_id_int)
-    ) %>%
-    dplyr::left_join(
-      head_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::left_join(de_markers, by = c("doc_id", "sentence_id", "head_token_id_int")) %>%
-    dplyr::left_join(que_markers, by = c("doc_id", "sentence_id", "head_token_id_int")) %>%
-    dplyr::left_join(clause_complements, by = c("doc_id", "sentence_id", "head_token_id_int")) %>%
-    dplyr::mutate(
-      has_de_marker = dplyr::coalesce(.data$has_de_marker, FALSE),
-      has_que_marker = dplyr::coalesce(.data$has_que_marker, FALSE),
-      has_clause_comp = dplyr::coalesce(.data$has_clause_comp, FALSE),
-      is_weather = .data$head_lemma %in% weather_lemmas,
-      is_raising_verb = .data$head_lemma %in% raising_verbs,
-      has_control_marker = .data$has_de_marker | .data$has_que_marker | .data$has_clause_comp
-    ) %>%
-    dplyr::filter(
-      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^expl") |
-        (
-          stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^nsubj") &
-          (
-            .data$is_weather |
-            (
-              .data$head_pos == "ADJ" &
-                .data$has_control_marker
-            ) |
-            (
-              .data$head_pos %in% c("VERB", "AUX") &
-                (.data$is_raising_verb | .data$has_control_marker)
-            )
-          )
-        )
-    )
-
-  df[["f_09_pronoun_it"]] <- pronoun_it_candidates %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_09_pronoun_it = "n")
-
-  proverb_objects <- tokens %>%
-    dplyr::filter(
-      .data$pos == "PRON",
-      .data$lemma %in% proverb_pronouns,
-      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^obj"),
-      !is.na(.data$head_token_id_int)
-    ) %>%
-    dplyr::transmute(
-      .data$doc_id,
-      .data$sentence_id,
-      head_token_id_int = .data$head_token_id_int,
-      has_proverb_object = TRUE
-    ) %>%
-    dplyr::distinct()
-
-  proverb_candidates <- tokens %>%
-    dplyr::filter(
-      .data$lemma == "faire",
-      .data$pos %in% c("VERB", "AUX"),
-      !stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^aux"),
-      !is.na(.data$token_id_int)
-    )
-
-  f12_counts <- proverb_candidates %>%
-    dplyr::left_join(
-      proverb_objects,
-      by = c("doc_id", "sentence_id", "token_id_int" = "head_token_id_int")
-    ) %>%
-    dplyr::filter(.data$has_proverb_object) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_12_proverb_do = "n")
-
-  df[["f_12_proverb_do"]] <- doc_ids %>%
-    dplyr::left_join(f12_counts, by = "doc_id") %>%
-    dplyr::mutate(f_12_proverb_do = dplyr::coalesce(.data$f_12_proverb_do, 0L))
-
-  df[["f_10_demonstrative_pronoun"]] <- tokens %>%
-    dplyr::filter(
-      .data$token %in% get_word_list("pronoun_matchlist"),
-      .data$morph_prontype == "Dem",
-      .data$pos == "PRON"
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_10_demonstrative_pronoun = "n")
-
-  question_sentences <- tokens %>%
-    dplyr::filter(.data$token == "?") %>%
-    dplyr::transmute(
-      .data$doc_id,
-      .data$sentence_id,
-      has_question = TRUE
-    ) %>%
-    dplyr::distinct()
-
-  df[["f_13_wh_question"]] <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% wh_question_lemmas,
-      .data$pos %in% c("ADV", "PRON", "DET", "ADJ")
-    ) %>%
-    dplyr::left_join(
-      question_sentences,
-      by = c("doc_id", "sentence_id")
-    ) %>%
-    dplyr::filter(!is.na(.data$has_question)) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_13_wh_question = "n")
-
-  nominalization_suffixes <- get_word_list(
-    "nominalization_suffixes",
-  c("tion", "sion", "ment", "age", "ure", "ance", "ence", "esse", "it\u00e9", "isation", "issement")
+  df[["auxiliary_tense"]] <- block_aux_tense_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    head_lookup = head_lookup,
+    proverb_pronouns = proverb_pronouns
   )
 
-  nominalization_pattern <- if (length(nominalization_suffixes) > 0) {
-    escaped <- stringr::str_replace_all(nominalization_suffixes, "([\\W])", "\\\\\\1")
-    paste0("(", paste(escaped, collapse = "|") , ")$")
-  } else {
-    "^$"
-  }
+  df[["personal_pronouns"]] <- block_personal_pronouns_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    head_lookup = head_lookup,
+    de_markers = de_markers,
+    que_markers = que_markers,
+    clause_complements = clause_complements,
+    weather_lemmas = weather_lemmas,
+    raising_verbs = raising_verbs,
+    wh_question_lemmas = wh_question_lemmas
+  )
 
-  nominal_stoplist <- normalize_terms(get_word_list("nominalization_stoplist"))
+  df[["lexical_membership"]] <- block_lexical_membership_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    word_lists_lookup = word_lists_lookup
+  )
 
-  df[["f_14_nominalizations"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$pos == "NOUN",
-      stringr::str_detect(.data$lemma, nominalization_pattern)
-    ) %>%
-    dplyr::filter(!.data$lemma %in% nominal_stoplist) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_14_nominalizations = "n")
+  df[["donc_disambiguation"]] <- count_donc_discourse_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
-  gerund_stoplist <- normalize_terms(get_word_list("gerund_stoplist"))
+  df[["ensuite_disambiguation"]] <- count_ensuite_conjunct_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
-  f_15_gerunds <- tokens %>%
-    dplyr::filter(
-      .data$pos %in% c("VERB", "AUX"),
-      !is.na(.data$morph_verbform),
-      .data$morph_verbform == "Ger"
-    ) %>%
-    dplyr::filter(!.data$lemma %in% gerund_stoplist)
+  df[["vraiment_disambiguation"]] <- count_vraiment_amplifier_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
-  fallback_gerunds <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::arrange(.data$sentence_id, .data$token_id_int, .by_group = TRUE) %>%
-    dplyr::filter(
-      .data$pos %in% c("NOUN", "PROPN"),
-      stringr::str_detect(.data$lemma, "ant$"),
-      dplyr::lag(.data$token, default = "") == "en",
-      dplyr::lag(.data$pos, default = "") == "ADP",
-      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^(nmod|obl|advcl)")
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::filter(!.data$lemma %in% gerund_stoplist)
-
-  if (nrow(fallback_gerunds) > 0) {
-    f_15_gerunds <- dplyr::bind_rows(f_15_gerunds, fallback_gerunds) %>%
-      dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE)
-  }
-
-  gerunds_n <- f_15_gerunds %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(.data$pos %in% c("NOUN", "PROPN")) %>%
-    dplyr::tally() %>%
-    dplyr::rename(gerunds_n = "n")
-
-  df[["f_15_gerunds"]] <- f_15_gerunds %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_15_gerunds = "n")
-
-  df[["f_16_other_nouns"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$pos == "NOUN" |
-        .data$pos == "PROPN"
-    ) %>%
-    dplyr::filter(
-      stringr::str_detect(.data$token, "-") == F
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::left_join(df[["f_14_nominalizations"]], by = "doc_id") %>%
-    dplyr::left_join(gerunds_n, by = "doc_id") %>%
-    replace_nas() %>%
-    dplyr::mutate(n = .data$n - .data$f_14_nominalizations - .data$gerunds_n) %>%
-    dplyr::select("doc_id", "n") %>%
-    dplyr::rename(f_16_other_nouns = "n")
+  df[["pronoun_morph_supplement"]] <- supplement_pronouns_morphological_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
   passive_rel_values <- if (engine == "spacy") c("auxpass", "aux:pass") else "aux:pass"
   passive_agents <- c("par")
@@ -817,11 +715,19 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
       prev_pos = dplyr::lag(.data$pos),
       prev2_token = dplyr::lag(.data$token, 2),
       prev2_lemma = dplyr::lag(.data$lemma, 2),
+      prev3_token = dplyr::lag(.data$token, 3),
+      prev3_lemma = dplyr::lag(.data$lemma, 3),
+      prev3_pos = dplyr::lag(.data$pos, 3),
       next_token = dplyr::lead(.data$token),
       next_lemma = dplyr::lead(.data$lemma),
       next_pos = dplyr::lead(.data$pos),
       next_dep_rel = dplyr::lead(.data$dep_rel),
-      next2_token = dplyr::lead(.data$token, 2)
+      next2_token = dplyr::lead(.data$token, 2),
+      next2_lemma = dplyr::lead(.data$lemma, 2),
+      next2_pos = dplyr::lead(.data$pos, 2),
+      next2_morph_verbform = dplyr::lead(.data$morph_verbform, 2),
+      prev_morph_verbform = dplyr::lag(.data$morph_verbform),
+      next_morph_verbform = dplyr::lead(.data$morph_verbform)
     ) %>%
     dplyr::ungroup()
 
@@ -852,652 +758,79 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     ) %>%
     dplyr::mutate(has_subject = TRUE)
 
-  passive_candidates <- tokens %>%
-    dplyr::filter(.data$dep_rel %in% passive_rel_values) %>%
-    dplyr::left_join(
-      head_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    )
-
-  df[["f_17_agentless_passives"]] <- passive_candidates %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$head_pos == "VERB",
-      !.data$passive_agent_next2,
-      !.data$passive_agent_next3
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$head_token_id_int, .keep_all = TRUE) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_17_agentless_passives = "n")
-
-  df[["f_18_by_passives"]] <- passive_candidates %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$head_pos == "VERB",
-      (.data$passive_agent_next2 | .data$passive_agent_next3)
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$head_token_id_int, .keep_all = TRUE) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_18_by_passives = "n")
-
-  df[["f_19_be_main_verb"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-  .data$lemma == "\u00eatre",
-      stringr::str_detect(.data$dep_rel, "aux") == F
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_19_be_main_verb = "n")
-
-  df[["f_20_existential_there"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id, .data$sentence_id) %>%
-    dplyr::filter(
-      .data$lemma == "avoir",
-      .data$pos %in% c("VERB", "AUX"),
-      dplyr::lag(.data$lemma == "y", default = FALSE),
-      dplyr::lag(.data$lemma == "il", 2, default = FALSE),
-      dplyr::lag(.data$pos == "PRON", 2, default = FALSE)
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .keep_all = TRUE) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_20_existential_there = "n")
-
-  complementizers <- c("que", "qu'", "qu\u2019")
-  wh_lemmas <- c(
-    "qui", "que", "quoi", "dont",
-  "o\u00f9", "ou", "quand", "comment", "pourquoi", "combien",
-    "lequel", "laquelle", "lesquels", "lesquelles",
-    "auquel", "auxquels", "auxquelles",
-    "duquel", "desquels", "desquelles"
-  )
-  relative_subject_that_lemmas <- c("qui")
-  relative_object_that_lemmas <- c("que")
-  wh_subject_relative_lemmas <- c("lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles")
-  wh_object_relative_lemmas <- c(
-    "dont",
-    "lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles",
-    "duquel", "desquels", "desquelles",
-    "auquel", "auxquels", "auxquelles"
-  )
-  pied_piping_relative_lemmas <- c(
-    "dont",
-    "lequel", "laquelle", "lesquels", "lesquelles",
-    "auquel", "auxquels", "auxquelles",
-    "duquel", "desquels", "desquelles"
+  df[["passive_voice"]] <- block_passive_voice_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    head_lookup = head_lookup,
+    passive_rel_values = passive_rel_values
   )
 
-  df[["f_21_that_verb_comp"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$token %in% complementizers,
-      .data$pos == "SCONJ",
-      dplyr::lag(.data$pos) %in% c("VERB", "AUX")
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_21_that_verb_comp = "n")
+  df[["clause_embedding"]] <- block_clause_embedding_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    head_lookup = head_lookup
+  )
 
-  df[["f_22_that_adj_comp"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$token %in% complementizers,
-      .data$pos == "SCONJ",
-      dplyr::lag(.data$pos) == "ADJ"
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_22_that_adj_comp = "n")
+  df[["participial_clauses"]] <- block_participial_clauses_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
-  df[["f_23_wh_clause"]] <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% wh_lemmas,
-      .data$pos %in% c("PRON", "ADV", "DET", "ADJ", "NOUN", "PROPN"),
-      stringr::str_detect(
-        dplyr::coalesce(.data$dep_rel, ""),
-        "^(obj|obl|nsubj|iobj|expl|mark)"
-      ),
-      !is.na(.data$head_token_id_int)
-    ) %>%
-    dplyr::left_join(
-      head_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::filter(.data$head_pos %in% c("VERB", "AUX", "ADJ")) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_23_wh_clause = "n")
+  df[["relative_clauses"]] <- block_relatives_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
+  
+  df[["contractions"]] <- block_contractions_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
-  df[["f_24_infinitives"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(.data$is_infinitive) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_24_infinitives = "n")
+  df[["adj_prep_adverbs"]] <- block_adj_prep_adv_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    dict_lookup = dict_lookup,
+    word_lists_lookup = word_lists_lookup,
+    negation_adverbs = negation_adverbs
+  )
 
-  df[["f_25_present_participle"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_present_participle,
-      .data$dep_rel %in% c("advcl", "ccomp"),
-      (
-        dplyr::lag(.data$dep_rel == "punct", default = TRUE) |
-          (
-            dplyr::lag(.data$token %in% c("en"), default = FALSE) &
-              dplyr::lag(.data$dep_rel %in% c("mark", "case"), default = FALSE)
-          )
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_25_present_participle = "n")
+  df[["specialized_verbs"]] <- block_specialized_verbs_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    dict_lookup = dict_lookup
+  )
 
-  df[["f_26_past_participle"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_past_participle,
-      (
-        .data$dep_rel %in% c("advcl", "ccomp") |
-          (
-            .data$dep_rel == "acl" &
-              dplyr::lag(.data$dep_rel == "punct", default = TRUE)
-          )
-      ),
-      (
-        dplyr::lag(.data$dep_rel == "punct", default = TRUE) |
-          (
-            dplyr::lag(.data$token %in% c("en"), default = FALSE) &
-              dplyr::lag(.data$dep_rel %in% c("mark", "case"), default = FALSE)
-          )
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_26_past_participle = "n")
+  df[["modals"]] <- block_modals_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    dict_lookup = dict_lookup
+  )
+  
+  df[["stranded_split"]] <- block_stranded_split_fr(
+    tokens = tokens,
+    doc_ids = doc_ids
+  )
 
-  df[["f_27_past_participle_whiz"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_past_participle,
-      dplyr::lag(.data$pos == "NOUN"),
-      (
-        stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^acl") |
-          .data$dep_rel == "root"
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_27_past_participle_whiz = "n")
+  df[["split_coordination"]] <- block_split_coordination_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    token_lookup = token_lookup,
+    subject_heads = subject_heads,
+    head_lookup = head_lookup,
+    negation_part_lemmas = negation_part_lemmas
+  )
 
-  df[["f_28_present_participle_whiz"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_present_participle,
-      dplyr::lag(.data$pos == "NOUN"),
-      .data$dep_rel == "acl"
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_28_present_participle_whiz = "n")
-
-  df[["f_29_that_subj"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_relative_subject,
-      .data$lemma %in% relative_subject_that_lemmas,
-      (
-        dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), default = FALSE) |
-          (
-            dplyr::lag(.data$pos == "ADJ", default = FALSE) &
-              dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), 2, default = FALSE)
-          )
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_29_that_subj = "n")
-
-  df[["f_30_that_obj"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_relative_object,
-      .data$lemma %in% relative_object_that_lemmas,
-      dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), default = FALSE)
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_30_that_obj = "n")
-
-  df[["f_31_wh_subj"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_relative_subject,
-      .data$lemma %in% wh_subject_relative_lemmas,
-      (
-        dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), default = FALSE) |
-          (
-            dplyr::lag(.data$pos == "PUNCT", default = FALSE) &
-              dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), 2, default = FALSE)
-          )
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_31_wh_subj = "n")
-
-  df[["f_32_wh_obj"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_relative_object,
-      .data$lemma %in% wh_object_relative_lemmas,
-      (
-        dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), default = FALSE) |
-          (
-            dplyr::lag(.data$pos == "PUNCT", default = FALSE) &
-              dplyr::lag(.data$pos %in% c("NOUN", "PROPN"), 2, default = FALSE)
-          )
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_32_wh_obj = "n")
-
-  df[["f_33_pied_piping"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_relative_pronoun,
-      .data$lemma %in% pied_piping_relative_lemmas,
-      (
-        .data$lemma == "dont" |
-          dplyr::lag(.data$pos == "ADP", default = FALSE)
-      )
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_33_pied_piping = "n")
-
-  sentence_relative_anchors <- c("ce", "cela", "ceci", "celui", "celle", "ceux", "celles")
-  parce_follow_tokens <- c("que", "qu'", "qu\u2019")
-  because_single_tokens <- c("car", "puisque", "puisqu'", "puisqu\u2019", "comme")
-
-  df[["f_34_sentence_relatives"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$is_relative_pronoun,
-      dplyr::lag(.data$token %in% sentence_relative_anchors, default = FALSE),
-      (
-        dplyr::lag(.data$pos == "PUNCT", 2, default = TRUE) |
-          is.na(dplyr::lag(.data$token, 2))
-      )
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_34_sentence_relatives = "n")
-
-  df[["f_35_because"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      (
-        .data$token %in% because_single_tokens &
-          .data$pos %in% c("SCONJ", "CCONJ") &
-          stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^(mark|cc)")
-      ) |
-        (
-          .data$token == "parce" &
-            .data$next_token %in% parce_follow_tokens &
-            .data$pos %in% c("SCONJ", "ADV")
-        )
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_35_because = "n")
-
-  df[["f_36_though"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      (
-        .data$token == "quoique" & .data$pos %in% c("SCONJ")
-      ) |
-        (
-          .data$token == "bien" &
-            .data$next_token %in% parce_follow_tokens &
-            .data$next_pos %in% c("SCONJ")
-        ) |
-        (
-          .data$token == "m\u00eame" &
-            .data$next_token == "si" &
-            .data$next_pos %in% c("SCONJ")
-        )
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_36_though = "n")
-
-  df[["f_37_if"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      (
-        .data$token == "si" &
-          .data$pos %in% c("SCONJ") &
-          stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^mark")
-      ) |
-        (
-          .data$token == "moins" &
-            .data$prev_token %in% c("\u00e0", "au") &
-            .data$next_token %in% parce_follow_tokens
-        ) |
-        (
-          .data$token == "condition" &
-            .data$prev_token == "\u00e0" &
-            .data$next_token %in% parce_follow_tokens
-        )
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_37_if = "n")
-
-  counted_subordinators <- unique(c(
-    complementizers,
-    parce_follow_tokens,
-    because_single_tokens,
-    "parce",
-    "quoique",
-    "si"
-  ))
-
-  df[["f_38_other_adv_sub"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$pos %in% c("SCONJ", "ADP", "ADV"),
-      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^mark"),
-      !.data$token %in% counted_subordinators
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_38_other_adv_sub = "n")
-
-  df[["f_39_prepositions"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$pos == "ADP",
-      dplyr::coalesce(.data$dep_rel, "") %in% c("case", "fixed")
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_39_prepositions = "n")
-
-  df[["f_40_adj_attr"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$pos == "ADJ",
-      (
-        dplyr::lead(.data$pos == "NOUN") |
-          dplyr::lead(.data$pos == "ADJ")  |
-          (
-            dplyr::lead(.data$token == ",") &
-              dplyr::lead(.data$pos == "ADJ", 2)
-          )
-      )
-    ) %>%
-    dplyr::filter(stringr::str_detect(.data$token, "-") == F) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_40_adj_attr = "n")
-
-  df[["f_41_adj_pred"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$pos == "ADJ",
-      dplyr::lag(.data$pos == "VERB" | .data$pos == "AUX"),
-  dplyr::lag(.data$lemma %in% get_word_list("linking_matchlist")),
-      dplyr::lead(.data$pos != "NOUN"),
-      dplyr::lead(.data$pos != "ADJ"),
-      dplyr::lead(.data$pos != "ADV")
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_41_adj_pred = "n")
-
-  adverb_exclusions <- unique(c(
-    dictionary_to_lemmas("f_46_downtoners"),
-    dictionary_to_lemmas("f_47_hedges"),
-    dictionary_to_lemmas("f_48_amplifiers"),
-    dictionary_to_lemmas("f_49_emphatics"),
-    dictionary_to_lemmas("f_50_discourse_particles"),
-    negation_adverbs
-  ))
-
-  df[["f_42_adverbs"]] <- tokens %>%
-    dplyr::filter(
-      .data$pos == "ADV",
-      !.data$lemma %in% adverb_exclusions
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_42_adverbs = "n")
-
-  df[["f_51_demonstratives"]] <- tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::filter(
-      .data$token %in% get_word_list("pronoun_matchlist"),
-      .data$dep_rel == "det",
-      .data$pos %in% c("DET", "PRON")
-    ) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_51_demonstratives = "n")
-
-  verb_public_lemmas <- dictionary_to_lemmas("f_55_verb_public")
-  verb_private_lemmas <- dictionary_to_lemmas("f_56_verb_private")
-  verb_suasive_lemmas <- dictionary_to_lemmas("f_57_verb_suasive")
-  verb_seem_lemmas <- dictionary_to_lemmas("f_58_verb_seem")
-
-  df[["f_55_verb_public"]] <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% verb_public_lemmas,
-      .data$pos %in% c("VERB", "AUX")
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_55_verb_public = "n")
-
-  df[["f_56_verb_private"]] <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% verb_private_lemmas,
-      .data$pos %in% c("VERB", "AUX")
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_56_verb_private = "n")
-
-  df[["f_57_verb_suasive"]] <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% verb_suasive_lemmas,
-      .data$pos %in% c("VERB", "AUX")
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_57_verb_suasive = "n")
-
-  df[["f_58_verb_seem"]] <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% verb_seem_lemmas,
-      .data$pos %in% c("VERB", "AUX")
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_58_verb_seem = "n")
-
-  clause_marks <- tokens %>%
-    dplyr::filter(
-      .data$dep_rel == "mark",
-      .data$lemma %in% complementizers
-    ) %>%
-    dplyr::transmute(
-      doc_id = .data$doc_id,
-      sentence_id = .data$sentence_id,
-      token_id_int = .data$head_token_id_int,
-      has_mark = TRUE
-    ) %>%
-    dplyr::distinct()
-
-  clause_deletions <- tokens %>%
-    dplyr::filter(.data$dep_rel %in% c("ccomp", "xcomp")) %>%
-    dplyr::left_join(
-      head_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::filter(.data$head_pos %in% c("VERB", "AUX", "ADJ")) %>%
-    dplyr::left_join(
-      clause_marks,
-      by = c("doc_id", "sentence_id", "token_id_int")
-    ) %>%
-    dplyr::filter(is.na(.data$has_mark)) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int)
-
-  adverbial_interveners <- tokens %>%
-    dplyr::filter(
-      .data$pos == "ADV" |
-        (
-          .data$pos == "PART" &
-            .data$lemma %in% negation_part_lemmas
-        )
-    ) %>%
-    dplyr::transmute(
-      doc_id = .data$doc_id,
-      sentence_id = .data$sentence_id,
-      adv_token_id_int = .data$token_id_int
-    )
-
-  aux_dependencies <- tokens %>%
-    dplyr::filter(stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^aux")) %>%
-    dplyr::left_join(
-      head_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::filter(
-      .data$head_pos %in% c("VERB", "AUX"),
-      !is.na(.data$token_id_int),
-      !is.na(.data$head_token_id_int),
-      .data$token_id_int != .data$head_token_id_int
-    ) %>%
-    dplyr::mutate(
-      span_min = pmin(.data$token_id_int, .data$head_token_id_int),
-      span_max = pmax(.data$token_id_int, .data$head_token_id_int)
-    )
-
-  split_auxiliary_tokens <- aux_dependencies %>%
-    dplyr::left_join(
-      adverbial_interveners,
-      by = c("doc_id", "sentence_id")
-    ) %>%
-    dplyr::filter(
-      !is.na(.data$adv_token_id_int),
-      .data$adv_token_id_int > .data$span_min,
-      .data$adv_token_id_int < .data$span_max
-    ) %>%
-    dplyr::distinct(.data$doc_id, .data$token_id_int)
-
-  cc_tokens <- tokens %>%
-    dplyr::filter(.data$pos == "CCONJ", .data$dep_rel == "cc") %>%
-    dplyr::left_join(
-      token_lookup,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::rename(
-      conj_pos = "token_pos",
-      conj_dep_rel = "token_dep_rel",
-      conj_head_token_id_int = "token_head_token_id_int",
-      conj_morph_verbform = "token_morph_verbform"
-    ) %>%
-    dplyr::left_join(
-      token_lookup %>%
-        dplyr::select(
-          "doc_id", "sentence_id", "token_id_int",
-          first_conj_pos = "token_pos"
-        ),
-      by = c("doc_id", "sentence_id", "conj_head_token_id_int" = "token_id_int")
-    ) %>%
-    dplyr::left_join(
-      subject_heads,
-      by = c("doc_id", "sentence_id", "head_token_id_int" = "clause_head_token_id_int")
-    ) %>%
-    dplyr::mutate(has_subject = dplyr::coalesce(.data$has_subject, FALSE)) %>%
-    dplyr::select(-dplyr::any_of("clause_head_token_id_int"))
-
-  df[["f_60_that_deletion"]] <- clause_deletions %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_60_that_deletion = "n")
-
-  df[["f_61_stranded_preposition"]] <- doc_ids %>%
-    dplyr::mutate(f_61_stranded_preposition = 0L)
-
-  df[["f_62_split_infinitive"]] <- doc_ids %>%
-    dplyr::mutate(f_62_split_infinitive = 0L)
-
-  df[["f_63_split_auxiliary"]] <- doc_ids %>%
-    dplyr::left_join(
-      split_auxiliary_tokens %>%
-        dplyr::group_by(.data$doc_id) %>%
-        dplyr::summarise(f_63_split_auxiliary = dplyr::n(), .groups = "drop"),
-      by = "doc_id"
-    ) %>%
-    dplyr::mutate(f_63_split_auxiliary = dplyr::coalesce(.data$f_63_split_auxiliary, 0L))
-
-  df[["f_64_phrasal_coordination"]] <- cc_tokens %>%
-    dplyr::filter(
-      .data$conj_dep_rel == "conj",
-      .data$conj_pos %in% c("NOUN", "PROPN", "ADJ", "ADV"),
-      !is.na(.data$first_conj_pos),
-      .data$first_conj_pos == .data$conj_pos,
-      !.data$has_subject
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::summarise(f_64_phrasal_coordination = dplyr::n(), .groups = "drop")
-
-  df[["f_65_clausal_coordination"]] <- cc_tokens %>%
-    dplyr::filter(
-      .data$conj_dep_rel == "conj",
-      .data$conj_pos %in% c("VERB", "AUX"),
-      .data$has_subject,
-      is.na(.data$conj_morph_verbform) |
-        !.data$conj_morph_verbform %in% c("Inf", "Ger", "Part")
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::summarise(f_65_clausal_coordination = dplyr::n(), .groups = "drop")
-
-  f66_counts <- tokens %>%
-    dplyr::filter(.data$lemma %in% neg_synthetic_terms) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_66_neg_synthetic = "n")
-
-  df[["f_66_neg_synthetic"]] <- doc_ids %>%
-    dplyr::left_join(f66_counts, by = "doc_id") %>%
-    dplyr::mutate(f_66_neg_synthetic = dplyr::coalesce(.data$f_66_neg_synthetic, 0L))
-
-  negation_particles_df <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% negation_part_lemmas,
-      !is.na(.data$head_token_id_int)
-    ) %>%
-    dplyr::transmute(
-      .data$doc_id,
-      .data$sentence_id,
-      head_token_id_int = .data$head_token_id_int,
-      has_ne = TRUE
-    ) %>%
-    dplyr::distinct()
-
-  negation_adverbs_df <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% negation_adverbs,
-      !is.na(.data$head_token_id_int)
-    ) %>%
-    dplyr::left_join(
-      negation_particles_df,
-      by = c("doc_id", "sentence_id", "head_token_id_int")
-    ) %>%
-    dplyr::filter(.data$has_ne) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_67_neg_analytic = "n")
-
-  df[["f_67_neg_analytic"]] <- doc_ids %>%
-    dplyr::left_join(negation_adverbs_df, by = "doc_id") %>%
-    dplyr::mutate(f_67_neg_analytic = dplyr::coalesce(.data$f_67_neg_analytic, 0L))
+  df[["negation"]] <- block_negation_fr(
+    tokens = tokens,
+    doc_ids = doc_ids,
+    neg_synthetic_terms = neg_synthetic_terms,
+    negation_part_lemmas = negation_part_lemmas,
+    negation_adverbs = negation_adverbs
+  )
 
   biber_tks <- biber_tks %>%
     quanteda::tokens_remove("\\d_", valuetype = "regex") %>%
     quanteda::tokens_remove("_punct_", valuetype = "fixed")
-
 
   biber_2 <- df %>% purrr::reduce(dplyr::full_join, by = "doc_id")
 
@@ -1506,6 +839,9 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
 
   combine_features <- c(
     "f_51_demonstratives",
+    "f_52_modal_possibility",
+    "f_53_modal_necessity",
+    "f_54_modal_predictive",
     "f_55_verb_public",
     "f_56_verb_private",
     "f_57_verb_suasive",
@@ -1531,6 +867,117 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   if ("f_11_indefinite_pronoun" %in% colnames(biber_counts)) {
     biber_counts <- biber_counts %>%
       dplyr::rename(f_11_indefinite_pronouns = "f_11_indefinite_pronoun")
+  }
+
+  # Disambiguate 'donc' between conjuncts and discourse particles
+  if ("donc_as_discourse_particle" %in% colnames(biber_counts)) {
+    if ("f_45_conjuncts" %in% colnames(biber_counts)) {
+      # Subtract discourse uses from conjunct count
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_45_conjuncts = pmax(.data$f_45_conjuncts - .data$donc_as_discourse_particle, 0)
+        )
+    }
+    if ("f_50_discourse_particles" %in% colnames(biber_counts)) {
+      # Add discourse uses to discourse particle count
+  # Disambiguate 'ensuite' between time adverbials and conjuncts
+  if ("ensuite_as_conjunct" %in% colnames(biber_counts)) {
+    if ("f_05_time_adverbials" %in% colnames(biber_counts)) {
+      # Subtract conjunct uses from time adverbial count
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_05_time_adverbials = pmax(.data$f_05_time_adverbials - .data$ensuite_as_conjunct, 0)
+        )
+    }
+    if ("f_45_conjuncts" %in% colnames(biber_counts)) {
+      # Add conjunct uses to conjunct count
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_45_conjuncts = .data$f_45_conjuncts + .data$ensuite_as_conjunct
+        )
+    }
+    # Remove the temporary disambiguation column
+    biber_counts <- biber_counts %>%
+      dplyr::select(-"ensuite_as_conjunct")
+  }
+
+  # Disambiguate 'vraiment' between emphatics and amplifiers
+  if ("vraiment_as_amplifier" %in% colnames(biber_counts)) {
+    if ("f_49_emphatics" %in% colnames(biber_counts)) {
+      # Subtract amplifier uses from emphatic count
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_49_emphatics = pmax(.data$f_49_emphatics - .data$vraiment_as_amplifier, 0)
+        )
+    }
+    if ("f_48_amplifiers" %in% colnames(biber_counts)) {
+      # Add amplifier uses to amplifier count
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_48_amplifiers = .data$f_48_amplifiers + .data$vraiment_as_amplifier
+        )
+    }
+    # Remove the temporary disambiguation column
+    biber_counts <- biber_counts %>%
+      dplyr::select(-"vraiment_as_amplifier")
+  }
+
+  # Supplement pronoun counts with morphological features
+  # Use whichever is higher: dictionary count or morphological count
+  # This catches pronouns that udpipe tagged correctly but aren't in our dictionary
+  if ("f_06_morph_supplement" %in% colnames(biber_counts)) {
+    if ("f_06_first_person_pronouns" %in% colnames(biber_counts)) {
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_06_first_person_pronouns = pmax(
+            .data$f_06_first_person_pronouns,
+            .data$f_06_morph_supplement,
+            na.rm = TRUE
+          )
+        )
+    }
+    biber_counts <- biber_counts %>%
+      dplyr::select(-"f_06_morph_supplement")
+  }
+
+  if ("f_07_morph_supplement" %in% colnames(biber_counts)) {
+    if ("f_07_second_person_pronouns" %in% colnames(biber_counts)) {
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_07_second_person_pronouns = pmax(
+            .data$f_07_second_person_pronouns,
+            .data$f_07_morph_supplement,
+            na.rm = TRUE
+          )
+        )
+    }
+    biber_counts <- biber_counts %>%
+      dplyr::select(-"f_07_morph_supplement")
+  }
+
+  if ("f_08_morph_supplement" %in% colnames(biber_counts)) {
+    if ("f_08_third_person_pronouns" %in% colnames(biber_counts)) {
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_08_third_person_pronouns = pmax(
+            .data$f_08_third_person_pronouns,
+            .data$f_08_morph_supplement,
+            na.rm = TRUE
+          )
+        )
+    }
+    biber_counts <- biber_counts %>%
+      dplyr::select(-"f_08_morph_supplement")
+  }
+
+      biber_counts <- biber_counts %>%
+        dplyr::mutate(
+          f_50_discourse_particles = .data$f_50_discourse_particles + .data$donc_as_discourse_particle
+        )
+    }
+    # Remove the temporary disambiguation column
+    biber_counts <- biber_counts %>%
+      dplyr::select(-"donc_as_discourse_particle")
   }
 
   if (normalize) {
@@ -1563,39 +1010,13 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     dplyr::group_by(.data$doc_id) %>%
     dplyr::summarise(f_44_mean_word_length = mean(.data$mean_word_length))
 
-  biber_counts <- dplyr::full_join(biber_counts, f_44_mean_word_length, by = "doc_id")
+  biber_counts <- dplyr::full_join(biber_counts, f_44_mean_word_length, by = "doc_id") %>%
+    replace_nas()
 
   biber_counts <- biber_counts %>%
     dplyr::select(order(colnames(biber_counts)))
 
   biber_counts[] <- lapply(biber_counts, as.vector)
 
-  return(biber_counts)
-}
-
-#' Normalize to counts per 1,000 tokens
-#'
-#' @param counts Data frame with numeric columns for counts of token, with one
-#'   row per document. Must include a `tot_counts` column with the total number
-#'   of tokens per document.
-#' @return `counts` data frame with counts normalized to rate per 1,000 tokens,
-#'   and `tot_counts` column removed
-#' @keywords internal
-normalize_counts <- function(counts) {
-  counts %>%
-    dplyr::mutate(dplyr::across(dplyr::where(is.numeric), ~ 1000 * . / tot_counts)) %>%
-    dplyr::select(-"tot_counts")
-}
-
-#' Replace all NAs with 0
-#'
-#' @param x Vector potentially containing NAs
-#' @keywords internal
-replace_nas <- function(x) {
-  replace(x, is.na(x), 0)
-}
-
-extract_morph_value <- function(feats, key) {
-  res <- stringr::str_extract(feats, paste0(key, "=[^|]+"))
-  stringr::str_remove(res, paste0(key, "="))
+  biber_counts
 }
