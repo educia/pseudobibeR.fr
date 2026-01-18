@@ -1,6 +1,6 @@
 Package: pseudobibeR.fr
 Title: Aggregate Counts of French Linguistic Features
-Version: 0.0.0.92
+Version: 0.0.0.93
 Authors@R: 
     c(
      person(given = "David",
@@ -40,8 +40,18 @@ Imports:
     tibble,
     magrittr
 Suggests:
-    testthat (>= 3.0.0),
-    udpipe,
+    broom,
+    cli,
+    ggplot2,
+    gt,
+    gtsummary,
+    knitr,
+    mda.biber,
+    reticulate,
+    rmarkdown,
     spacyr,
-    reticulate
+    testthat (>= 3.0.0),
+    tidyr,
+    udpipe,
+    yaml
 Config/testthat/edition: 3
