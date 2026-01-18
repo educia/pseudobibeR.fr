@@ -3,3 +3,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^_quarto$
+^\.lintr$
+^\.github$
+^CONTRIBUTING\.md$
