@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Run pseudobibeR.fr on a fully parsed academic corpus and analyze disciplinary variation using multidimensional analysis.">
+
+<title>Exploring the Chambers–Le Baron corpus – pseudobibeR.fr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58bc9a9bf563f04a30b6d4341f7e6077.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="" class="navbar-logo light-content">
+    <img src="../logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pseudobibeR.fr</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-vignettes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Vignettes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-vignettes">    
+        <li>
+    <a class="dropdown-item" href="../vignettes/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vignettes/parser-validation.html">
+ <span class="dropdown-text">Cross-Parser Validation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vignettes/chambers-corpus.html">
+ <span class="dropdown-text">Chambers–Le Baron Walkthrough</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-learn-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Learn more</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-learn-more">    
+        <li>
+    <a class="dropdown-item" href="../feature-categories.html">
+ <span class="dropdown-text">Biber features</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../data-sources.html">
+ <span class="dropdown-text">Data sources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://cran.r-project.org/web/packages/pseudobibeR/index.html" target="_blank">
+ <span class="dropdown-text">pseudobibeR for English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/browndw/pseudobibeR.fr"> <i class="bi bi-github" role="img" aria-label="pseudobibeR.fr on GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#about-the-dataset" id="toc-about-the-dataset" class="nav-link active" data-scroll-target="#about-the-dataset">About the dataset</a></li>
+  <li><a href="#parsing-the-corpus-documented-pipeline" id="toc-parsing-the-corpus-documented-pipeline" class="nav-link" data-scroll-target="#parsing-the-corpus-documented-pipeline">Parsing the corpus (documented pipeline)</a></li>
+  <li><a href="#compute-biber-features" id="toc-compute-biber-features" class="nav-link" data-scroll-target="#compute-biber-features">Compute Biber features</a></li>
+  <li><a href="#discipline-level-summary" id="toc-discipline-level-summary" class="nav-link" data-scroll-target="#discipline-level-summary">Discipline-level summary</a></li>
+  <li><a href="#multidimensional-analysis" id="toc-multidimensional-analysis" class="nav-link" data-scroll-target="#multidimensional-analysis">Multidimensional Analysis</a>
+  <ul class="collapse">
+  <li><a href="#scree-plot" id="toc-scree-plot" class="nav-link" data-scroll-target="#scree-plot">Scree Plot</a></li>
+  <li><a href="#factor-loadings" id="toc-factor-loadings" class="nav-link" data-scroll-target="#factor-loadings">Factor Loadings</a></li>
+  <li><a href="#factor-1-interpretation" id="toc-factor-1-interpretation" class="nav-link" data-scroll-target="#factor-1-interpretation">Factor 1 Interpretation</a></li>
+  </ul></li>
+  <li><a href="#statistical-analysis-of-disciplinary-differences" id="toc-statistical-analysis-of-disciplinary-differences" class="nav-link" data-scroll-target="#statistical-analysis-of-disciplinary-differences">Statistical Analysis of Disciplinary Differences</a>
+  <ul class="collapse">
+  <li><a href="#anova-factor-1-by-discipline" id="toc-anova-factor-1-by-discipline" class="nav-link" data-scroll-target="#anova-factor-1-by-discipline">ANOVA: Factor 1 by Discipline</a></li>
+  <li><a href="#regression-factor-1-by-discipline" id="toc-regression-factor-1-by-discipline" class="nav-link" data-scroll-target="#regression-factor-1-by-discipline">Regression: Factor 1 by Discipline</a></li>
+  </ul></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exploring the Chambers–Le Baron corpus</h1>
+</div>
+
+<div>
+  <div class="description">
+    Run pseudobibeR.fr on a fully parsed academic corpus and analyze disciplinary variation using multidimensional analysis.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pseudobibeR.fr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mda.biber)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>corpus_candidates <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">".."</span>, <span class="st">"data"</span>, <span class="st">"french_corpus.rda"</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"french_corpus.rda"</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">".."</span>, <span class="st">".."</span>, <span class="st">"_quarto"</span>, <span class="st">"data"</span>, <span class="st">"french_corpus.rda"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>corpus_path <span class="ot">&lt;-</span> corpus_candidates[<span class="fu">file.exists</span>(corpus_candidates)][<span class="dv">1</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.na</span>(corpus_path)) {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Place french_corpus.rda under _quarto/data/ before rendering this tutorial."</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>udpipe_rda <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">".."</span>, <span class="st">"data"</span>, <span class="st">"fc_udpipe_parsed.rda"</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"fc_udpipe_parsed.rda"</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">".."</span>, <span class="st">".."</span>, <span class="st">"_quarto"</span>, <span class="st">"data"</span>, <span class="st">"fc_udpipe_parsed.rda"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>udpipe_path <span class="ot">&lt;-</span> udpipe_rda[<span class="fu">file.exists</span>(udpipe_rda)][<span class="dv">1</span>]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.na</span>(udpipe_path)) {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Cannot locate fc_udpipe_parsed.rda in _quarto/data/."</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Load corpus data and pre-parsed tokens</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(corpus_path)   <span class="co"># loads 'french_corpus'</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(udpipe_path)   <span class="co"># loads 'fc_udpipe_parsed'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="about-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-dataset">About the dataset</h2>
+<p>The <a href="https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2527">Chambers–Le Baron corpus</a> <span class="citation" data-cites="chambers2007corpus">(<a href="#ref-chambers2007corpus" role="doc-biblioref">2007</a>)</span> contains research articles from ten academic disciplines. An RDA file with the data preprocessed into a dataframe can be read in from the <code>_quarto/data</code> directory, which is used for documentation rendering but not distributed as part of the R package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>french_corpus <span class="sc">|&gt;</span> <span class="fu">count</span>(discipline, <span class="at">name =</span> <span class="st">"n_articles"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      discipline n_articles
+1                      Economics         16
+2                        History         13
+3  Information_and_communication         15
+4                            Law         19
+5  Linguistics-language_learning         15
+6                     Literature         20
+7                  Media-culture         18
+8                     Philosophy         13
+9            Social_anthropology         13
+10               Social_sciences         17</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Articles</strong>: 159</li>
+<li><strong>Total tokens</strong>: 125,445</li>
+<li><strong>Disciplines</strong>: 10</li>
+<li><strong>Columns</strong>: <code>doc_id</code>, <code>discipline</code>, <code>text</code></li>
+</ul>
+<p>For detailed corpus composition including token counts by discipline, see <a href="../data-sources.html#chambers-le-baron-corpus">Data Sources</a>.</p>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20241126</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>french_corpus <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">snippet =</span> <span class="fu">str_trunc</span>(text, <span class="dv">220</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, discipline, snippet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             doc_id                    discipline
+1 MC-DE-ND-XX-XX-04                 Media-culture
+2 LA-AD-MN-XX-XX-01                           Law
+3 IC-LE-CM-XX-XX-06 Information_and_communication
+                                                                                                                                                                                                                       snippet
+1 Manières d’écouter des sons. Quelques aspects du projet Écoutes signées (Ircam) Avant-propos Ce texte est issu d’une communication présentée le 17 octobre 2003 au Centre Georges- Pompidou, au cours de la journée « Out...
+2 LA PRISE DE DÉCISION AU CONSEIL DE SÉCURITÉ EN MATIÈRE DE MAINTIEN DE LA PAIX : " PAS DE SORTIE SANS STRATÉGIE " Le rapport du " groupe d'étude chargé de la question des opérations de maintien de la paix " 1[1], paru ...
+3 INTERNET ET LES PARTIS POLITIQUES : QUELLE PLACE REELLE POUR LE CITOYEN ? Introduction Le développement des nouvelles technologies d'information et de communication, et leur appropriation durant ces dernières décennie...</code></pre>
+</div>
+</div>
+</section>
+<section id="parsing-the-corpus-documented-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="parsing-the-corpus-documented-pipeline">Parsing the corpus (documented pipeline)</h2>
+<p>We provide pre-parsed outputs for reproducibility, but the pipeline below illustrates how to regenerate them from the raw text.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(udpipe)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">udpipe_download_model</span>(<span class="at">language =</span> <span class="st">"french-gsd"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ud_model <span class="ot">&lt;-</span> <span class="fu">udpipe_load_model</span>(model<span class="sc">$</span>file_model)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fc_udpipe_parsed <span class="ot">&lt;-</span> <span class="fu">udpipe_annotate</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  ud_model,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> french_corpus<span class="sc">$</span>text,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">doc_id =</span> french_corpus<span class="sc">$</span>doc_id,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tagger =</span> <span class="st">"default"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">parser =</span> <span class="st">"default"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(fc_udpipe_parsed, <span class="at">file =</span> <span class="st">"../data/fc_udpipe_parsed.rda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A parallel recipe using spaCy is already stored in <code>_quarto/data/fc_spacy_parsed.rda</code>.</p>
+</section>
+<section id="compute-biber-features" class="level2">
+<h2 class="anchored" data-anchor-id="compute-biber-features">Compute Biber features</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>features_ud <span class="ot">&lt;-</span> <span class="fu">biber</span>(fc_udpipe_parsed, <span class="at">measure =</span> <span class="st">"none"</span>, <span class="at">normalize =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(french_corpus <span class="sc">|&gt;</span> <span class="fu">select</span>(doc_id, discipline), <span class="at">by =</span> <span class="st">"doc_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, discipline, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">discipline =</span> <span class="fu">as.factor</span>(discipline))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>features_ud <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, discipline, f_01_past_tense, f_14_nominalizations, f_52_modal_possibility)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 159 × 5
+   doc_id discipline f_01_past_tense f_14_nominalizations f_52_modal_possibility
+   &lt;chr&gt;  &lt;fct&gt;                &lt;dbl&gt;                &lt;dbl&gt;                  &lt;dbl&gt;
+ 1 EC-EI… Economics             4                    58.7                   0   
+ 2 EC-EI… Economics             0                    73.0                   5.12
+ 3 EC-EI… Economics             1.32                 75.1                   3.95
+ 4 EC-EI… Economics             0                    65.6                   0   
+ 5 EC-EI… Economics             0                    42.2                   7.24
+ 6 EC-EI… Economics             2.48                 50.8                  13.6 
+ 7 EC-EI… Economics             0                    62.3                   3.74
+ 8 EC-EP… Economics             0                    78.0                   5.47
+ 9 EC-EP… Economics             0                    99.7                   2.66
+10 EC-EP… Economics             1.31                 77.2                   6.54
+# ℹ 149 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="discipline-level-summary" class="level2">
+<h2 class="anchored" data-anchor-id="discipline-level-summary">Discipline-level summary</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>summary_tbl <span class="ot">&lt;-</span> features_ud <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(discipline) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nominalizations =</span> <span class="fu">mean</span>(f_14_nominalizations, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">modals =</span> <span class="fu">mean</span>(f_52_modal_possibility <span class="sc">+</span> f_53_modal_necessity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">pronouns =</span> <span class="fu">mean</span>(f_06_first_person_pronouns <span class="sc">+</span> f_07_second_person_pronouns, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>summary_tbl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   discipline                    nominalizations modals pronouns
+   &lt;fct&gt;                                   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Economics                                69.5   5.48     1.61
+ 2 History                                  60.3   4.07     2.80
+ 3 Information_and_communication            68.0   3.46     7.12
+ 4 Law                                      54.6   3.84     2.80
+ 5 Linguistics-language_learning            63.4   3.98     8.90
+ 6 Literature                               54.8   4.12     6.45
+ 7 Media-culture                            50.0   3.18     9.07
+ 8 Philosophy                               52.4   7.58     7.76
+ 9 Social_anthropology                      57.3   3.53     8.15
+10 Social_sciences                          65.8   3.76     4.82</code></pre>
+</div>
+</div>
+</section>
+<section id="multidimensional-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="multidimensional-analysis">Multidimensional Analysis</h2>
+<p>Following Biber’s (1988) approach, we can identify underlying dimensions that capture patterns of co-occurring linguistic features across disciplines using factor analysis.</p>
+<section id="scree-plot" class="level3">
+<h3 class="anchored" data-anchor-id="scree-plot">Scree Plot</h3>
+<p>First, we examine how many factors to extract by looking at the eigenvalues:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot_mda</span>(features_ud)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chambers-corpus_files/figure-html/screeplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="factor-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="factor-loadings">Factor Loadings</h3>
+<p>Extract factor loadings to identify which features co-occur on each dimension:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> <span class="fu">mda_loadings</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs_by_group =</span> features_ud,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_factors =</span> <span class="dv">3</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cor_min =</span> <span class="fl">0.2</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">threshold =</span> <span class="fl">0.35</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display loadings table</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(loadings, <span class="st">'loadings'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"Feature"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="omnwfidbwj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#omnwfidbwj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#omnwfidbwj thead, #omnwfidbwj tbody, #omnwfidbwj tfoot, #omnwfidbwj tr, #omnwfidbwj td, #omnwfidbwj th {
+  border-style: none;
+}
+
+#omnwfidbwj p {
+  margin: 0;
+  padding: 0;
+}
+
+#omnwfidbwj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#omnwfidbwj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#omnwfidbwj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#omnwfidbwj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#omnwfidbwj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#omnwfidbwj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#omnwfidbwj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#omnwfidbwj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#omnwfidbwj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#omnwfidbwj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#omnwfidbwj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#omnwfidbwj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#omnwfidbwj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#omnwfidbwj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#omnwfidbwj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#omnwfidbwj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#omnwfidbwj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#omnwfidbwj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#omnwfidbwj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#omnwfidbwj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#omnwfidbwj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#omnwfidbwj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#omnwfidbwj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#omnwfidbwj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#omnwfidbwj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#omnwfidbwj .gt_left {
+  text-align: left;
+}
+
+#omnwfidbwj .gt_center {
+  text-align: center;
+}
+
+#omnwfidbwj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#omnwfidbwj .gt_font_normal {
+  font-weight: normal;
+}
+
+#omnwfidbwj .gt_font_bold {
+  font-weight: bold;
+}
+
+#omnwfidbwj .gt_font_italic {
+  font-style: italic;
+}
+
+#omnwfidbwj .gt_super {
+  font-size: 65%;
+}
+
+#omnwfidbwj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#omnwfidbwj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#omnwfidbwj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#omnwfidbwj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#omnwfidbwj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#omnwfidbwj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#omnwfidbwj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#omnwfidbwj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#omnwfidbwj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Feature" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Feature</th>
+<th id="Factor1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor1</th>
+<th id="Factor2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor2</th>
+<th id="Factor3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor3</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_01_past_tense</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">−0.25</td>
+<td class="gt_row gt_right" headers="Factor3">0.12</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_02_perfect_aspect</td>
+<td class="gt_row gt_right" headers="Factor1">0.30</td>
+<td class="gt_row gt_right" headers="Factor2">−0.39</td>
+<td class="gt_row gt_right" headers="Factor3">−0.11</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_03_present_tense</td>
+<td class="gt_row gt_right" headers="Factor1">0.22</td>
+<td class="gt_row gt_right" headers="Factor2">0.62</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_04_place_adverbials</td>
+<td class="gt_row gt_right" headers="Factor1">0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.26</td>
+<td class="gt_row gt_right" headers="Factor3">−0.21</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_05_time_adverbials</td>
+<td class="gt_row gt_right" headers="Factor1">0.14</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">−0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_06_first_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.47</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_07_second_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">−0.01</td>
+<td class="gt_row gt_right" headers="Factor2">0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_08_third_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.56</td>
+<td class="gt_row gt_right" headers="Factor2">0.40</td>
+<td class="gt_row gt_right" headers="Factor3">0.15</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_09_pronoun_it</td>
+<td class="gt_row gt_right" headers="Factor1">0.33</td>
+<td class="gt_row gt_right" headers="Factor2">0.52</td>
+<td class="gt_row gt_right" headers="Factor3">0.12</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_10_demonstrative_pronoun</td>
+<td class="gt_row gt_right" headers="Factor1">0.62</td>
+<td class="gt_row gt_right" headers="Factor2">0.14</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_11_indefinite_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.35</td>
+<td class="gt_row gt_right" headers="Factor2">0.13</td>
+<td class="gt_row gt_right" headers="Factor3">−0.06</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_12_proverb_do</td>
+<td class="gt_row gt_right" headers="Factor1">0.03</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_13_wh_question</td>
+<td class="gt_row gt_right" headers="Factor1">0.10</td>
+<td class="gt_row gt_right" headers="Factor2">0.18</td>
+<td class="gt_row gt_right" headers="Factor3">−0.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_14_nominalizations</td>
+<td class="gt_row gt_right" headers="Factor1">−0.61</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_15_gerunds</td>
+<td class="gt_row gt_right" headers="Factor1">−0.39</td>
+<td class="gt_row gt_right" headers="Factor2">−0.11</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_16_other_nouns</td>
+<td class="gt_row gt_right" headers="Factor1">−0.05</td>
+<td class="gt_row gt_right" headers="Factor2">−0.37</td>
+<td class="gt_row gt_right" headers="Factor3">−0.17</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_17_agentless_passives</td>
+<td class="gt_row gt_right" headers="Factor1">0.21</td>
+<td class="gt_row gt_right" headers="Factor2">−0.30</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_18_by_passives</td>
+<td class="gt_row gt_right" headers="Factor1">0.03</td>
+<td class="gt_row gt_right" headers="Factor2">−0.23</td>
+<td class="gt_row gt_right" headers="Factor3">−0.14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_19_be_main_verb</td>
+<td class="gt_row gt_right" headers="Factor1">0.60</td>
+<td class="gt_row gt_right" headers="Factor2">0.13</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_20_existential_there</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.12</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_21_that_verb_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.32</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_22_that_adj_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">0.04</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_23_wh_clause</td>
+<td class="gt_row gt_right" headers="Factor1">0.26</td>
+<td class="gt_row gt_right" headers="Factor2">0.60</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_24_infinitives</td>
+<td class="gt_row gt_right" headers="Factor1">0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.06</td>
+<td class="gt_row gt_right" headers="Factor3">0.97</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_25_present_participle</td>
+<td class="gt_row gt_right" headers="Factor1">−0.17</td>
+<td class="gt_row gt_right" headers="Factor2">−0.05</td>
+<td class="gt_row gt_right" headers="Factor3">0.11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_27_past_participle_whiz</td>
+<td class="gt_row gt_right" headers="Factor1">−0.36</td>
+<td class="gt_row gt_right" headers="Factor2">0.05</td>
+<td class="gt_row gt_right" headers="Factor3">−0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_28_present_participle_whiz</td>
+<td class="gt_row gt_right" headers="Factor1">−0.33</td>
+<td class="gt_row gt_right" headers="Factor2">−0.03</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_29_that_subj</td>
+<td class="gt_row gt_right" headers="Factor1">−0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.41</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_30_that_obj</td>
+<td class="gt_row gt_right" headers="Factor1">0.11</td>
+<td class="gt_row gt_right" headers="Factor2">0.36</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_32_wh_obj</td>
+<td class="gt_row gt_right" headers="Factor1">−0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.30</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_33_pied_piping</td>
+<td class="gt_row gt_right" headers="Factor1">0.06</td>
+<td class="gt_row gt_right" headers="Factor2">0.32</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_34_sentence_relatives</td>
+<td class="gt_row gt_right" headers="Factor1">0.28</td>
+<td class="gt_row gt_right" headers="Factor2">0.09</td>
+<td class="gt_row gt_right" headers="Factor3">−0.14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_35_because</td>
+<td class="gt_row gt_right" headers="Factor1">0.35</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">−0.16</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_36_though</td>
+<td class="gt_row gt_right" headers="Factor1">0.16</td>
+<td class="gt_row gt_right" headers="Factor2">−0.16</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_37_if</td>
+<td class="gt_row gt_right" headers="Factor1">0.56</td>
+<td class="gt_row gt_right" headers="Factor2">0.01</td>
+<td class="gt_row gt_right" headers="Factor3">−0.09</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_38_other_adv_sub</td>
+<td class="gt_row gt_right" headers="Factor1">−0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.05</td>
+<td class="gt_row gt_right" headers="Factor3">0.78</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_39_prepositions</td>
+<td class="gt_row gt_right" headers="Factor1">−0.53</td>
+<td class="gt_row gt_right" headers="Factor2">−0.10</td>
+<td class="gt_row gt_right" headers="Factor3">−0.18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_40_adj_attr</td>
+<td class="gt_row gt_right" headers="Factor1">−0.27</td>
+<td class="gt_row gt_right" headers="Factor2">−0.19</td>
+<td class="gt_row gt_right" headers="Factor3">0.15</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_41_adj_pred</td>
+<td class="gt_row gt_right" headers="Factor1">0.33</td>
+<td class="gt_row gt_right" headers="Factor2">0.05</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_42_adverbs</td>
+<td class="gt_row gt_right" headers="Factor1">0.58</td>
+<td class="gt_row gt_right" headers="Factor2">−0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.09</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_44_mean_word_length</td>
+<td class="gt_row gt_right" headers="Factor1">−0.62</td>
+<td class="gt_row gt_right" headers="Factor2">0.04</td>
+<td class="gt_row gt_right" headers="Factor3">0.11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_46_downtoners</td>
+<td class="gt_row gt_right" headers="Factor1">0.18</td>
+<td class="gt_row gt_right" headers="Factor2">−0.17</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_47_hedges</td>
+<td class="gt_row gt_right" headers="Factor1">0.20</td>
+<td class="gt_row gt_right" headers="Factor2">0.02</td>
+<td class="gt_row gt_right" headers="Factor3">−0.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_48_amplifiers</td>
+<td class="gt_row gt_right" headers="Factor1">0.15</td>
+<td class="gt_row gt_right" headers="Factor2">−0.14</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_49_emphatics</td>
+<td class="gt_row gt_right" headers="Factor1">0.25</td>
+<td class="gt_row gt_right" headers="Factor2">−0.26</td>
+<td class="gt_row gt_right" headers="Factor3">−0.11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_50_discourse_particles</td>
+<td class="gt_row gt_right" headers="Factor1">0.48</td>
+<td class="gt_row gt_right" headers="Factor2">−0.04</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_51_demonstratives</td>
+<td class="gt_row gt_right" headers="Factor1">0.26</td>
+<td class="gt_row gt_right" headers="Factor2">0.25</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_52_modal_possibility</td>
+<td class="gt_row gt_right" headers="Factor1">0.17</td>
+<td class="gt_row gt_right" headers="Factor2">−0.03</td>
+<td class="gt_row gt_right" headers="Factor3">0.35</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_53_modal_necessity</td>
+<td class="gt_row gt_right" headers="Factor1">0.11</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.39</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_54_modal_predictive</td>
+<td class="gt_row gt_right" headers="Factor1">0.14</td>
+<td class="gt_row gt_right" headers="Factor2">−0.02</td>
+<td class="gt_row gt_right" headers="Factor3">0.29</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_55_verb_public</td>
+<td class="gt_row gt_right" headers="Factor1">0.26</td>
+<td class="gt_row gt_right" headers="Factor2">0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_56_verb_private</td>
+<td class="gt_row gt_right" headers="Factor1">0.26</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_57_verb_suasive</td>
+<td class="gt_row gt_right" headers="Factor1">−0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.08</td>
+<td class="gt_row gt_right" headers="Factor3">0.23</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_58_verb_seem</td>
+<td class="gt_row gt_right" headers="Factor1">0.15</td>
+<td class="gt_row gt_right" headers="Factor2">0.20</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_60_that_deletion</td>
+<td class="gt_row gt_right" headers="Factor1">0.16</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.66</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_61_stranded_preposition</td>
+<td class="gt_row gt_right" headers="Factor1">0.10</td>
+<td class="gt_row gt_right" headers="Factor2">0.20</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_62_split_infinitive</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">−0.04</td>
+<td class="gt_row gt_right" headers="Factor3">0.20</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_63_split_auxiliary</td>
+<td class="gt_row gt_right" headers="Factor1">0.35</td>
+<td class="gt_row gt_right" headers="Factor2">−0.48</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_64_phrasal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">−0.25</td>
+<td class="gt_row gt_right" headers="Factor2">0.01</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_65_clausal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">0.28</td>
+<td class="gt_row gt_right" headers="Factor2">0.13</td>
+<td class="gt_row gt_right" headers="Factor3">−0.18</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_66_neg_synthetic</td>
+<td class="gt_row gt_right" headers="Factor1">0.34</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_67_neg_analytic</td>
+<td class="gt_row gt_right" headers="Factor1">0.42</td>
+<td class="gt_row gt_right" headers="Factor2">−0.12</td>
+<td class="gt_row gt_right" headers="Factor3">0.13</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="factor-1-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="factor-1-interpretation">Factor 1 Interpretation</h3>
+<p>Factor 1 closely resembles Biber’s classic <strong>Dimension 1: Involved vs.&nbsp;Informational Production</strong>.</p>
+<p>Features with <strong>positive loadings</strong> (&gt;0.20) indicate more involved, interactive discourse:</p>
+<ul>
+<li>Demonstrative pronouns (0.61), <em>be</em> as main verb (0.60), and adverbs (0.58)</li>
+<li>Conditional clauses with <em>if</em> (0.56) and third-person pronouns (0.54)</li>
+<li>Discourse particles (0.48) and analytic negation (0.42)</li>
+</ul>
+<p>Features with <strong>negative loadings</strong> (&lt;−0.20) indicate more informational, edited prose:</p>
+<ul>
+<li>Nominalizations (−0.62) and mean word length (−0.62)</li>
+<li>Prepositions (−0.53) and gerunds (−0.39)</li>
+<li>Past and present participial <em>whiz</em> deletions (−0.36, −0.33)</li>
+<li>Attributive adjectives (−0.26) and phrasal coordination (−0.25)</li>
+</ul>
+<p>This dimension captures the fundamental distinction between texts that engage readers directly through personal reference and simplified syntax (positive pole) versus texts that convey dense information through abstract nominalization and complex modification (negative pole).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stickplot_mda</span>(loadings, <span class="at">n_factor =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chambers-corpus_files/figure-html/factor1-viz-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap_mda</span>(loadings, <span class="at">n_factor =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chambers-corpus_files/figure-html/factor1-viz-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="statistical-analysis-of-disciplinary-differences" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-analysis-of-disciplinary-differences">Statistical Analysis of Disciplinary Differences</h2>
+<p>The ANOVA and regression results reveal significant disciplinary variation along Factor 1, with <strong>Philosophy</strong> emerging as a striking outlier.</p>
+<section id="anova-factor-1-by-discipline" class="level3">
+<h3 class="anchored" data-anchor-id="anova-factor-1-by-discipline">ANOVA: Factor 1 by Discipline</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Factor1 <span class="sc">~</span> group, <span class="at">data =</span> loadings)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(f_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  term         df sumsq meansq statistic  p.value
+  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 group         9 2595.  288.       7.99  1.35e-9
+2 Residuals   149 5378.   36.1     NA    NA      </code></pre>
+</div>
+</div>
+<p>The ANOVA confirms that disciplines differ significantly in their Factor 1 scores, indicating distinct rhetorical styles.</p>
+</section>
+<section id="regression-factor-1-by-discipline" class="level3">
+<h3 class="anchored" data-anchor-id="regression-factor-1-by-discipline">Regression: Factor 1 by Discipline</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(<span class="fu">lm</span>(Factor1 <span class="sc">~</span> group, <span class="at">data =</span> loadings)) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_glance_source_note</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">as_gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="qpzkpmyong" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qpzkpmyong table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qpzkpmyong thead, #qpzkpmyong tbody, #qpzkpmyong tfoot, #qpzkpmyong tr, #qpzkpmyong td, #qpzkpmyong th {
+  border-style: none;
+}
+
+#qpzkpmyong p {
+  margin: 0;
+  padding: 0;
+}
+
+#qpzkpmyong .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qpzkpmyong .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qpzkpmyong .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qpzkpmyong .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qpzkpmyong .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qpzkpmyong .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qpzkpmyong .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qpzkpmyong .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qpzkpmyong .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qpzkpmyong .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qpzkpmyong .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qpzkpmyong .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qpzkpmyong .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qpzkpmyong .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qpzkpmyong .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qpzkpmyong .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qpzkpmyong .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qpzkpmyong .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qpzkpmyong .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qpzkpmyong .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qpzkpmyong .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qpzkpmyong .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qpzkpmyong .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qpzkpmyong .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qpzkpmyong .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qpzkpmyong .gt_left {
+  text-align: left;
+}
+
+#qpzkpmyong .gt_center {
+  text-align: center;
+}
+
+#qpzkpmyong .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qpzkpmyong .gt_font_normal {
+  font-weight: normal;
+}
+
+#qpzkpmyong .gt_font_bold {
+  font-weight: bold;
+}
+
+#qpzkpmyong .gt_font_italic {
+  font-style: italic;
+}
+
+#qpzkpmyong .gt_super {
+  font-size: 65%;
+}
+
+#qpzkpmyong .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qpzkpmyong .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qpzkpmyong .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qpzkpmyong .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qpzkpmyong .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qpzkpmyong .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qpzkpmyong .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#qpzkpmyong .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qpzkpmyong div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">group</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Economics</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="conf.low">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;History</td>
+<td class="gt_row gt_center" headers="estimate">2.5</td>
+<td class="gt_row gt_center" headers="conf.low">-1.9, 6.9</td>
+<td class="gt_row gt_center" headers="p.value">0.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Information_and_communication</td>
+<td class="gt_row gt_center" headers="estimate">-0.56</td>
+<td class="gt_row gt_center" headers="conf.low">-4.8, 3.7</td>
+<td class="gt_row gt_center" headers="p.value">0.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Law</td>
+<td class="gt_row gt_center" headers="estimate">2.8</td>
+<td class="gt_row gt_center" headers="conf.low">-1.2, 6.8</td>
+<td class="gt_row gt_center" headers="p.value">0.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Linguistics-language_learning</td>
+<td class="gt_row gt_center" headers="estimate">0.30</td>
+<td class="gt_row gt_center" headers="conf.low">-4.0, 4.6</td>
+<td class="gt_row gt_center" headers="p.value">0.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Literature</td>
+<td class="gt_row gt_center" headers="estimate">6.2</td>
+<td class="gt_row gt_center" headers="conf.low">2.2, 10</td>
+<td class="gt_row gt_center" headers="p.value">0.003</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Media-culture</td>
+<td class="gt_row gt_center" headers="estimate">8.0</td>
+<td class="gt_row gt_center" headers="conf.low">3.9, 12</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Philosophy</td>
+<td class="gt_row gt_center" headers="estimate">14</td>
+<td class="gt_row gt_center" headers="conf.low">9.1, 18</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Social_anthropology</td>
+<td class="gt_row gt_center" headers="estimate">1.5</td>
+<td class="gt_row gt_center" headers="conf.low">-2.9, 6.0</td>
+<td class="gt_row gt_center" headers="p.value">0.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Social_sciences</td>
+<td class="gt_row gt_center" headers="estimate">0.94</td>
+<td class="gt_row gt_center" headers="conf.low">-3.2, 5.1</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
+</tr>
+<tr class="gt_sourcenotes even">
+<td colspan="4" class="gt_sourcenote">R² = 0.325; Adjusted R² = 0.285; Sigma = 6.01; Statistic = 7.99; p-value = &lt;0.001; df = 9; Log-likelihood = -506; AIC = 1,033; BIC = 1,067; Deviance = 5,378; Residual df = 149; No.&nbsp;Obs. = 159</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Key findings</strong>:</p>
+<ul>
+<li><p><strong>Philosophy</strong> scores highest on Factor 1, showing a remarkably involved, interactive style—unusual for academic writing. Philosophy articles in this corpus employ more demonstratives, conditionals, and discourse markers than other disciplines, suggesting a more dialogic engagement with arguments and counterarguments.</p></li>
+<li><p><strong>Sciences</strong> (Biology, Medicine, Physics) cluster at the negative pole, favoring dense nominalization and complex noun phrases typical of empirical research reporting.</p></li>
+<li><p><strong>Social sciences</strong> (Economics, Linguistics) occupy intermediate positions, balancing technical precision with explanatory discourse.</p></li>
+</ul>
+<p>This pattern suggests that even within formal academic French, disciplinary conventions shape fundamental choices about how to structure information and engage readers. Philosophy’s outlier status highlights the discipline’s tradition of argument-driven prose that maintains traces of oral disputation.</p>
+<p>Importantly, this finding replicates cross-linguistically. Hardy and Römer’s <span class="citation" data-cites="hardy2013revealing">(<a href="#ref-hardy2013revealing" role="doc-biblioref">2013</a>)</span> multidimensional analysis of the MICUSP corpus (English student writing) similarly identified Philosophy at the extreme end of what they termed “Involved, Academic Narrative”—characterized by high use of personal pronouns, present tense verbs, and stance markers. The convergence across French and English academic corpora suggests that Philosophy’s distinctive rhetorical conventions transcend language-specific constraints, reflecting deeper epistemological commitments to dialogic argumentation.</p>
+</section>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<ol type="1">
+<li>Re-run the udpipe parsing chunk after downloading the raw text yourself.</li>
+<li>Swap in the spaCy-parsed <code>.rda</code> to compare how feature counts shift by engine.</li>
+<li>Explore additional factors (3, 4, 5) to identify more subtle patterns of variation.</li>
+<li>Use the factor scores for downstream classification or clustering tasks.</li>
+</ol>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-chambers2007corpus" class="csl-entry" role="listitem">
+Chambers, A. 2007. <span>“Le Corpus Chambers-Le Baron d’articles de Recherche En Fran<span>ç</span>ais.”</span> Oxford Text Archive. <a href="https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2527">https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2527</a>.
+</div>
+<div id="ref-hardy2013revealing" class="csl-entry" role="listitem">
+Hardy, Jack A, and Ute Römer. 2013. <span>“Revealing Disciplinary Variation in Student Writing: A Multi-Dimensional Analysis of the Michigan Corpus of Upper-Level Student Papers (MICUSP).”</span> <em>Corpora</em> 8 (2): 183–207.
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

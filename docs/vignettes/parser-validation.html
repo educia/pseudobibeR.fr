@@ -1,0 +1,3630 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cross-Parser Validation of French Register Dimensions – pseudobibeR.fr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58bc9a9bf563f04a30b6d4341f7e6077.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="" class="navbar-logo light-content">
+    <img src="../logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pseudobibeR.fr</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-vignettes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Vignettes</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-vignettes">    
+        <li>
+    <a class="dropdown-item" href="../vignettes/getting-started.html">
+ <span class="dropdown-text">Getting Started</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vignettes/parser-validation.html">
+ <span class="dropdown-text">Cross-Parser Validation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../vignettes/chambers-corpus.html">
+ <span class="dropdown-text">Chambers–Le Baron Walkthrough</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-learn-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Learn more</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-learn-more">    
+        <li>
+    <a class="dropdown-item" href="../feature-categories.html">
+ <span class="dropdown-text">Biber features</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../data-sources.html">
+ <span class="dropdown-text">Data sources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://cran.r-project.org/web/packages/pseudobibeR/index.html" target="_blank">
+ <span class="dropdown-text">pseudobibeR for English</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/browndw/pseudobibeR.fr"> <i class="bi bi-github" role="img" aria-label="pseudobibeR.fr on GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cross-Parser Validation of French Register Dimensions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This vignette demonstrates the robustness of multidimensional analysis (MDA) for French register variation by comparing results across two different NLP parsers: <strong>spaCy</strong> and <strong>UDPipe</strong>. Despite different parsing algorithms and training data, both models produce remarkably consistent dimensional structures.</p>
+<p>We also compare the French dimensional structure to Biber’s (1988) original English dimensions, showing cross-linguistic alignment in the fundamental distinction between <strong>Interactional</strong> and <strong>Information Production</strong> registers.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This vignette uses the <strong>French Register Corpus</strong> (1.4M tokens, 6 registers). For detailed corpus composition and token counts by register, see <a href="../data-sources.html">Data Sources</a>.</p>
+</div>
+</div>
+</section>
+<section id="cross-parser-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="cross-parser-methodology">Cross-Parser Methodology</h2>
+<p>We extracted 66 linguistic features from the same French register corpus using both parsers, then performed parallel MDAs to test whether the dimensional structure is stable across NLP pipelines.</p>
+<section id="loading-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="loading-the-data">Loading the Data</h3>
+<p>Both feature sets were pre-computed and normalized to counts per 1,000 words. The feature extraction workflow is shown below (not executed during rendering):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Feature extraction workflow (not executed - data loaded from saved files)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fr_features_spacy <span class="ot">&lt;-</span> <span class="fu">biber</span>(fr_spacy_parsed, <span class="at">measure =</span> <span class="st">"none"</span>, <span class="at">normalize =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(french_register_corpus <span class="sc">|&gt;</span> <span class="fu">select</span>(doc_id, register), <span class="at">by =</span> <span class="st">"doc_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, register, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">register =</span> <span class="fu">as.factor</span>(register))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fr_features_ud <span class="ot">&lt;-</span> <span class="fu">biber</span>(fr_udpipe_parsed, <span class="at">measure =</span> <span class="st">"none"</span>, <span class="at">normalize =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(french_register_corpus <span class="sc">|&gt;</span> <span class="fu">select</span>(doc_id, register), <span class="at">by =</span> <span class="st">"doc_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, register, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">register =</span> <span class="fu">as.factor</span>(register))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We load the pre-extracted features from both parsers:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pseudobibeR.fr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mda.biber)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load pre-extracted features from both parsers</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../data/fr_features_spacy.rda"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../data/fr_features_ud.rda"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove twitter due to extreme brevity (mean 22 words/doc)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>fr_features_spacy <span class="ot">&lt;-</span> fr_features_spacy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(register <span class="sc">!=</span> <span class="st">"twitter"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>fr_features_ud <span class="ot">&lt;-</span> fr_features_ud <span class="sc">%&gt;%</span> <span class="fu">filter</span>(register <span class="sc">!=</span> <span class="st">"twitter"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"spaCy corpus:"</span>, <span class="fu">nrow</span>(fr_features_spacy), <span class="st">"documents</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spaCy corpus: 2113 documents</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"UDPipe corpus:"</span>, <span class="fu">nrow</span>(fr_features_ud), <span class="st">"documents</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>UDPipe corpus: 2113 documents</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Data Availability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This vignette requires pre-computed feature data files. If you’re rendering locally without these files, the code chunks will not execute but are shown for reference.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="scree-plots-determining-dimensionality" class="level2">
+<h2 class="anchored" data-anchor-id="scree-plots-determining-dimensionality">Scree Plots: Determining Dimensionality</h2>
+<p>The scree plots show the proportion of variance explained by each factor:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot_mda</span>(fr_features_spacy)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot_mda</span>(fr_features_ud)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="parser-validation_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>spaCy eigenvalues</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="parser-validation_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>UDPipe eigenvalues</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Both parsers suggest a <strong>3-factor solution</strong> with a clear elbow at Factor 4. The eigenvalue profiles are nearly identical, indicating stable dimensionality.</p>
+</section>
+<section id="factor-loadings-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="factor-loadings-comparison">Factor Loadings Comparison</h2>
+<p>We extract 3 factors using a minimum correlation of 0.2 and loading threshold of 0.35:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>loadings_spacy <span class="ot">&lt;-</span> <span class="fu">mda_loadings</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs_by_group =</span> fr_features_spacy,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_factors =</span> <span class="dv">3</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cor_min =</span> <span class="fl">0.2</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">threshold =</span> <span class="fl">0.35</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>loadings_ud <span class="ot">&lt;-</span> <span class="fu">mda_loadings</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs_by_group =</span> fr_features_ud,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_factors =</span> <span class="dv">3</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">cor_min =</span> <span class="fl">0.2</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">threshold =</span> <span class="fl">0.35</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="spacy-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="spacy-loadings">spaCy Loadings</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(loadings_spacy, <span class="st">'loadings'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">"Feature"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">where</span>(is.numeric),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Factor Loadings: spaCy Parser"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="ihlogxssyw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ihlogxssyw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ihlogxssyw thead, #ihlogxssyw tbody, #ihlogxssyw tfoot, #ihlogxssyw tr, #ihlogxssyw td, #ihlogxssyw th {
+  border-style: none;
+}
+
+#ihlogxssyw p {
+  margin: 0;
+  padding: 0;
+}
+
+#ihlogxssyw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ihlogxssyw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ihlogxssyw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ihlogxssyw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ihlogxssyw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ihlogxssyw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ihlogxssyw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ihlogxssyw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ihlogxssyw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ihlogxssyw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ihlogxssyw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ihlogxssyw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ihlogxssyw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ihlogxssyw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ihlogxssyw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihlogxssyw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ihlogxssyw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ihlogxssyw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ihlogxssyw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihlogxssyw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ihlogxssyw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihlogxssyw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ihlogxssyw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihlogxssyw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ihlogxssyw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ihlogxssyw .gt_left {
+  text-align: left;
+}
+
+#ihlogxssyw .gt_center {
+  text-align: center;
+}
+
+#ihlogxssyw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ihlogxssyw .gt_font_normal {
+  font-weight: normal;
+}
+
+#ihlogxssyw .gt_font_bold {
+  font-weight: bold;
+}
+
+#ihlogxssyw .gt_font_italic {
+  font-style: italic;
+}
+
+#ihlogxssyw .gt_super {
+  font-size: 65%;
+}
+
+#ihlogxssyw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ihlogxssyw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ihlogxssyw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ihlogxssyw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ihlogxssyw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ihlogxssyw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ihlogxssyw .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ihlogxssyw .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ihlogxssyw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Factor Loadings: spaCy Parser</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Feature" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Feature</th>
+<th id="Factor1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor1</th>
+<th id="Factor2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor2</th>
+<th id="Factor3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor3</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_02_perfect_aspect</td>
+<td class="gt_row gt_right" headers="Factor1">0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_04_place_adverbials</td>
+<td class="gt_row gt_right" headers="Factor1">0.29</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_05_time_adverbials</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">0.32</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_06_first_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.78</td>
+<td class="gt_row gt_right" headers="Factor2">0.09</td>
+<td class="gt_row gt_right" headers="Factor3">−0.27</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_07_second_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.83</td>
+<td class="gt_row gt_right" headers="Factor2">−0.08</td>
+<td class="gt_row gt_right" headers="Factor3">−0.09</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_08_third_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.45</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.75</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_09_pronoun_it</td>
+<td class="gt_row gt_right" headers="Factor1">0.45</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">0.49</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_10_demonstrative_pronoun</td>
+<td class="gt_row gt_right" headers="Factor1">0.74</td>
+<td class="gt_row gt_right" headers="Factor2">0.14</td>
+<td class="gt_row gt_right" headers="Factor3">0.33</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_11_indefinite_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.41</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_13_wh_question</td>
+<td class="gt_row gt_right" headers="Factor1">0.56</td>
+<td class="gt_row gt_right" headers="Factor2">0.05</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_14_nominalizations</td>
+<td class="gt_row gt_right" headers="Factor1">−0.49</td>
+<td class="gt_row gt_right" headers="Factor2">0.42</td>
+<td class="gt_row gt_right" headers="Factor3">−0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_16_other_nouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.11</td>
+<td class="gt_row gt_right" headers="Factor2">−0.86</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_17_agentless_passives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.24</td>
+<td class="gt_row gt_right" headers="Factor2">0.25</td>
+<td class="gt_row gt_right" headers="Factor3">0.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_18_by_passives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.16</td>
+<td class="gt_row gt_right" headers="Factor2">0.09</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_19_be_main_verb</td>
+<td class="gt_row gt_right" headers="Factor1">0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.35</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_20_existential_there</td>
+<td class="gt_row gt_right" headers="Factor1">0.31</td>
+<td class="gt_row gt_right" headers="Factor2">0.03</td>
+<td class="gt_row gt_right" headers="Factor3">0.16</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_21_that_verb_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.34</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_22_that_adj_comp</td>
+<td class="gt_row gt_right" headers="Factor1">−0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_23_wh_clause</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">0.46</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_27_past_participle_whiz</td>
+<td class="gt_row gt_right" headers="Factor1">−0.21</td>
+<td class="gt_row gt_right" headers="Factor2">0.14</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_29_that_subj</td>
+<td class="gt_row gt_right" headers="Factor1">0.06</td>
+<td class="gt_row gt_right" headers="Factor2">0.30</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_30_that_obj</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">0.26</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_32_wh_obj</td>
+<td class="gt_row gt_right" headers="Factor1">−0.04</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_33_pied_piping</td>
+<td class="gt_row gt_right" headers="Factor1">−0.11</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_34_sentence_relatives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.20</td>
+<td class="gt_row gt_right" headers="Factor3">−0.08</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_35_because</td>
+<td class="gt_row gt_right" headers="Factor1">0.11</td>
+<td class="gt_row gt_right" headers="Factor2">0.25</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_37_if</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_38_other_adv_sub</td>
+<td class="gt_row gt_right" headers="Factor1">0.04</td>
+<td class="gt_row gt_right" headers="Factor2">0.50</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_39_prepositions</td>
+<td class="gt_row gt_right" headers="Factor1">−0.51</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_41_adj_pred</td>
+<td class="gt_row gt_right" headers="Factor1">0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
+<td class="gt_row gt_right" headers="Factor3">0.05</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_42_adverbs</td>
+<td class="gt_row gt_right" headers="Factor1">0.03</td>
+<td class="gt_row gt_right" headers="Factor2">0.64</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_44_mean_word_length</td>
+<td class="gt_row gt_right" headers="Factor1">−0.33</td>
+<td class="gt_row gt_right" headers="Factor2">−0.04</td>
+<td class="gt_row gt_right" headers="Factor3">−0.09</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_45_conjuncts</td>
+<td class="gt_row gt_right" headers="Factor1">−0.16</td>
+<td class="gt_row gt_right" headers="Factor2">0.31</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_46_downtoners</td>
+<td class="gt_row gt_right" headers="Factor1">−0.01</td>
+<td class="gt_row gt_right" headers="Factor2">0.08</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_49_emphatics</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.19</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_50_discourse_particles</td>
+<td class="gt_row gt_right" headers="Factor1">0.44</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.07</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_51_demonstratives</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">0.43</td>
+<td class="gt_row gt_right" headers="Factor3">−0.15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_52_modal_possibility</td>
+<td class="gt_row gt_right" headers="Factor1">−0.03</td>
+<td class="gt_row gt_right" headers="Factor2">0.33</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_53_modal_necessity</td>
+<td class="gt_row gt_right" headers="Factor1">0.00</td>
+<td class="gt_row gt_right" headers="Factor2">0.32</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_54_modal_predictive</td>
+<td class="gt_row gt_right" headers="Factor1">−0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.11</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_55_verb_public</td>
+<td class="gt_row gt_right" headers="Factor1">0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.29</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_56_verb_private</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.27</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_57_verb_suasive</td>
+<td class="gt_row gt_right" headers="Factor1">0.01</td>
+<td class="gt_row gt_right" headers="Factor2">0.18</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_60_that_deletion</td>
+<td class="gt_row gt_right" headers="Factor1">0.35</td>
+<td class="gt_row gt_right" headers="Factor2">0.40</td>
+<td class="gt_row gt_right" headers="Factor3">0.08</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_63_split_auxiliary</td>
+<td class="gt_row gt_right" headers="Factor1">−0.14</td>
+<td class="gt_row gt_right" headers="Factor2">0.32</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_64_phrasal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">−0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.00</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_65_clausal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">0.58</td>
+<td class="gt_row gt_right" headers="Factor2">0.02</td>
+<td class="gt_row gt_right" headers="Factor3">0.24</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_66_neg_synthetic</td>
+<td class="gt_row gt_right" headers="Factor1">−0.03</td>
+<td class="gt_row gt_right" headers="Factor2">0.27</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_67_neg_analytic</td>
+<td class="gt_row gt_right" headers="Factor1">0.26</td>
+<td class="gt_row gt_right" headers="Factor2">0.40</td>
+<td class="gt_row gt_right" headers="Factor3">−0.05</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="udpipe-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="udpipe-loadings">UDPipe Loadings</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(loadings_ud, <span class="st">'loadings'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">"Feature"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">where</span>(is.numeric),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Factor Loadings: UDPipe Parser"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="rhdfpmwcmu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rhdfpmwcmu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rhdfpmwcmu thead, #rhdfpmwcmu tbody, #rhdfpmwcmu tfoot, #rhdfpmwcmu tr, #rhdfpmwcmu td, #rhdfpmwcmu th {
+  border-style: none;
+}
+
+#rhdfpmwcmu p {
+  margin: 0;
+  padding: 0;
+}
+
+#rhdfpmwcmu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rhdfpmwcmu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rhdfpmwcmu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rhdfpmwcmu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rhdfpmwcmu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rhdfpmwcmu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rhdfpmwcmu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rhdfpmwcmu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rhdfpmwcmu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rhdfpmwcmu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rhdfpmwcmu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rhdfpmwcmu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rhdfpmwcmu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rhdfpmwcmu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rhdfpmwcmu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhdfpmwcmu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rhdfpmwcmu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rhdfpmwcmu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rhdfpmwcmu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhdfpmwcmu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rhdfpmwcmu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhdfpmwcmu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rhdfpmwcmu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhdfpmwcmu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rhdfpmwcmu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhdfpmwcmu .gt_left {
+  text-align: left;
+}
+
+#rhdfpmwcmu .gt_center {
+  text-align: center;
+}
+
+#rhdfpmwcmu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rhdfpmwcmu .gt_font_normal {
+  font-weight: normal;
+}
+
+#rhdfpmwcmu .gt_font_bold {
+  font-weight: bold;
+}
+
+#rhdfpmwcmu .gt_font_italic {
+  font-style: italic;
+}
+
+#rhdfpmwcmu .gt_super {
+  font-size: 65%;
+}
+
+#rhdfpmwcmu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rhdfpmwcmu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rhdfpmwcmu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rhdfpmwcmu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rhdfpmwcmu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rhdfpmwcmu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rhdfpmwcmu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#rhdfpmwcmu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rhdfpmwcmu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Factor Loadings: UDPipe Parser</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Feature" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Feature</th>
+<th id="Factor1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor1</th>
+<th id="Factor2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor2</th>
+<th id="Factor3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor3</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_01_past_tense</td>
+<td class="gt_row gt_right" headers="Factor1">0.54</td>
+<td class="gt_row gt_right" headers="Factor2">−0.02</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_02_perfect_aspect</td>
+<td class="gt_row gt_right" headers="Factor1">0.20</td>
+<td class="gt_row gt_right" headers="Factor2">−0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.92</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_03_present_tense</td>
+<td class="gt_row gt_right" headers="Factor1">0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.55</td>
+<td class="gt_row gt_right" headers="Factor3">−0.19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_04_place_adverbials</td>
+<td class="gt_row gt_right" headers="Factor1">0.39</td>
+<td class="gt_row gt_right" headers="Factor2">0.02</td>
+<td class="gt_row gt_right" headers="Factor3">0.14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_05_time_adverbials</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">0.13</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_06_first_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.59</td>
+<td class="gt_row gt_right" headers="Factor2">0.12</td>
+<td class="gt_row gt_right" headers="Factor3">−0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_07_second_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.73</td>
+<td class="gt_row gt_right" headers="Factor2">−0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_08_third_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.69</td>
+<td class="gt_row gt_right" headers="Factor2">0.28</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_09_pronoun_it</td>
+<td class="gt_row gt_right" headers="Factor1">0.78</td>
+<td class="gt_row gt_right" headers="Factor2">0.20</td>
+<td class="gt_row gt_right" headers="Factor3">0.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_10_demonstrative_pronoun</td>
+<td class="gt_row gt_right" headers="Factor1">0.15</td>
+<td class="gt_row gt_right" headers="Factor2">0.36</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_11_indefinite_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.47</td>
+<td class="gt_row gt_right" headers="Factor2">0.18</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_13_wh_question</td>
+<td class="gt_row gt_right" headers="Factor1">0.54</td>
+<td class="gt_row gt_right" headers="Factor2">0.04</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_14_nominalizations</td>
+<td class="gt_row gt_right" headers="Factor1">−0.50</td>
+<td class="gt_row gt_right" headers="Factor2">0.40</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_15_gerunds</td>
+<td class="gt_row gt_right" headers="Factor1">−0.21</td>
+<td class="gt_row gt_right" headers="Factor2">0.25</td>
+<td class="gt_row gt_right" headers="Factor3">0.07</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_16_other_nouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.06</td>
+<td class="gt_row gt_right" headers="Factor2">−0.63</td>
+<td class="gt_row gt_right" headers="Factor3">−0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_17_agentless_passives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.09</td>
+<td class="gt_row gt_right" headers="Factor2">−0.05</td>
+<td class="gt_row gt_right" headers="Factor3">0.71</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_18_by_passives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.15</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.34</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_19_be_main_verb</td>
+<td class="gt_row gt_right" headers="Factor1">0.22</td>
+<td class="gt_row gt_right" headers="Factor2">0.29</td>
+<td class="gt_row gt_right" headers="Factor3">−0.11</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_20_existential_there</td>
+<td class="gt_row gt_right" headers="Factor1">0.42</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_21_that_verb_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">0.34</td>
+<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_22_that_adj_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.01</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_23_wh_clause</td>
+<td class="gt_row gt_right" headers="Factor1">0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.48</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_24_infinitives</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">0.66</td>
+<td class="gt_row gt_right" headers="Factor3">−0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_25_present_participle</td>
+<td class="gt_row gt_right" headers="Factor1">−0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.24</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_27_past_participle_whiz</td>
+<td class="gt_row gt_right" headers="Factor1">−0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_28_present_participle_whiz</td>
+<td class="gt_row gt_right" headers="Factor1">−0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.06</td>
+<td class="gt_row gt_right" headers="Factor3">0.05</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_29_that_subj</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.29</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_30_that_obj</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.26</td>
+<td class="gt_row gt_right" headers="Factor3">−0.07</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_32_wh_obj</td>
+<td class="gt_row gt_right" headers="Factor1">−0.03</td>
+<td class="gt_row gt_right" headers="Factor2">0.14</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_33_pied_piping</td>
+<td class="gt_row gt_right" headers="Factor1">−0.10</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_34_sentence_relatives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.14</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_35_because</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.29</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_37_if</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.25</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_38_other_adv_sub</td>
+<td class="gt_row gt_right" headers="Factor1">0.00</td>
+<td class="gt_row gt_right" headers="Factor2">0.69</td>
+<td class="gt_row gt_right" headers="Factor3">−0.07</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_39_prepositions</td>
+<td class="gt_row gt_right" headers="Factor1">−0.48</td>
+<td class="gt_row gt_right" headers="Factor2">0.04</td>
+<td class="gt_row gt_right" headers="Factor3">0.16</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_41_adj_pred</td>
+<td class="gt_row gt_right" headers="Factor1">0.10</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_42_adverbs</td>
+<td class="gt_row gt_right" headers="Factor1">0.14</td>
+<td class="gt_row gt_right" headers="Factor2">0.51</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_44_mean_word_length</td>
+<td class="gt_row gt_right" headers="Factor1">−0.33</td>
+<td class="gt_row gt_right" headers="Factor2">−0.03</td>
+<td class="gt_row gt_right" headers="Factor3">−0.12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_45_conjuncts</td>
+<td class="gt_row gt_right" headers="Factor1">−0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.24</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_46_downtoners</td>
+<td class="gt_row gt_right" headers="Factor1">−0.01</td>
+<td class="gt_row gt_right" headers="Factor2">0.08</td>
+<td class="gt_row gt_right" headers="Factor3">−0.12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_49_emphatics</td>
+<td class="gt_row gt_right" headers="Factor1">0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.11</td>
+<td class="gt_row gt_right" headers="Factor3">0.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_50_discourse_particles</td>
+<td class="gt_row gt_right" headers="Factor1">0.51</td>
+<td class="gt_row gt_right" headers="Factor2">0.05</td>
+<td class="gt_row gt_right" headers="Factor3">0.12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_51_demonstratives</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">0.38</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_52_modal_possibility</td>
+<td class="gt_row gt_right" headers="Factor1">−0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.37</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_53_modal_necessity</td>
+<td class="gt_row gt_right" headers="Factor1">0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.35</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_55_verb_public</td>
+<td class="gt_row gt_right" headers="Factor1">0.04</td>
+<td class="gt_row gt_right" headers="Factor2">0.29</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_56_verb_private</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.26</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_57_verb_suasive</td>
+<td class="gt_row gt_right" headers="Factor1">−0.01</td>
+<td class="gt_row gt_right" headers="Factor2">0.26</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_60_that_deletion</td>
+<td class="gt_row gt_right" headers="Factor1">0.35</td>
+<td class="gt_row gt_right" headers="Factor2">0.46</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_62_split_infinitive</td>
+<td class="gt_row gt_right" headers="Factor1">0.00</td>
+<td class="gt_row gt_right" headers="Factor2">0.24</td>
+<td class="gt_row gt_right" headers="Factor3">−0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_63_split_auxiliary</td>
+<td class="gt_row gt_right" headers="Factor1">0.04</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.46</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_64_phrasal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">−0.20</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">−0.09</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_65_clausal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">0.55</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_67_neg_analytic</td>
+<td class="gt_row gt_right" headers="Factor1">0.21</td>
+<td class="gt_row gt_right" headers="Factor2">0.41</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-the-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-the-loadings">Interpreting the Loadings</h3>
+<p>Both parsers reveal remarkably consistent factor structures:</p>
+<p><strong>Factor 1</strong> represents an <strong>Interactional vs.&nbsp;Information Production</strong> dimension. The positive pole is characterized by:</p>
+<ul>
+<li><strong>Pronouns</strong>: Second person (spaCy: 0.83, UDPipe: 0.73), first person (spaCy: 0.78, UDPipe: 0.59), third person (UDPipe: 0.69)</li>
+<li><strong>Interactive features</strong>: WH-questions (0.56/0.54), discourse particles (0.44/0.51), clausal coordination (0.58/0.55)</li>
+<li><strong>Deixis</strong>: Demonstrative pronouns (spaCy: 0.74), indefinite pronouns (0.41/0.47)</li>
+</ul>
+<p>The negative pole features:</p>
+<ul>
+<li><strong>Nominal style</strong>: Other nouns (−0.86/−0.63), nominalizations (−0.49/−0.50)</li>
+<li><strong>Structural complexity</strong>: Prepositions (−0.51/−0.48), mean word length (−0.33/−0.33)</li>
+<li><strong>Non-finite forms</strong>: Phrasal coordination (−0.19/−0.20), past participle whiz-deletions (−0.21/−0.19)</li>
+</ul>
+<p><strong>Factor 2</strong> shows <strong>explicit stance and subordination</strong> features with high loadings on adverbs (0.64/0.51), subordinators (0.50/0.69), infinitives (UDPipe: 0.66), and complement clauses.</p>
+<p><strong>Factor 3</strong> differs slightly between parsers but captures <strong>perfect aspect</strong> (UDPipe: 0.92) and <strong>passive constructions</strong> (UDPipe: agentless passives 0.71).</p>
+<p>The cross-parser consistency is striking: key features maintain similar loading patterns, and the fundamental Interactional vs.&nbsp;Informational contrast emerges identically from both NLP pipelines.</p>
+</section>
+</section>
+<section id="factor-1-interactional-vs.-information-production" class="level2">
+<h2 class="anchored" data-anchor-id="factor-1-interactional-vs.-information-production">Factor 1: Interactional vs.&nbsp;Information Production</h2>
+<p>Factor 1 captures the primary dimension of register variation in both analyses. The stick plots show register positions along this dimension:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stickplot_mda</span>(loadings_spacy, <span class="at">n_factor =</span> <span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stickplot_mda</span>(loadings_ud, <span class="at">n_factor =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="parser-validation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>spaCy Factor 1</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="parser-validation_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>UDPipe Factor 1</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<section id="heatmap-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="heatmap-visualization">Heatmap Visualization</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap_mda</span>(loadings_spacy, <span class="at">n_factor =</span> <span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap_mda</span>(loadings_ud, <span class="at">n_factor =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="parser-validation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>spaCy register clustering</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="parser-validation_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>UDPipe register clustering</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="statistical-validation" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-validation">Statistical Validation</h2>
+<section id="anova-register-differences-on-factor-1" class="level3">
+<h3 class="anchored" data-anchor-id="anova-register-differences-on-factor-1">ANOVA: Register Differences on Factor 1</h3>
+<p>Both parsers show highly significant register effects:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f_aov_spacy <span class="ot">&lt;-</span> <span class="fu">aov</span>(Factor1 <span class="sc">~</span> group, <span class="at">data =</span> loadings_spacy)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>f_aov_ud <span class="ot">&lt;-</span> <span class="fu">aov</span>(Factor1 <span class="sc">~</span> group, <span class="at">data =</span> loadings_ud)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>(f_aov_spacy) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Parser =</span> <span class="st">"spaCy"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>(f_aov_ud) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Parser =</span> <span class="st">"UDPipe"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Parser, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(sumsq, meansq, statistic),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt</span>(</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> p.value,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(x <span class="sc">&lt;</span> <span class="fl">0.001</span>, <span class="st">"&lt; .001"</span>, <span class="fu">sprintf</span>(<span class="st">"%.3f"</span>, x))</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"ANOVA: Factor 1 ~ Register"</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="hhfidlzqao" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hhfidlzqao table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hhfidlzqao thead, #hhfidlzqao tbody, #hhfidlzqao tfoot, #hhfidlzqao tr, #hhfidlzqao td, #hhfidlzqao th {
+  border-style: none;
+}
+
+#hhfidlzqao p {
+  margin: 0;
+  padding: 0;
+}
+
+#hhfidlzqao .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hhfidlzqao .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hhfidlzqao .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hhfidlzqao .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hhfidlzqao .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hhfidlzqao .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hhfidlzqao .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hhfidlzqao .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hhfidlzqao .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hhfidlzqao .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hhfidlzqao .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hhfidlzqao .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hhfidlzqao .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hhfidlzqao .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hhfidlzqao .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfidlzqao .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hhfidlzqao .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hhfidlzqao .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hhfidlzqao .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfidlzqao .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hhfidlzqao .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfidlzqao .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hhfidlzqao .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfidlzqao .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hhfidlzqao .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hhfidlzqao .gt_left {
+  text-align: left;
+}
+
+#hhfidlzqao .gt_center {
+  text-align: center;
+}
+
+#hhfidlzqao .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hhfidlzqao .gt_font_normal {
+  font-weight: normal;
+}
+
+#hhfidlzqao .gt_font_bold {
+  font-weight: bold;
+}
+
+#hhfidlzqao .gt_font_italic {
+  font-style: italic;
+}
+
+#hhfidlzqao .gt_super {
+  font-size: 65%;
+}
+
+#hhfidlzqao .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hhfidlzqao .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hhfidlzqao .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hhfidlzqao .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hhfidlzqao .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hhfidlzqao .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hhfidlzqao .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hhfidlzqao .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hhfidlzqao div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">ANOVA: Factor 1 ~ Register</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Parser" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Parser</th>
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">df</th>
+<th id="sumsq" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sumsq</th>
+<th id="meansq" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">meansq</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Parser">spaCy</td>
+<td class="gt_row gt_left" headers="term">group</td>
+<td class="gt_row gt_right" headers="df">4</td>
+<td class="gt_row gt_right" headers="sumsq">78,980.94</td>
+<td class="gt_row gt_right" headers="meansq">19,745.24</td>
+<td class="gt_row gt_right" headers="statistic">1,245.78</td>
+<td class="gt_row gt_right" headers="p.value">&lt; .001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Parser">spaCy</td>
+<td class="gt_row gt_left" headers="term">Residuals</td>
+<td class="gt_row gt_right" headers="df">2108</td>
+<td class="gt_row gt_right" headers="sumsq">33,411.22</td>
+<td class="gt_row gt_right" headers="meansq">15.85</td>
+<td class="gt_row gt_right" headers="statistic">NA</td>
+<td class="gt_row gt_right" headers="p.value">NA</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Parser">UDPipe</td>
+<td class="gt_row gt_left" headers="term">group</td>
+<td class="gt_row gt_right" headers="df">4</td>
+<td class="gt_row gt_right" headers="sumsq">110,182.26</td>
+<td class="gt_row gt_right" headers="meansq">27,545.57</td>
+<td class="gt_row gt_right" headers="statistic">1,320.41</td>
+<td class="gt_row gt_right" headers="p.value">&lt; .001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Parser">UDPipe</td>
+<td class="gt_row gt_left" headers="term">Residuals</td>
+<td class="gt_row gt_right" headers="df">2108</td>
+<td class="gt_row gt_right" headers="sumsq">43,975.90</td>
+<td class="gt_row gt_right" headers="meansq">20.86</td>
+<td class="gt_row gt_right" headers="statistic">NA</td>
+<td class="gt_row gt_right" headers="p.value">NA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="regression-models" class="level3">
+<h3 class="anchored" data-anchor-id="regression-models">Regression Models</h3>
+<p>Linear regression confirms strong register effects with both parsers. The UDPipe model achieves R² = 0.715 (Adjusted R² = 0.714), slightly higher than the spaCy model’s R² = 0.703 (Adjusted R² = 0.702). Both models show highly significant F-statistics (p &lt; 0.001), indicating that register explains approximately 70% of the variance in Factor 1 scores.</p>
+<p>The coefficient patterns are nearly identical across parsers, with spoken and fiction registers at the positive (interactional) pole and academic, news, and Wikipedia at the negative (informational) pole. This cross-parser consistency validates the robustness of the dimensional structure.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_merge</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(<span class="fu">lm</span>(Factor1 <span class="sc">~</span> group, <span class="at">data =</span> loadings_ud)) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      gtsummary<span class="sc">::</span><span class="fu">add_glance_source_note</span>(),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(<span class="fu">lm</span>(Factor1 <span class="sc">~</span> group, <span class="at">data =</span> loadings_spacy)) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      gtsummary<span class="sc">::</span><span class="fu">add_glance_source_note</span>()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"**UDPipe (R² = 0.715)**"</span>, <span class="st">"**spaCy (R² = 0.703)**"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Linear Models: Factor 1 ~ Register"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="xuakmuwcmo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xuakmuwcmo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xuakmuwcmo thead, #xuakmuwcmo tbody, #xuakmuwcmo tfoot, #xuakmuwcmo tr, #xuakmuwcmo td, #xuakmuwcmo th {
+  border-style: none;
+}
+
+#xuakmuwcmo p {
+  margin: 0;
+  padding: 0;
+}
+
+#xuakmuwcmo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xuakmuwcmo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xuakmuwcmo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xuakmuwcmo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xuakmuwcmo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xuakmuwcmo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xuakmuwcmo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xuakmuwcmo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xuakmuwcmo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xuakmuwcmo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xuakmuwcmo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xuakmuwcmo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xuakmuwcmo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xuakmuwcmo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xuakmuwcmo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuakmuwcmo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xuakmuwcmo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xuakmuwcmo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xuakmuwcmo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuakmuwcmo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xuakmuwcmo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuakmuwcmo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xuakmuwcmo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuakmuwcmo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xuakmuwcmo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuakmuwcmo .gt_left {
+  text-align: left;
+}
+
+#xuakmuwcmo .gt_center {
+  text-align: center;
+}
+
+#xuakmuwcmo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xuakmuwcmo .gt_font_normal {
+  font-weight: normal;
+}
+
+#xuakmuwcmo .gt_font_bold {
+  font-weight: bold;
+}
+
+#xuakmuwcmo .gt_font_italic {
+  font-style: italic;
+}
+
+#xuakmuwcmo .gt_super {
+  font-size: 65%;
+}
+
+#xuakmuwcmo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xuakmuwcmo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xuakmuwcmo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xuakmuwcmo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xuakmuwcmo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xuakmuwcmo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xuakmuwcmo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xuakmuwcmo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xuakmuwcmo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Linear Models: Factor 1 ~ Register</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row even">
+<th rowspan="2" id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th colspan="3" id="level 1; estimate_1" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>UDPipe (R² = 0.715)</strong>
+</div></th>
+<th colspan="3" id="level 1; estimate_2" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>spaCy (R² = 0.703)</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="estimate_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+<th id="estimate_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">group</td>
+<td class="gt_row gt_center" headers="estimate_1"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low_1"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value_1"><br>
+</td>
+<td class="gt_row gt_center" headers="estimate_2"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value_2"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;academic</td>
+<td class="gt_row gt_center" headers="estimate_1">—</td>
+<td class="gt_row gt_center" headers="conf.low_1">—</td>
+<td class="gt_row gt_center" headers="p.value_1"><br>
+</td>
+<td class="gt_row gt_center" headers="estimate_2">—</td>
+<td class="gt_row gt_center" headers="conf.low_2">—</td>
+<td class="gt_row gt_center" headers="p.value_2"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;fiction</td>
+<td class="gt_row gt_center" headers="estimate_1">20</td>
+<td class="gt_row gt_center" headers="conf.low_1">18, 21</td>
+<td class="gt_row gt_center" headers="p.value_1">&lt;0.001</td>
+<td class="gt_row gt_center" headers="estimate_2">16</td>
+<td class="gt_row gt_center" headers="conf.low_2">14, 17</td>
+<td class="gt_row gt_center" headers="p.value_2">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;news</td>
+<td class="gt_row gt_center" headers="estimate_1">0.85</td>
+<td class="gt_row gt_center" headers="conf.low_1">0.03, 1.7</td>
+<td class="gt_row gt_center" headers="p.value_1">0.041</td>
+<td class="gt_row gt_center" headers="estimate_2">0.59</td>
+<td class="gt_row gt_center" headers="conf.low_2">-0.12, 1.3</td>
+<td class="gt_row gt_center" headers="p.value_2">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;spoken</td>
+<td class="gt_row gt_center" headers="estimate_1">31</td>
+<td class="gt_row gt_center" headers="conf.low_1">29, 32</td>
+<td class="gt_row gt_center" headers="p.value_1">&lt;0.001</td>
+<td class="gt_row gt_center" headers="estimate_2">27</td>
+<td class="gt_row gt_center" headers="conf.low_2">26, 28</td>
+<td class="gt_row gt_center" headers="p.value_2">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;wikipedia</td>
+<td class="gt_row gt_center" headers="estimate_1">-2.8</td>
+<td class="gt_row gt_center" headers="conf.low_1">-3.6, -2.1</td>
+<td class="gt_row gt_center" headers="p.value_1">&lt;0.001</td>
+<td class="gt_row gt_center" headers="estimate_2">-2.0</td>
+<td class="gt_row gt_center" headers="conf.low_2">-2.6, -1.3</td>
+<td class="gt_row gt_center" headers="p.value_2">&lt;0.001</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="7" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
+</tr>
+<tr class="gt_sourcenotes even">
+<td colspan="7" class="gt_sourcenote">R² = 0.703; Adjusted R² = 0.702; Sigma = 3.98; Statistic = 1,246; p-value = &lt;0.001; df = 4; Log-likelihood = -5,915; AIC = 11,842; BIC = 11,876; Deviance = 33,411; Residual df = 2,108; No.&nbsp;Obs. = 2,113</td>
+</tr>
+<tr class="gt_sourcenotes odd">
+<td colspan="7" class="gt_sourcenote">R² = 0.715; Adjusted R² = 0.714; Sigma = 4.57; Statistic = 1,320; p-value = &lt;0.001; df = 4; Log-likelihood = -6,205; AIC = 12,423; BIC = 12,456; Deviance = 43,976; Residual df = 2,108; No.&nbsp;Obs. = 2,113</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cross-linguistic-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="cross-linguistic-alignment">Cross-Linguistic Alignment</h2>
+<section id="bibers-dimension-1-english" class="level3">
+<h3 class="anchored" data-anchor-id="bibers-dimension-1-english">Biber’s Dimension 1 (English)</h3>
+<p>Biber’s (1988) Dimension 1 contrasts:</p>
+<p><strong>Positive pole (Involved/Interactional):</strong> - Private verbs (think, feel) - First/second person pronouns - Contractions - Present tense - Discourse particles</p>
+<p><strong>Negative pole (Informational):</strong> - Nouns - Long words - Prepositions - Attributive adjectives - Past participles</p>
+</section>
+<section id="french-factor-1" class="level3">
+<h3 class="anchored" data-anchor-id="french-factor-1">French Factor 1</h3>
+<p>Our French analysis replicates this fundamental distinction:</p>
+<p><strong>Positive pole (Interactional):</strong> - Spoken and fiction registers (dialogue) - First/second person pronouns - Contractions (p’tit, m’sieur) - Present tense - “Que” deletion (informal complementizer omission)</p>
+<p><strong>Negative pole (Informational):</strong> - Academic, news, and Wikipedia registers - Nominalizations - Prepositions - Attributive adjectives - Longer words</p>
+</section>
+</section>
+<section id="key-implementation-detail-contraction-detection" class="level2">
+<h2 class="anchored" data-anchor-id="key-implementation-detail-contraction-detection">Key Implementation Detail: Contraction Detection</h2>
+<p>A critical validation was ensuring that the <strong>contraction detection</strong> (f_59_contractions) worked consistently across parsers. French distinguishes:</p>
+<ul>
+<li><strong>Grammatical elisions</strong> (mandatory): l’ (le), d’ (de), qu’ (que) - articles, prepositions</li>
+<li><strong>True contractions</strong> (informal): p’tit (petit), m’sieur (monsieur) - lexical words</li>
+</ul>
+<p>We implemented POS-based filtering:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude tokens with grammatical POS tags</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>elision_pos_tags <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"DET"</span>, <span class="st">"ADP"</span>, <span class="st">"PRON"</span>, <span class="st">"ADV"</span>, <span class="st">"SCONJ"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>contractions <span class="ot">&lt;-</span> apostrophe_tokens <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>pos <span class="sc">%in%</span> elision_pos_tags)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Both spaCy and UDPipe assign identical POS tags to elisions, ensuring consistent counts:</p>
+<ul>
+<li><strong>spaCy</strong>: l’ (DET), d’ (ADP), s’ (PRON), n’ (ADV), qu’ (SCONJ)</li>
+<li><strong>UDPipe</strong>: l’ (DET), d’ (ADP), s’ (PRON), n’ (ADV), qu’ (SCONJ)</li>
+</ul>
+<p>Both parsers correctly tag true contractions with lexical POS (ADJ, NOUN, PROPN), allowing them to pass the filter.</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<ol type="1">
+<li><p><strong>Parser robustness</strong>: spaCy and UDPipe produce nearly identical MDA results, validating the feature extraction implementation</p></li>
+<li><p><strong>Cross-linguistic universality</strong>: French Factor 1 aligns with Biber’s English Dimension 1, supporting the theory that Interactional vs.&nbsp;Information Production is a fundamental axis of register variation</p></li>
+<li><p><strong>Implementation reliability</strong>: POS-based feature detection (especially for contractions) works consistently across NLP pipelines</p></li>
+<li><p><strong>Methodological transparency</strong>: The <code>pseudobibeR.fr</code> package enables reproducible register analysis with multiple parser backends</p></li>
+</ol>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Biber, D. (1988). <em>Variation across speech and writing</em>. Cambridge University Press.</p>
+</section>
+<section id="session-info" class="level2">
+<h2 class="anchored" data-anchor-id="session-info">Session Info</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.2 (2025-10-31)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] tibble_3.3.1            gtsummary_2.5.0         broom_1.0.11           
+ [4] gt_1.2.0                stringr_1.6.0           dplyr_1.1.4            
+ [7] tidyr_1.3.2             ggplot2_4.0.1           mda.biber_1.0.1        
+[10] pseudobibeR.fr_0.0.0.93
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6         xfun_0.55            htmlwidgets_1.6.4   
+ [4] ggrepel_0.9.6        rstatix_0.7.3        vctrs_0.7.0         
+ [7] tools_4.5.2          generics_0.1.4       pkgconfig_2.0.3     
+[10] RColorBrewer_1.1-3   S7_0.2.1             nFactors_2.4.1.2    
+[13] lifecycle_1.0.5      compiler_4.5.2       farver_2.1.2        
+[16] carData_3.0-5        litedown_0.9         htmltools_0.5.9     
+[19] sass_0.4.10          yaml_2.3.12          Formula_1.2-5       
+[22] pillar_1.11.1        car_3.1-3            ggpubr_0.6.2        
+[25] MASS_7.3-65          broom.helpers_1.22.0 viridis_0.6.5       
+[28] abind_1.4-8          commonmark_2.0.0     tidyselect_1.2.1    
+[31] digest_0.6.39        stringi_1.8.7        purrr_1.2.1         
+[34] labeling_0.4.3       forcats_1.0.1        cowplot_1.2.0       
+[37] labelled_2.16.0      fastmap_1.2.0        grid_4.5.2          
+[40] cli_3.6.5            magrittr_2.0.4       base64enc_0.1-3     
+[43] cards_0.7.1          withr_3.0.2          scales_1.4.0        
+[46] backports_1.5.0      rmarkdown_2.30       otel_0.2.0          
+[49] gridExtra_2.3        ggsignif_0.6.4       hms_1.1.4           
+[52] evaluate_1.0.5       knitr_1.51           haven_2.5.5         
+[55] viridisLite_0.4.2    markdown_2.0         rlang_1.1.7         
+[58] Rcpp_1.1.1           glue_1.8.0           xml2_1.5.2          
+[61] jsonlite_2.0.0       R6_2.6.1             fs_1.6.6            </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
