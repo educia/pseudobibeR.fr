@@ -48,9 +48,6 @@ if (is.na(udpipe_path)) {
 # Load corpus data and pre-parsed tokens
 load(corpus_path)   # loads 'french_corpus'
 load(udpipe_path)   # loads 'fc_udpipe_parsed'
-
-# Ensure french_corpus is a proper data frame (not tibble) to avoid vctrs issues
-french_corpus <- as.data.frame(french_corpus)
 ```
 
 ## About the dataset
