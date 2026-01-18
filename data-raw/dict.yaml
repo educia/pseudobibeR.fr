@@ -1,16 +1,37 @@
+# French linguistic feature dictionaries for Biber (1985) framework
+#
+# TOKENIZATION AND PATTERN FORMATTING:
+# French elisions (d', l', n', t', m', s') are handled specially:
+# 1. udpipe splits elisions: "d'ici" → ["d'", "ici"]
+# 2. Text reconstruction adds spaces: paste() → "d' ici"
+# 3. quanteda re-tokenizes and splits apostrophes: "d' ici" → ["d", "'", "ici"]
+# 4. Patterns use underscores for token boundaries:
+#    - Multiword: "loin d'ici" → "loin_d_'_ici" (matches ["loin", "d", "'", "ici"])
+#    - Single token: "t'" → "t_'" (matches ["t", "'"])
+#
+# KNOWN LIMITATIONS:
+# - Some items appear in multiple categories and may be counted twice:
+#   * donc: f_45_conjuncts AND f_50_discourse_particles
+#   * ensuite: f_05_time_adverbials AND f_45_conjuncts
+#   * vraiment: f_48_amplifiers AND f_49_emphatics
+#   * devoir: f_53_modal_necessity AND f_54_modal_predictive
+#   * risquer: f_52_modal_possibility AND f_54_modal_predictive
+# - Future enhancement: contextual disambiguation based on syntactic position
+#
 f_04_place_adverbials:
   - à_bord
   - à_côté
-  - à_l'est
-  - à_l'étage
-  - à_l'étranger
-  - à_l'extérieur
-  - à_l'intérieur
-  - à_l'ouest
+  - à_l_'_est
+  - à_l_'_étage
+  - à_l_'_étranger
+  - à_l_'_extérieur
+  - à_l_'_intérieur
+  - à_l_'_ouest
   - à_la_mer
   - à_proximité
   - à_terre
   - à_travers
+  - ailleurs
   - au_loin
   - au_nord
   - au_sud
@@ -19,6 +40,7 @@ f_04_place_adverbials:
   - autour
   - dans_les_environs
   - dans_les_terres
+  - dehors
   - derrière
   - descendant
   - devant
@@ -27,55 +49,55 @@ f_04_place_adverbials:
   - en_bas
   - en_dessous
   - en_montée
-  - localement
-  - loin
-  - nulle_part
-  - par_voie_de_terre
-  - sous_le_pied
-  - sous_terre
-  - ailleurs
   - ici
   - là
+  - localement
+  - loin
+  - loin_d_'_ici  # Quanteda tokenizes as ["loin", "d", "'", "ici"] (4 tokens)
+  - nulle_part
+  - par_voie_de_terre
   - partout
+  - sous_le_pied
+  - sous_terre
 f_05_time_adverbials:
-  - à_l'origine
+  - à_l_'_origine
   - actuellement
   - aujourd'hui
   - autrefois
+  - bientôt
   - ce_soir
   - de_nos_jours
   - demain
+  - désormais
   - encore_une_fois
-  - ensuite # 1
+  - enfin
+  - ensuite # Total count here; conjunct uses subtracted via count_ensuite_conjunct_fr()
   - éventuellement
   - hier
   - immédiatement
   - initialement
   - instantanément
+  - jamais
   - maintenant
   - momentanément
   - peu_de_temps_après
   - plus_tard
   - plus_tôt
   - précédemment
+  - rarement
   - récemment
   - simultanément
+  - souvent
   - tardivement
   - tôt
+  - toujours
   - ultérieurement
   - une_fois
-  - bientôt
-  - enfin
-  - toujours
-  - jamais
-  - rarement
-  - souvent
-  - désormais
 f_06_first_person_pronouns:
   - je
-  - moi
+  - m_'
   - me
-  - m'
+  - moi
   - moi-même
   - notre
   - nous
@@ -87,56 +109,57 @@ f_07_second_person_pronouns:
   - toi
   - ton
   - tu
+  - vos
+  - votre
   - vous
   - vous-même
-  - votre
-  - vos
 f_08_third_person_pronouns:
   - elle
+  - elles
   - eux
   - eux-mêmes
   - il
-  - les_siens
-  - lui
   - ils
-  - elles
+  - les_siens
   - leur
   - leurs
+  - lui
 f_11_indefinite_pronoun:
+  - autrui
+  - chacun
   - chose
-  - n'importe_qui
-  - n'importe_quoi
-  - nulle_part
+  - n_'_importe_qui
+  - n_'_importe_quoi
   - personne
   - quelqu'un
   - quelque
   - quelquechose
+  - quiconque
   - rien
   - tout
   - tout_le_monde
-  - autrui
-  - chacun
-  - quiconque
 f_45_conjuncts:
   - à_savoir
   - ainsi
   - alternativement
+  - cependant
   - de_manière_similaire
   - de_même
   - de_plus
-  - donc
+  - donc # Total count here; discourse uses subtracted via count_donc_discourse_fr()
+  # ensuite - counted in f_05, conjunct uses added via count_ensuite_conjunct_fr()
   - inversement
   - néanmoins
   - nonobstant
   - par_ailleurs
   - par_conséquent
   - par_exemple
-  - cependant
-  - toutefois
-  - ensuite # 2
   - puis
+  - toutefois
 f_46_downtoners:
+  - à_demi
   - à_peine
+  - guère
   - légèrement
   - modérément
   - partiellement
@@ -145,104 +168,92 @@ f_46_downtoners:
   - seulement
   - simplement
   - un_peu
-  - guère
-  - à_demi
 f_47_hedges:
   - à_peu_de_choses_près
   - à_peu_près
+  - du_genre
   - en_quelque_sorte
   - environ
   - peut-être
   - plus_ou_moins
   - quelque_chose_comme
-  - du_genre
   - quelque_peu
 f_48_amplifiers:
   - absolument
   - complètement
+  - de_ouf
   - énormément
   - fort
   - fortement
+  - grave
+  - hyper
   - intensément
   - parfaitement
+  - super
   - totalement
   - tout_à_fait
   - très
   - ultra
-  - super
-  - hyper
-  - vraiment # 1
-  - grave
-  - de_ouf
+  # vraiment - counted in f_49, amplifier uses added via count_vraiment_amplifier_fr()
 f_49_emphatics:
   - beaucoup
+  - bien_sûr
+  - certes
+  - effectivement
+  - évidemment
   - sûr
-  - vraiment # 2
   - tellement
   - tout_à
-  - évidemment
-  - certes
-  - bien_sûr
-  - effectivement
+  - vraiment # Total count here; amplifier uses subtracted via count_vraiment_amplifier_fr()
 f_50_discourse_particles:
-  - bien
-  - de_toute_façon
   - alors
-  - donc
-  - du_coup
-  - voilà
+  - bien
   - bref
-  - en_fait
+  - de_toute_façon
+  # donc - counted in f_45, discourse uses added via count_donc_discourse_fr()
+  - du_coup
   - eh_bien
+  - en_fait
+  - euh
+  - ha
   - hé
-  - ha 
+  - hein
   - ho
   - ô
-  - hein
-  - euh
+  - voilà
 f_51_demonstratives:
-  - cela
-  - ceux
+  - ça
   - ce
-  - cette
-  - ces
-  - celui
+  - ceci
+  - cela
   - celle
   - celles
-  - ça
-  - ceci
+  - celui
+  - ces
+  - cette
+  - ceux
+# Modals rely on lemma matching via dictionary_to_lemmas()/block_modals_fr(),
+# so keep entries in infinitive form even if downstream logic also inspects context.
 f_52_modal_possibility:
-  - peut
-  - pourrait
   - pouvoir
-  - sembler
-  - risquer_de # 1
-  - avoir_la_possibilité_de
+  # sembler assigned to f_58_verb_seem
 f_53_modal_necessity:
+  - devoir  # Primary meaning; predictive uses ("il doit être 5h") assigned here
   - falloir
-  - faut
-  - devoir
-  - devrait
-  - doit
-  - être_obligé_de
-  - être_nécessaire_de
-  - il_faut_que
 f_54_modal_predictive:
-  - devoir
-  - sera
-  - serait
-  - va
-  - risquer_de # 2
-  - être_susceptible_de
+  # Pattern-based detection in block_modals_fr() - no dictionary entries needed
+  # Captures: aller + inf, sera/serait, risquer de + inf, être susceptible de + inf
+  # Adding lemmas here would cause double-counting with pattern logic
 f_55_verb_public:
-  - accepter
+  # accepter → f_57_verb_suasive (core meaning: compliance)
   - affirmer
   - annoncer
+  - commenter
   - déclarer
   - écrire
   - expliquer
   - informer
-  - insister
+  - insister  # Core meaning: asserting publicly
   - jurer
   - mentionner
   - nier
@@ -250,15 +261,14 @@ f_55_verb_public:
   - proclamer
   - promettre
   - protester
+  - raconter
   - réclamer
-  - reconnaître
+  - reconnaître  # Core meaning: acknowledging publicly
   - remarquer
   - répondre
   - se_plaindre
   - signaler
-  - suggérer
-  - commenter
-  - raconter
+  # suggérer → f_57_verb_suasive (core meaning: recommending)
 f_56_verb_private: # = verbs of mental processes / internal states
   - anticiper
   - apprendre
@@ -266,6 +276,7 @@ f_56_verb_private: # = verbs of mental processes / internal states
   - comprendre
   - conclure
   - connaître
+  - constater
   - craindre
   - croire
   - décider
@@ -278,40 +289,39 @@ f_56_verb_private: # = verbs of mental processes / internal states
   - imaginer
   - oublier
   - penser
+  - pressentir
+  - prévoir
   - rappeler
   - réaliser
-  - reconnaître
+  # reconnaître → f_55_verb_public (core meaning: public acknowledgment)
   - sentir # je sens que...
   - supposer
   - trouver # je trouve que...
-  - constater
-  - pressentir
-  - prévoir
 f_57_verb_suasive:
-  - accepter
+  - accepter  # Core meaning: agreeing/complying
   - accorder
   - commander
-  - décider
+  - conseiller
+  - convaincre
+  # décider → f_56_verb_private (core meaning: mental decision-making)
   - demander
   - donner_des_instructions
+  - encourager
   - exiger
-  - insister
+  # insister → f_55_verb_public (core meaning: public assertion)
+  - inviter
   - mendier
   - nantir
   - ordonner
   - organiser
+  - persuader
   - prononcer
   - proposer
   - recommander
   - stipuler
-  - suggérer
-  - conseiller
-  - inviter
-  - persuader
-  - encourager
-  - convaincre
+  - suggérer  # Core meaning: advising/recommending
 f_58_verb_seem:
   - apparaître
+  - avoir_l_'_air
   - paraître
   - sembler
-  - avoir_l’air

@@ -36,6 +36,25 @@ normalize_terms <- function(values, replace_spaces = TRUE) {
   sort(unique(cleaned))
 }
 
+normalize_multiword_patterns <- function(values) {
+  if (is.null(values) || length(values) == 0) {
+    return(character())
+  }
+
+  normalized <- normalize_terms(values, replace_spaces = FALSE)
+  normalized <- normalized[stringr::str_detect(normalized, "_|\\s")]
+
+  if (length(normalized) == 0) {
+    return(character())
+  }
+
+  normalized %>%
+    stringr::str_replace_all("_", " ") %>%
+    stringr::str_squish() %>%
+    unique() %>%
+    sort()
+}
+
 dict_path <- file.path("data-raw", "dict.yaml")
 if (!file.exists(dict_path)) {
   stop("Cannot find dictionary specification at ", dict_path)
@@ -55,6 +74,8 @@ dict_list <- dict_spec %>%
 dict_list <- dict_list[order(names(dict_list))]
 dict <- quanteda::dictionary(dict_list)
 
+dict_multiword_patterns <- normalize_multiword_patterns(unlist(dict_list, use.names = FALSE))
+
 word_lists_path <- file.path("data-raw", "word_lists.yaml")
 if (!file.exists(word_lists_path)) {
   stop("Cannot find word list specification at ", word_lists_path)
@@ -65,6 +86,9 @@ if (!is.list(word_lists_spec)) {
   stop("Word list specification must be a named list")
 }
 
+manual_multiword_patterns <- normalize_multiword_patterns(word_lists_spec$multiword_patterns)
+multiword_patterns <- sort(unique(c(dict_multiword_patterns, manual_multiword_patterns)))
+
 word_lists <- list(
   pronoun_matchlist = normalize_terms(word_lists_spec$pronoun_matchlist, replace_spaces = TRUE),
   proverb_object_pronouns = normalize_terms(word_lists_spec$proverb_object_pronouns, replace_spaces = TRUE),
@@ -74,7 +98,7 @@ word_lists <- list(
   nominalization_stoplist = normalize_terms(word_lists_spec$nominalization_stoplist, replace_spaces = TRUE),
   gerund_stoplist = normalize_terms(word_lists_spec$gerund_stoplist, replace_spaces = TRUE),
   nominalization_suffixes = normalize_terms(word_lists_spec$nominalization_suffixes, replace_spaces = FALSE),
-  multiword_patterns = normalize_terms(word_lists_spec$multiword_patterns, replace_spaces = FALSE),
+  multiword_patterns = multiword_patterns,
   neg_synthetic_determiners = normalize_terms(word_lists_spec$neg_synthetic_determiners, replace_spaces = TRUE),
   negation_particles = normalize_terms(word_lists_spec$negation_particles, replace_spaces = TRUE),
   neg_analytic_adverbs = normalize_terms(word_lists_spec$neg_analytic_adverbs, replace_spaces = TRUE)

@@ -1,78 +1,88 @@
+# French word lists for pseudobibeR.fr feature extraction
+#
+# TOKENIZATION AND PATTERN FORMATTING:
+# French elisions (d', l', n', t', m', s') are handled specially:
+# 1. udpipe splits elisions: "d'ici" → ["d'", "ici"]
+# 2. Text reconstruction adds spaces: paste() → "d' ici"
+# 3. quanteda re-tokenizes and splits apostrophes: "d' ici" → ["d", "'", "ici"]
+# 4. Patterns use underscores for token boundaries:
+#    - Multiword: "loin d'ici" → "loin_d_'_ici" (matches ["loin", "d", "'", "ici"])
+#    - Single token: "t'" → "t_'" (matches ["t", "'"])
+#    - Regular multiword: "à côté" → "à_côté" (matches ["à", "côté"])
+
 pronoun_matchlist:
+  - autrui
+  - ce
+  - cela
   - celle
   - celles
   - celles-ci
   - celles-là
-  - cela
-  - ce
   - celui
   - celui-ci
   - celui-là
+  - ces
   - cet
   - cette
-  - ces
   - ceux
   - ceux-ci
+  - chacun
   - elle
-  - elles
   - elle-même
+  - elles
+  - elles-mêmes
   - eux
   - eux-mêmes
   - il
   - ils
   - je
-  - les siens
+  - les_siens
   - lui
   - lui-même
-  - moi
+  - m_'
   - me
-  - m'
+  - moi
   - moi-même
   - nous
+  - nous-autres
   - nous-mêmes
   - on
+  - quiconque
+  - s_'
   - se
   - soi
-  - s'
   - soi-même
+  - t_'
   - te
-  - t'
-  - tu
   - toi
   - toi-même
+  - tout_le_monde
+  - tu
   - vous
-  - vous-même
-  - elles-mêmes
-  - nous-autres
   - vous-autres
-  - chacun
-  - autrui
-  - quiconque
-  - tout le monde
+  - vous-même
 proverb_object_pronouns:
   - le
-  - l'
-  - "le"
-  - "l'"
+  - l_'
 impersonal_verbs:
-  - pleuvoir
-  - neiger
   - bruiner
-  - grêler
-  - venter
-  - tonner
+  - faire # ex_: il_fait_froid
   - geler
-  - faire # ex : il fait froid
-  - s’agir # ex : il s’agit de
-  - y avoir # ex : il y a
+  - grêler
+  - neiger
+  - pleuvoir
+  - s'agir # ex_: il_s’agit_de
+  - tonner
+  - venter
+  - y_avoir # ex_: il_y_a
 linking_matchlist:
+  - avoir
+  - demeurer
+  - devenir
   - être
   - paraître
-  - sembler
-  - demeurer
   - rester
-  - devenir
-  - avoir
+  - sembler
 verb_matchlist:
   - accepter
   - accorder
@@ -81,10 +91,14 @@ verb_matchlist:
   - anticiper
   - apprendre
   - assumer
+  - avouer
   - commander
+  - commenter
   - comprendre
   - conclure
   - connaître
+  - constater
+  - convaincre
   - craindre
   - croire
   - décider
@@ -95,9 +109,10 @@ verb_matchlist:
   - déterminer
   - deviner
   - dire
-  - donner des instructions
+  - donner_des_instructions
   - douter
   - écrire
+  - encourager
   - entendre
   - espérer
   - estimer
@@ -108,6 +123,7 @@ verb_matchlist:
   - indiquer
   - informer
   - insister
+  - inviter
   - jurer
   - mendier
   - mentionner
@@ -119,6 +135,9 @@ verb_matchlist:
   - oublier
   - parler
   - penser
+  - persuader
+  - pressentir
+  - prévoir
   - proclamer
   - promettre
   - prononcer
@@ -133,7 +152,7 @@ verb_matchlist:
   - remarquer
   - répondre
   - révéler
-  - se plaindre
+  - se_plaindre
   - sentir
   - signaler
   - signifier
@@ -142,75 +161,66 @@ verb_matchlist:
   - supposer
   - trouver
   - voir
-  - commenter
-  - persuader
-  - convaincre
-  - inviter
-  - encourager
-  - prévoir
-  - pressentir
-  - constater
-  - avouer
 nominalization_stoplist:
   # -tion/-sion endings
-  - lion
   - avion
   - camion
+  - lion
   
   # -ment endings
-  - moment
-  - élément
-  - document
-  - monument
   - aliment
   - ciment
-  - mouvement
+  - document
+  - élément
   - fondement
-  - serment
+  - moment
+  - monument
+  - mouvement
   - segment
+  - serment
   - vêtement
   
   # -age endings
   - âge
+  - barrage
   - cage
+  - fromage
+  - garage
+  - image
+  - message
   - page
+  - plage
   - rage
   - sage
-  - image
-  - plage
   - village
-  - fromage
-  - message
-  - garage
-  - barrage
   
   # -ure endings
-  - nature
-  - figure
   - allure
   - aventure
   - créature
-  - torture
-  - pure
   - dure
-  - sûre
+  - figure
   - mure
+  - nature
+  - pure
+  - sûre
+  - torture
   
   # -ance/-ence endings
-  - lance
   - chance
-  - France
-  - romance
   - danse
-  - once
-  - science
   - essence
+  - France
+  - lance
+  - once
+  - romance
+  - science
   
   # -ité endings
   - cité
   - comité
-  - été
   - côté
+  - été
   - moitié
   - pitié
   
@@ -219,203 +229,203 @@ nominalization_stoplist:
   - promesse
   
   # -isme endings
-  - prisme
   - abîme
+  - prisme
 
 gerund_stoplist:
   # Common adjectives ending in -ant
-  - important
+  - agaçant
+  - bruyant
   - constant
   - élégant
-  - méchant
-  - puissant
-  - géant
-  - bruyant
-  - grand
-  - savant
-  - géant
-  - plaisant
   - fatigant
-  - agaçant
+  - géant
+  - géant
+  - grand
+  - important
   - inquiétant
+  - méchant
+  - plaisant
+  - puissant
+  - savant
   
   # Nouns ending in -ant
-  - enfant
-  - éléphant
-  - diamant
-  - restaurant
-  - implant
   - chant
+  - diamant
+  - éléphant
+  - enfant
+  - implant
+  - restaurant
   
   # Prepositions/adverbs ending in -ant
-  - avant
-  - devant
-  - maintenant
-  - durant
-  - pendant
-  - dorénavant
-  - cependant
-  - pourtant
   - autant
+  - avant
+  - cependant
+  - devant
+  - dorénavant
+  - durant
+  - maintenant
+  - pendant
+  - pourtant
   - tant
   
   # Nouns/adjectives that are derived from verbs but function as nouns/adjectives
+  - assistant
   - commerçant
+  - consultant
+  - croyant
+  - débutant
+  - étudiant
   - fabricant
+  - gagnant
   - habitant
+  - militant
   - occupant
   - passant
-  - gagnant
   - perdant
-  - croyant
   - représentant
-  - assistant
-  - consultant
-  - débutant
-  - militant
-  - étudiant
   
   # If catching -ent endings too:
-  - moment
-  - élément
-  - document
-  - monument
-  - aliment
-  - vent
-  - dent
-  - cent
-  - agent
-  - argent
-  - parent
-  - talent
   - absent
-  - présent
-  - différent
-  - évident
-  - urgent
-  - prudent
-  - violent
-  - excellent
-  - patient
-  - client
   - accident
+  - agent
+  - aliment
+  - argent
+  - cent
+  - client
+  - dent
+  - différent
+  - document
+  - élément
+  - évident
+  - excellent
+  - moment
+  - monument
+  - parent
+  - patient
+  - présent
   - président
+  - prudent
+  - talent
+  - urgent
+  - vent
+  - violent
 nominalization_suffixes:
-  - tion
-  - sion
-  - ment
-  - ments
+  - ade
+  - ades
   - age
   - ages
-  - ure
-  - ures
   - ance
   - ances
   - ence
   - ences
+  - erie
+  - eries
   - esse
   - esses
-  - ité
-  - ités
+  - eur
+  - eurs
   - isation
   - isations
   - issement
   - issements
-  - erie
-  - eries
-  - eur
-  - eurs
+  - ité
+  - ités
+  - ment
+  - ments
+  - sion
+  - tion
   - trice
   - trices
-  - ade
-  - ades
+  - ure
+  - ures
 multiword_patterns:
-  - à bord
-  - à côté
-  - à l'est
-  - à l'étage
-  - à l'étranger
-  - à l'extérieur
-  - à l'intérieur
-  - à l'origine
-  - à l'ouest
-  - à la mer
-  - à peine
-  - à peu de choses près
-  - à peu près
-  - à proximité
-  - à savoir
-  - à terre
-  - à travers
-  - au loin
-  - au nord
-  - au sud
-  - ce soir
-  - dans les environs
-  - dans les terres
-  - de manière similaire
-  - de même
-  - de nos jours
-  - de plus
-  - de toute façon
-  - donner des instructions
-  - en amont
-  - en aval
-  - en bas
-  - en dessous
-  - en montée
-  - en quelque sorte
-  - encore une fois
-  - les siens
-  - n'importe qui
-  - n'importe quoi
-  - nulle part
-  - par ailleurs
-  - par conséquent
-  - par exemple
-  - par voie de terre
-  - peu de temps après
-  - plus ou moins
-  - plus tard
-  - plus tôt
-  - quelque chose comme
-  - se plaindre
-  - sous le pied
-  - sous terre
-  - tout à fait
-  - tout le monde
-  - un peu
-  - une fois
-  - au même titre que
-  - à cet égard
-  - à ce moment
-  - du coup
-  - en effet
-  - en réalité
-  - à ce sujet
-  - à ce point
-  - bien que
-  - tandis que
+  - à_bord
+  - à_ce_moment
+  - à_ce_point
+  - à_ce_sujet
+  - à_cet_égard
+  - à_côté
+  - à_l_'_est
+  - à_l_'_étage
+  - à_l_'_étranger
+  - à_l_'_extérieur
+  - à_l_'_intérieur
+  - à_l_'_origine
+  - à_l_'_ouest
+  - à_la_mer
+  - à_peine
+  - à_peu_de_choses_près
+  - à_peu_près
+  - à_proximité
+  - à_savoir
+  - à_terre
+  - à_travers
+  - au_loin
+  - au_même_titre_que
+  - au_nord
+  - au_sud
+  - bien_que
+  - ce_soir
+  - dans_les_environs
+  - dans_les_terres
+  - de_manière_similaire
+  - de_même
+  - de_nos_jours
+  - de_plus
+  - de_toute_façon
+  - donner_des_instructions
+  - du_coup
+  - en_amont
+  - en_aval
+  - en_bas
+  - en_dessous
+  - en_effet
+  - en_montée
+  - en_quelque_sorte
+  - en_réalité
+  - encore_une_fois
+  - les_siens
+  - n_'_importe_qui
+  - n_'_importe_quoi
+  - nulle_part
+  - par_ailleurs
+  - par_conséquent
+  - par_exemple
+  - par_voie_de_terre
+  - peu_de_temps_après
+  - plus_ou_moins
+  - plus_tard
+  - plus_tôt
+  - quelque_chose_comme
+  - se_plaindre
+  - sous_le_pied
+  - sous_terre
+  - tandis_que
+  - tout_à_fait
+  - tout_le_monde
+  - un_peu
+  - une_fois
 neg_synthetic_determiners:
   - aucun
+  - aucun_des
   - aucune
+  - ni
   - nul
   - nulle
-  - ni
   - sans
-  - aucun des
-  - sans que
+  - sans_que
 negation_particles:
   - ne
 neg_analytic_adverbs:
-  - pas
-  - plus
-  - jamais
-  - guère
-  - point
-  - personne
-  - rien
-  - nullement
-  - nulle part
-  - pas du tout
   - aucunement
+  - guère
+  - jamais
+  - nulle_part
+  - nullement
+  - pas
+  - pas_du_tout
+  - personne
+  - plus
+  - point
+  - rien

@@ -26,7 +26,7 @@ sample_text <- c(
   "En travaillant dur, elle a réussi.",
   "C'est l'homme dont je t'ai parlé.",
   "Bien que fatigués, ils continuent.",
-  "Il ne vient pas." 
+  "Il ne vient pas."
 )
 
 docs <- tibble::tibble(
@@ -35,7 +35,12 @@ docs <- tibble::tibble(
 )
 
 model <- udpipe::udpipe_load_model(model_path)
-annotation <- udpipe::udpipe_annotate(model, x = docs$text, doc_id = docs$doc_id, parser = "default")
+annotation <- udpipe::udpipe_annotate(
+  model,
+  x = docs$text,
+  doc_id = docs$doc_id,
+  parser = "default"
+)
 annotation_df <- as.data.frame(annotation, stringsAsFactors = FALSE)
 
 annotation_tbl <- tibble::as_tibble(annotation_df) |>
@@ -54,12 +59,17 @@ verb_snapshot <- annotation_tbl |>
     verbform = stringr::str_extract(feats, "VerbForm=[A-Za-z]+"),
     tense = stringr::str_extract(feats, "Tense=[A-Za-z]+"),
     mood = stringr::str_extract(feats, "Mood=[A-Za-z]+"),
-  voice = stringr::str_extract(feats, "Voice=[A-Za-z]+"),
+    voice = stringr::str_extract(feats, "Voice=[A-Za-z]+"),
     aux_pass = dep_rel %in% c("aux:pass", "cop")
   )
 
 rel_pronouns <- annotation_tbl |>
-  dplyr::filter(stringr::str_to_lower(lemma) %in% c("que", "qui", "dont", "ou", "lequel", "laquelle", "lesquels", "lesquelles")) |>
+  dplyr::filter(
+    stringr::str_to_lower(lemma) %in% c(
+      "que", "qui", "dont", "ou",
+      "lequel", "laquelle", "lesquels", "lesquelles"
+    )
+  ) |>
   dplyr::mutate(feats = clean_feats(feats)) |>
   dplyr::select(doc_id, sentence_id, token_id, token, lemma, upos, feats, dep_rel)
 

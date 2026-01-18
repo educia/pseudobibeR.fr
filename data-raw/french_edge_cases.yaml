@@ -117,3 +117,31 @@ edge_cases:
     - Elle leur a donné une explication qu’ils n’ont pas comprise.
     - On l’a trouvé qui s’enfuyait.
     - Je les ai vus qui arrivaient.
+
+  # Modal and clitic-focused probes (2026-01)
+
+  modal_periphrastic_possibility:
+    - Nous avons la possibilité de partir demain.
+    - Il risque de pleuvoir ce soir.
+    - Elle est susceptible de gagner le concours.
+
+  modal_periphrastic_necessity:
+    - Ils sont obligés de répondre immédiatement.
+    - Il est nécessaire de tenir parole.
+    - Il faut que tu partes maintenant.
+
+  modal_predictive_future:
+    - Il va probablement changer d’avis.
+    - Ce sera difficile à expliquer calmement.
+    - Elle serait prête à aider si besoin.
+    - Ils risquent de se retrouver pris dans ce qui serait considéré comme une erreur.
+
+  modal_clitic_sequences:
+    - Ils vont le lui expliquer patiemment.
+    - Elle doit s’en souvenir encore longtemps.
+    - Nous allons les en avertir tout de suite.
+
+  modal_negated_clitics:
+    - Il ne va pas le dire aux journalistes.
+    - Ils ne peuvent plus s’en passer.
+    - Nous n’irons pas l’y chercher.

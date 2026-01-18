@@ -398,10 +398,10 @@
   example: C'est très important.
   count: 1.0
 - feature: f_48_amplifiers
-  example: Elle est extrêmement intelligente.
+  example: C'est vraiment magnifique !
   count: 1.0
 - feature: f_49_emphatics
-  example: C'est vraiment magnifique !
+  example: Je l'ai vraiment fait hier.
   count: 1.0
 - feature: f_49_emphatics
   example: Il a beaucoup travaillé pour réussir.

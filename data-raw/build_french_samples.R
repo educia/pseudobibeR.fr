@@ -54,7 +54,11 @@ samples_tbl <- tibble::tibble(
   file = candidate_files,
   text = purrr::map_chr(candidate_files, read_utf8)
 ) %>%
-  mutate(doc_id = file %>% tools::file_path_sans_ext() %>% basename()) %>%
+  mutate(
+    doc_id = file %>%
+      tools::file_path_sans_ext() %>%
+      basename()
+  ) %>%
   select(doc_id, text) %>%
   mutate(text = str_squish(text))
 
@@ -71,7 +75,12 @@ if (!file.exists(model_path)) {
 }
 
 ud_model <- udpipe::udpipe_load_model(model_path)
-udpipe_samples <- udpipe::udpipe_annotate(ud_model, x = samples_tbl$text, doc_id = samples_tbl$doc_id, parser = "default")
+udpipe_samples <- udpipe::udpipe_annotate(
+  ud_model,
+  x = samples_tbl$text,
+  doc_id = samples_tbl$doc_id,
+  parser = "default"
+)
 
 if (!requireNamespace("usethis", quietly = TRUE)) {
   stop("Package 'usethis' must be installed to save sample data")
