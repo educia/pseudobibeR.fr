@@ -1,12 +1,16 @@
-# Subordination and clause embedding features
+# Subordination and clause embedding features for Spanish
 
-#' Extract participial clause features
+#' Extract participial clause features (Spanish)
+#'
+#' This block uses the same UD-based logic as the French version but is
+#' intended for Spanish parses with is_infinitive / is_present_participle /
+#' is_past_participle flags precomputed upstream.
 #'
 #' @param tokens Annotated token data frame with participle markers
 #' @param doc_ids Document IDs
 #' @return Data frame with f_24_infinitives through f_28_present_participle_whiz
 #' @keywords internal
-block_participial_clauses_fr <- function(tokens, doc_ids) {
+block_participial_clauses_es <- function(tokens, doc_ids) {
   f24 <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(.data$is_infinitive) %>%
@@ -21,8 +25,7 @@ block_participial_clauses_fr <- function(tokens, doc_ids) {
       (
         dplyr::lag(.data$dep_rel == "punct", default = TRUE) |
           (
-            dplyr::lag(.data$token %in% c("en"), default = FALSE) &
-              dplyr::lag(.data$dep_rel %in% c("mark", "case"), default = FALSE)
+            dplyr::lag(.data$dep_rel %in% c("mark", "case"), default = FALSE)
           )
       )
     ) %>%
@@ -40,13 +43,7 @@ block_participial_clauses_fr <- function(tokens, doc_ids) {
               dplyr::lag(.data$dep_rel == "punct", default = TRUE)
           )
       ),
-      (
-        dplyr::lag(.data$dep_rel == "punct", default = TRUE) |
-          (
-            dplyr::lag(.data$token %in% c("en"), default = FALSE) &
-              dplyr::lag(.data$dep_rel %in% c("mark", "case"), default = FALSE)
-          )
-      )
+      dplyr::lag(.data$dep_rel == "punct", default = TRUE)
     ) %>%
     dplyr::tally() %>%
     dplyr::rename(f_26_past_participle = "n")
@@ -83,29 +80,22 @@ block_participial_clauses_fr <- function(tokens, doc_ids) {
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract relative clause features
+#' Extract relative clause features (Spanish)
+#'
+#' This block mirrors the French structure but with Spanish relative
+#' pronouns and determiners.
 #'
 #' @param tokens Annotated token data frame with relative pronouns marked
 #' @param doc_ids Document IDs
 #' @return Data frame with f_29_that_subj through f_34_sentence_relatives
 #' @keywords internal
-block_relatives_fr <- function(tokens, doc_ids) {
-  relative_subject_that_lemmas <- c("qui")
+block_relatives_es <- function(tokens, doc_ids) {
+  relative_subject_that_lemmas <- c("que")
   relative_object_that_lemmas <- c("que")
-  wh_subject_relative_lemmas <- c("lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles")
-  wh_object_relative_lemmas <- c(
-    "dont",
-    "lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles",
-    "duquel", "desquels", "desquelles",
-    "auquel", "auxquels", "auxquelles"
-  )
-  pied_piping_relative_lemmas <- c(
-    "dont",
-    "lequel", "laquelle", "lesquels", "lesquelles",
-    "auquel", "auxquels", "auxquelles",
-    "duquel", "desquels", "desquelles"
-  )
-  sentence_relative_anchors <- c("ce", "cela", "ceci", "celui", "celle", "ceux", "celles")
+  wh_subject_relative_lemmas <- c("quien", "quienes", "cual", "cuales")
+  wh_object_relative_lemmas <- c("quien", "quienes", "cual", "cuales", "cuyo", "cuya", "cuyos", "cuyas")
+  pied_piping_relative_lemmas <- c("cuyo", "cuya", "cuyos", "cuyas")
+  sentence_relative_anchors <- c("eso", "esto", "ello")
 
   f29 <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
@@ -170,10 +160,7 @@ block_relatives_fr <- function(tokens, doc_ids) {
     dplyr::filter(
       .data$is_relative_pronoun,
       .data$lemma %in% pied_piping_relative_lemmas,
-      (
-        .data$lemma == "dont" |
-          dplyr::lag(.data$pos == "ADP", default = FALSE)
-      )
+      dplyr::lag(.data$pos == "ADP", default = FALSE)
     ) %>%
     dplyr::tally() %>%
     dplyr::rename(f_33_pied_piping = "n")
@@ -202,29 +189,29 @@ block_relatives_fr <- function(tokens, doc_ids) {
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract clause embedding and complementizer features
+#' Extract clause embedding and complementizer features (Spanish)
+#'
+#' This block adapts the complementizer / subordinator patterns for
+#' Spanish: que, porque, aunque, si, etc.
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
 #' @param head_lookup Head token lookup table
 #' @return Data frame with subordinator features f_21 through f_38, plus f_60
 #' @keywords internal
-block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
-  complementizers <- c("que", "qu'", "qu\u2019")
+block_clause_embedding_es <- function(tokens, doc_ids, head_lookup) {
+  complementizers <- c("que")
   wh_lemmas <- c(
-    "qui", "que", "quoi", "dont",
-    "o\u00f9", "ou", "quand", "comment", "pourquoi", "combien",
-    "lequel", "laquelle", "lesquels", "lesquelles",
-    "auquel", "auxquels", "auxquelles",
-    "duquel", "desquels", "desquelles"
+    "quien", "quienes", "que", "cual", "cuales", "donde", "cuando",
+    "como", "por_que", "cuanto", "cuanta", "cuantos", "cuantas"
   )
-  parce_follow_tokens <- c("que", "qu'", "qu\u2019")
-  because_single_tokens <- c("car", "puisque", "puisqu'", "puisqu\u2019", "comme")
+  porque_follow_tokens <- c("que")
+  because_single_tokens <- c("porque", "puesto_que", "ya_que")
 
   f21 <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
-      .data$token %in% complementizers,
+      .data$lemma %in% complementizers,
       .data$pos == "SCONJ",
       dplyr::lag(.data$pos) %in% c("VERB", "AUX")
     ) %>%
@@ -234,7 +221,7 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
   f22 <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
-      .data$token %in% complementizers,
+      .data$lemma %in% complementizers,
       .data$pos == "SCONJ",
       dplyr::lag(.data$pos) == "ADJ"
     ) %>%
@@ -265,13 +252,12 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
       (
-        .data$token %in% because_single_tokens &
+        .data$lemma %in% because_single_tokens &
           .data$pos %in% c("SCONJ", "CCONJ") &
           stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^(mark|cc)")
       ) |
         (
-          .data$token == "parce" &
-            .data$next_token %in% parce_follow_tokens &
+          .data$lemma == "porque" &
             .data$pos %in% c("SCONJ", "ADV")
         )
     ) %>%
@@ -283,18 +269,8 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
       (
-        .data$token == "quoique" & .data$pos %in% c("SCONJ")
-      ) |
-        (
-          .data$token == "bien" &
-            .data$next_token %in% parce_follow_tokens &
-            .data$next_pos %in% c("SCONJ")
-        ) |
-        (
-          .data$token == "m\u00eame" &
-            .data$next_token == "si" &
-            .data$next_pos %in% c("SCONJ")
-        )
+        .data$lemma == "aunque" & .data$pos %in% c("SCONJ")
+      )
     ) %>%
     dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
     dplyr::tally() %>%
@@ -304,20 +280,10 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
       (
-        (.data$token == "si" | .data$token == "s'") &
+        .data$lemma == "si" &
           .data$pos %in% c("SCONJ") &
           stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^mark")
-      ) |
-        (
-          .data$token == "moins" &
-            .data$prev_token %in% c("\u00e0", "au") &
-            .data$next_token %in% parce_follow_tokens
-        ) |
-        (
-          .data$token == "condition" &
-            .data$prev_token == "\u00e0" &
-            .data$next_token %in% parce_follow_tokens
-        )
+      )
     ) %>%
     dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
     dplyr::tally() %>%
@@ -325,10 +291,9 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
 
   counted_subordinators <- unique(c(
     complementizers,
-    parce_follow_tokens,
     because_single_tokens,
-    "parce",
-    "quoique",
+    "porque",
+    "aunque",
     "si"
   ))
 
@@ -337,7 +302,7 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
     dplyr::filter(
       .data$pos %in% c("SCONJ", "ADP", "ADV"),
       stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^mark"),
-      !.data$token %in% counted_subordinators
+      !.data$lemma %in% counted_subordinators
     ) %>%
     dplyr::tally() %>%
     dplyr::rename(f_38_other_adv_sub = "n")
