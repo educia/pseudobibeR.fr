@@ -1,6 +1,9 @@
-# Passive voice and stative features
+# Passive voice and stative features (Spanish)
 
-#' Extract passive voice and stative verb features
+#' Extract passive voice and stative verb features (Spanish)
+#'
+#' This block adapts the French passive/stative logic to Spanish, using
+#' UD labels and Spanish lemmas for copulas and existentials.
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
@@ -8,7 +11,7 @@
 #' @param passive_rel_values Dependency relation values indicating passive voice
 #' @return Data frame with f_17_agentless_passives, f_18_by_passives, f_19_be_main_verb, f_20_existential_there
 #' @keywords internal
-block_passive_voice_fr <- function(tokens, doc_ids, head_lookup, passive_rel_values) {
+block_passive_voice_es <- function(tokens, doc_ids, head_lookup, passive_rel_values) {
   passive_candidates <- tokens %>%
     dplyr::filter(.data$dep_rel %in% passive_rel_values) %>%
     dplyr::left_join(
@@ -40,7 +43,7 @@ block_passive_voice_fr <- function(tokens, doc_ids, head_lookup, passive_rel_val
   f19 <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
-      .data$lemma == "\u00eatre",
+      .data$lemma %in% c("ser", "estar"),
       !stringr::str_detect(.data$dep_rel, "aux")
     ) %>%
     dplyr::tally() %>%
@@ -49,11 +52,10 @@ block_passive_voice_fr <- function(tokens, doc_ids, head_lookup, passive_rel_val
   f20 <- tokens %>%
     dplyr::group_by(.data$doc_id, .data$sentence_id) %>%
     dplyr::filter(
-      .data$lemma == "avoir",
+      .data$lemma == "haber",
       .data$pos %in% c("VERB", "AUX"),
-      dplyr::lag(.data$lemma == "y", default = FALSE),
-      dplyr::lag(.data$lemma == "il", 2, default = FALSE),
-      dplyr::lag(.data$pos == "PRON", 2, default = FALSE)
+      .data$token %in% c("hay", "habia", "había", "hubo", "habra", "habrá", "habria", "habría"),
+      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^root|^cop|^aux")
     ) %>%
     dplyr::ungroup() %>%
     dplyr::distinct(.data$doc_id, .data$sentence_id, .keep_all = TRUE) %>%
