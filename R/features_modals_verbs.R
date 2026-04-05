@@ -1,6 +1,9 @@
-# Adjective, preposition, adverb, verb class, and modal features
+# Adjective, preposition, adverb, verb class, and modal features for Spanish
 
-#' Extract adjective, preposition, and adverb features
+#' Extract adjective, preposition, and adverb features (Spanish)
+#'
+#' This block is largely language-agnostic and relies on UD labels and
+#' the Spanish word lists / dictionaries defined in data-raw.
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
@@ -9,7 +12,7 @@
 #' @param negation_adverbs Vector of negation adverbs
 #' @return Data frame with f_39_prepositions through f_42_adverbs
 #' @keywords internal
-block_adj_prep_adv_fr <- function(
+block_adj_prep_adv_es <- function(
     tokens,
     doc_ids,
     dict_lookup,
@@ -82,14 +85,14 @@ block_adj_prep_adv_fr <- function(
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract specialized verb class features
+#' Extract specialized verb class features (Spanish)
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
 #' @param dict_lookup Dictionary lookup
 #' @return Data frame with f_55_verb_public through f_58_verb_seem
 #' @keywords internal
-block_specialized_verbs_fr <- function(tokens, doc_ids, dict_lookup) {
+block_specialized_verbs_es <- function(tokens, doc_ids, dict_lookup) {
   verb_public_lemmas <- dictionary_to_lemmas(dict_lookup, "f_55_verb_public")
   verb_private_lemmas <- dictionary_to_lemmas(dict_lookup, "f_56_verb_private")
   verb_suasive_lemmas <- dictionary_to_lemmas(dict_lookup, "f_57_verb_suasive")
@@ -139,19 +142,17 @@ block_specialized_verbs_fr <- function(tokens, doc_ids, dict_lookup) {
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract modal verb features
+#' Extract modal verb features (Spanish)
+#'
+#' This block mirrors the French modal logic but with Spanish periphrastic
+#' patterns and lemmas defined in dict.yaml for f_52–f_54.
 #'
 #' @param tokens Annotated token data frame with context columns
 #' @param doc_ids Document IDs
 #' @param dict_lookup Dictionary lookup
 #' @return Data frame with f_52_modal_possibility through f_54_modal_predictive
 #' @keywords internal
-block_modals_fr <- function(tokens, doc_ids, dict_lookup) {
-  # All modal detection is lemma-driven; dictionary_to_lemmas() already reduces
-  # entries to their final token. Periphrastic cues (risquer de, \u00eatre susceptible
-  # de, avoir la possibilit\u00e9 de, etc.) are recognized here via dependency
-  # patterns, so collaborators should not duplicate surface forms;
-  # see data-raw/dict.yaml for the canonical entries.
+block_modals_es <- function(tokens, doc_ids, dict_lookup) {
   modal_counts <- function(lemmas) {
     if (length(lemmas) == 0) {
       return(tibble::tibble(doc_id = character(), n = integer()))
@@ -177,76 +178,25 @@ block_modals_fr <- function(tokens, doc_ids, dict_lookup) {
     })
   }
 
-  has_de_inf <- function(df) {
-    df %>%
-      dplyr::filter(
-        .data$next_lemma == "de",
-        .data$next_pos == "ADP",
-        .data$next2_pos %in% c("VERB", "AUX"),
-        .data$next2_morph_verbform == "Inf"
-      )
-  }
-
-  risquer_pattern <- tokens %>%
-    dplyr::filter(.data$lemma == "risquer") %>%
-    has_de_inf() %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally()
-
-  possibilite_pattern <- tokens %>%
-    dplyr::filter(
-      .data$lemma == "possibilit\u00e9",
-      .data$prev2_lemma == "avoir"
-    ) %>%
-    has_de_inf() %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally()
-
-  etre_support_pattern <- function(adj_lemmas) {
-    tokens %>%
-      dplyr::filter(
-        .data$lemma %in% adj_lemmas,
-        (.data$prev_lemma == "\u00eatre" | .data$prev2_lemma == "\u00eatre")
-      ) %>%
-      has_de_inf() %>%
-      dplyr::group_by(.data$doc_id) %>%
-      dplyr::tally()
-  }
-
-  etre_oblige_pattern <- etre_support_pattern(c("obliger"))
-  etre_necessaire_pattern <- etre_support_pattern(c("n\u00e9cessaire"))
-  etre_susceptible_pattern <- etre_support_pattern(c("susceptible"))
-
-  etre_future_pattern <- tokens %>%
-    dplyr::filter(
-      .data$token %in% c("sera", "serait"),
-      .data$lemma == "\u00eatre"
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally()
-
   possibility_lemmas <- dictionary_to_lemmas(dict_lookup, "f_52_modal_possibility")
   necessity_lemmas <- dictionary_to_lemmas(dict_lookup, "f_53_modal_necessity")
   predictive_lemmas <- dictionary_to_lemmas(dict_lookup, "f_54_modal_predictive")
 
   f52 <- sum_counts(list(
-    modal_counts(possibility_lemmas),
-    possibilite_pattern
+    modal_counts(possibility_lemmas)
   )) %>%
     dplyr::rename(f_52_modal_possibility = "n")
 
   f53 <- sum_counts(list(
-    modal_counts(necessity_lemmas),
-    etre_oblige_pattern,
-    etre_necessaire_pattern
+    modal_counts(necessity_lemmas)
   )) %>%
     dplyr::rename(f_53_modal_necessity = "n")
 
   predictive_counts <- modal_counts(predictive_lemmas)
 
-  predictive_aller <- tokens %>%
+  predictive_ir_a <- tokens %>%
     dplyr::filter(
-      .data$lemma == "aller",
+      .data$lemma == "ir",
       .data$pos %in% c("VERB", "AUX"),
       .data$next_pos %in% c("VERB", "AUX"),
       .data$next_morph_verbform == "Inf"
@@ -256,10 +206,7 @@ block_modals_fr <- function(tokens, doc_ids, dict_lookup) {
 
   f54 <- sum_counts(list(
     predictive_counts,
-    predictive_aller,
-    risquer_pattern,
-    etre_susceptible_pattern,
-    etre_future_pattern
+    predictive_ir_a
   )) %>%
     dplyr::rename(f_54_modal_predictive = "n")
 
