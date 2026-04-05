@@ -1,11 +1,14 @@
-Package: pseudobibeR.fr
-Title: Aggregate Counts of French Linguistic Features
-Version: 0.0.0.93
+Package: pseudobibeR.es
+Title: Aggregate Counts of Spanish Linguistic Features
+Version: 0.0.0.9000
 Authors@R: 
     c(
+     person(given = "Maximiliano",
+         family = "Cordovez",
+         role = c("aut", "cre")),
      person(given = "David",
          family = "Brown",
-         role = c("aut", "cre"),
+         role = "aut",
          email = "dwb2@andrew.cmu.edu",
          comment = c(ORCID = "0000-0001-7745-6354")),
      person(given = "Marina",
@@ -18,13 +21,13 @@ Authors@R:
          email = "am@up8.edu")
     )
 Description: Calculates lexicogrammatical and functional features for
-    French texts following the framework introduced by Biber (1985)
+    Spanish texts following the framework introduced by Biber (1985)
     <doi:10.1515/ling.1985.23.2.337>. Provides a companion implementation
     to the English-focused 'pseudobibeR' package, including data sets and
-    helper utilities tailored to French parsing resources.
+    helper utilities tailored to Spanish parsing resources.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Language: fr
+Language: es
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 LazyData: TRUE
