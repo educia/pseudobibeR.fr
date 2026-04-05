@@ -1,431 +1,243 @@
-# French word lists for pseudobibeR.fr feature extraction
+# Spanish word lists for pseudobibeR.es feature extraction
 #
 # TOKENIZATION AND PATTERN FORMATTING:
-# French elisions (d', l', n', t', m', s') are handled specially:
-# 1. udpipe splits elisions: "d'ici" → ["d'", "ici"]
-# 2. Text reconstruction adds spaces: paste() → "d' ici"
-# 3. quanteda re-tokenizes and splits apostrophes: "d' ici" → ["d", "'", "ici"]
-# 4. Patterns use underscores for token boundaries:
-#    - Multiword: "loin d'ici" → "loin_d_'_ici" (matches ["loin", "d", "'", "ici"])
-#    - Single token: "t'" → "t_'" (matches ["t", "'"])
-#    - Regular multiword: "à côté" → "à_côté" (matches ["à", "côté"])
+#
+# Patterns use underscores for token boundaries, following pseudobibeR conventions:
+#   - Multiword: "por ejemplo" → "por_ejemplo"
+#   - Clitic sequences: "darse cuenta" → "darse_cuenta"
+#   - Keep entries in lower case; matching may occur over lemmas or
+#     surface forms depending on the feature.
+#
 
 pronoun_matchlist:
-  - autrui
-  - ce
-  - cela
-  - celle
-  - celles
-  - celles-ci
-  - celles-là
-  - celui
-  - celui-ci
-  - celui-là
-  - ces
-  - cet
-  - cette
-  - ceux
-  - ceux-ci
-  - chacun
-  - elle
-  - elle-même
-  - elles
-  - elles-mêmes
-  - eux
-  - eux-mêmes
-  - il
-  - ils
-  - je
-  - les_siens
-  - lui
-  - lui-même
-  - m_'
-  - me
-  - moi
-  - moi-même
-  - nous
-  - nous-autres
-  - nous-mêmes
-  - on
-  - quiconque
-  - s_'
-  - se
-  - soi
-  - soi-même
-  - t_'
-  - te
-  - toi
-  - toi-même
-  - tout_le_monde
+  - yo
   - tu
-  - vous
-  - vous-autres
-  - vous-même
+  - tú
+  - vos
+  - usted
+  - ustedes
+  - el
+  - él
+  - ella
+  - ellas
+  - ellos
+  - ello
+  - nosotros
+  - nosotras
+  - mi
+  - mis
+  - mio
+  - mío
+  - mia
+  - mía
+  - nuestro
+  - nuestra
+  - nuestros
+  - nuestras
+  - tuyo
+  - tuya
+  - tuyos
+  - tuyas
+  - suyo
+  - suya
+  - suyos
+  - suyas
+  - me
+  - te
+  - se
+  - nos
+  - os
+  - si
+  - sí
+  - uno
+  - una
+  - uno_mismo
+  - una_misma
+  - cada_uno
+  - cada_una
+  - cualquiera
+  - alguien
+  - nadie
+  - todo_el_mundo
+
 proverb_object_pronouns:
+  # Direct and indirect object clitics commonly used with hacer as pro-verb
+  - lo
+  - la
+  - los
+  - las
   - le
-  - l_'
+  - les
+
 impersonal_verbs:
-  - bruiner
-  - faire # ex_: il_fait_froid
-  - geler
-  - grêler
-  - neiger
-  - pleuvoir
-  - s'agir # ex_: il_s’agit_de
-  - tonner
-  - venter
-  - y_avoir # ex_: il_y_a
+  # Verbs that typically occur in impersonal constructions
+  - llover
+  - nevar
+  - granizar
+  - tronar
+  - amanecer
+  - anochecer
+  - haber  # hay, había, hubo, habrá, etc.
+  - hacer  # hace_frio, hace_calor
+
 linking_matchlist:
-  - avoir
-  - demeurer
-  - devenir
-  - être
-  - paraître
-  - rester
-  - sembler
+  # Copular / linking verbs in Spanish
+  - ser
+  - estar
+  - parecer
+  - resultar
+  - volverse
+  - quedarse
+
 verb_matchlist:
-  - accepter
-  - accorder
-  - affirmer
-  - annoncer
-  - anticiper
-  - apprendre
-  - assumer
-  - avouer
-  - commander
-  - commenter
-  - comprendre
-  - conclure
-  - connaître
-  - constater
-  - convaincre
-  - craindre
-  - croire
-  - décider
-  - déclarer
-  - découvrir
-  - demander
-  - démontrer
-  - déterminer
-  - deviner
-  - dire
-  - donner_des_instructions
-  - douter
-  - écrire
-  - encourager
-  - entendre
-  - espérer
-  - estimer
-  - exiger
-  - expliquer
-  - imaginer
-  - impliquer
-  - indiquer
-  - informer
-  - insister
-  - inviter
-  - jurer
-  - mendier
-  - mentionner
-  - montrer
-  - nantir
-  - nier
-  - ordonner
-  - organiser
-  - oublier
-  - parler
-  - penser
-  - persuader
-  - pressentir
-  - prévoir
-  - proclamer
-  - promettre
-  - prononcer
-  - proposer
-  - protester
-  - prouver
-  - rappeler
-  - réaliser
-  - réclamer
-  - recommander
-  - reconnaître
-  - remarquer
-  - répondre
-  - révéler
-  - se_plaindre
-  - sentir
-  - signaler
-  - signifier
-  - stipuler
-  - suggérer
-  - supposer
-  - trouver
-  - voir
+  # Public / private / suasive verbs used by multiple feature families;
+  # this list mirrors dict$f_55_verb_public, f_56_verb_private, and
+  # f_57_verb_suasive but is kept separate for generic verb pattern logic.
+  - afirmar
+  - anunciar
+  - declarar
+  - explicar
+  - informar
+  - mencionar
+  - proclamar
+  - prometer
+  - protestar
+  - relatar
+  - contar
+  - señalar
+  - reconocer
+  - creer
+  - asumir
+  - conocer
+  - comprender
+  - considerar
+  - darse_cuenta
+  - dudar
+  - entender
+  - esperar
+  - imaginar
+  - notar
+  - olvidar
+  - pensar
+  - recordar
+  - saber
+  - suponer
+  - aconsejar
+  - advertir
+  - animar
+  - convencer
+  - exigir
+  - mandar
+  - ordenar
+  - pedir
+  - proponer
+  - recomendar
+  - rogar
+  - sugerir
+
 nominalization_stoplist:
-  # -tion/-sion endings
+  # Spanish nouns ending in typical nominalization suffixes but
+  # functioning as lexicalized items, to avoid over-counting.
+  # Extend this list based on corpus inspection.
   - avion
+  - avión
   - camion
-  - lion
-  
-  # -ment endings
-  - aliment
-  - ciment
-  - document
-  - élément
-  - fondement
-  - moment
-  - monument
-  - mouvement
-  - segment
-  - serment
-  - vêtement
-  
-  # -age endings
-  - âge
-  - barrage
-  - cage
-  - fromage
-  - garage
-  - image
-  - message
-  - page
-  - plage
-  - rage
-  - sage
-  - village
-  
-  # -ure endings
-  - allure
-  - aventure
-  - créature
-  - dure
-  - figure
-  - mure
-  - nature
-  - pure
-  - sûre
-  - torture
-  
-  # -ance/-ence endings
-  - chance
-  - danse
-  - essence
-  - France
-  - lance
-  - once
-  - romance
-  - science
-  
-  # -ité endings
-  - cité
-  - comité
-  - côté
-  - été
-  - moitié
-  - pitié
-  
-  # -esse endings
-  - messe
-  - promesse
-  
-  # -isme endings
-  - abîme
-  - prisme
+  - camión
+  - leon
+  - león
+  - jamon
+  - jamón
+  - patron
+  - patrón
+  - melon
+  - melón
+  - camion
+  - camión
+  - razon
+  - razón
 
 gerund_stoplist:
-  # Common adjectives ending in -ant
-  - agaçant
-  - bruyant
-  - constant
-  - élégant
-  - fatigant
-  - géant
-  - géant
-  - grand
-  - important
-  - inquiétant
-  - méchant
-  - plaisant
-  - puissant
-  - savant
-  
-  # Nouns ending in -ant
-  - chant
-  - diamant
-  - éléphant
-  - enfant
-  - implant
-  - restaurant
-  
-  # Prepositions/adverbs ending in -ant
-  - autant
-  - avant
-  - cependant
-  - devant
-  - dorénavant
-  - durant
-  - maintenant
-  - pendant
-  - pourtant
-  - tant
-  
-  # Nouns/adjectives that are derived from verbs but function as nouns/adjectives
-  - assistant
-  - commerçant
-  - consultant
-  - croyant
-  - débutant
-  - étudiant
-  - fabricant
-  - gagnant
-  - habitant
-  - militant
-  - occupant
-  - passant
-  - perdant
-  - représentant
-  
-  # If catching -ent endings too:
-  - absent
-  - accident
-  - agent
-  - aliment
-  - argent
-  - cent
-  - client
-  - dent
-  - différent
-  - document
-  - élément
-  - évident
-  - excellent
-  - moment
-  - monument
-  - parent
-  - patient
-  - présent
-  - président
-  - prudent
-  - talent
-  - urgent
-  - vent
-  - violent
+  # Lexical items ending in -ando / -iendo that are not gerunds
+  # in Spanish, or are highly lexicalized.
+  - cuando
+  - hablando  # as noun/title
+  - viviendo   # as noun/title
+  - destacando # as noun/title in some contexts
+
 nominalization_suffixes:
-  - ade
-  - ades
-  - age
-  - ages
-  - ance
-  - ances
-  - ence
-  - ences
-  - erie
-  - eries
-  - esse
-  - esses
-  - eur
-  - eurs
-  - isation
-  - isations
-  - issement
-  - issements
-  - ité
-  - ités
-  - ment
-  - ments
+  # Common Spanish nominalization suffixes; used to detect
+  # candidate nominalizations when combined with POS/morphology.
+  - cion
+  - ciones
   - sion
-  - tion
-  - trice
-  - trices
-  - ure
-  - ures
+  - siones
+  - miento
+  - mientos
+  - dad
+  - dades
+  - tud
+  - tudes
+  - ncia
+  - ncias
+  - ura
+  - uras
+  - aje
+  - ajes
+  - ez
+  - eza
+  - ezas
+
 multiword_patterns:
-  - à_bord
-  - à_ce_moment
-  - à_ce_point
-  - à_ce_sujet
-  - à_cet_égard
-  - à_côté
-  - à_l_'_est
-  - à_l_'_étage
-  - à_l_'_étranger
-  - à_l_'_extérieur
-  - à_l_'_intérieur
-  - à_l_'_origine
-  - à_l_'_ouest
-  - à_la_mer
-  - à_peine
-  - à_peu_de_choses_près
-  - à_peu_près
-  - à_proximité
-  - à_savoir
-  - à_terre
-  - à_travers
-  - au_loin
-  - au_même_titre_que
-  - au_nord
-  - au_sud
-  - bien_que
-  - ce_soir
-  - dans_les_environs
-  - dans_les_terres
-  - de_manière_similaire
-  - de_même
-  - de_nos_jours
-  - de_plus
-  - de_toute_façon
-  - donner_des_instructions
-  - du_coup
-  - en_amont
-  - en_aval
-  - en_bas
-  - en_dessous
-  - en_effet
-  - en_montée
-  - en_quelque_sorte
-  - en_réalité
-  - encore_une_fois
-  - les_siens
-  - n_'_importe_qui
-  - n_'_importe_quoi
-  - nulle_part
-  - par_ailleurs
-  - par_conséquent
-  - par_exemple
-  - par_voie_de_terre
-  - peu_de_temps_après
-  - plus_ou_moins
-  - plus_tard
-  - plus_tôt
-  - quelque_chose_comme
-  - se_plaindre
-  - sous_le_pied
-  - sous_terre
-  - tandis_que
-  - tout_à_fait
-  - tout_le_monde
-  - un_peu
-  - une_fois
+  # Common multiword expressions used by various features
+  - por_ejemplo
+  - en_cambio
+  - por_otro_lado
+  - por_otra_parte
+  - en_resumen
+  - en_suma
+  - sin_embargo
+  - no_obstante
+  - tal_vez
+  - en_cierto_modo
+  - en_parte
+  - de_alguna_manera
+  - de_algún_modo
+  - mas_o_menos
+  - más_o_menos
+  - un_poco
+  - desde_luego
+  - por_supuesto
+  - de_verdad
+  - en_fin
+  - a_veces
+  - de_vez_en_cuando
+  - a_menudo
+  - con_frecuencia
+
 neg_synthetic_determiners:
-  - aucun
-  - aucun_des
-  - aucune
+  # Determiners that carry inherent negation
+  - ningun
+  - ningún
+  - ninguno
+  - ninguna
+  - ningunos
+  - ningunas
   - ni
-  - nul
-  - nulle
-  - sans
-  - sans_que
+  - nada
+  - nadie
+
 negation_particles:
-  - ne
+  # Core analytic negation particle
+  - no
+
 neg_analytic_adverbs:
-  - aucunement
-  - guère
-  - jamais
-  - nulle_part
-  - nullement
-  - pas
-  - pas_du_tout
-  - personne
-  - plus
-  - point
-  - rien
+  # Adverbs and quantifiers used in analytic negation
+  - nunca
+  - jamas
+  - jamás
+  - tampoco
+  - en_absoluto
+  - en_lo_mas_minimo
+  - para_nada
+  - nada
+  - nadie
