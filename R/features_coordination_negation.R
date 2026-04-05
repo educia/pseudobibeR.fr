@@ -1,87 +1,29 @@
-# Coordination, contractions, stranded prepositions, and split structures
+# Coordination, contractions, stranded prepositions, split structures,
+# negation, and lexical membership features for Spanish
 
-#' Extract contraction features
+#' Extract contraction features (Spanish)
+#'
+#' Spanish does not productively use apostrophe contractions like French;
+#' this feature is kept for structural parity but will typically return 0.
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
 #' @return Data frame with f_59_contractions
 #' @keywords internal
-block_contractions_fr <- function(tokens, doc_ids) {
-  # LINGUISTIC BACKGROUND:
-  # True contractions are informal phonetic reductions where sounds are omitted:
-  #   - p'tit (petit), m'sieur (monsieur), m'dame (madame)
-  #   - These are lexical words (adjectives, nouns) with optional apostrophes
-  #   - Appear in informal registers (dialogue, twitter, casual speech)
-  #
-  # Grammatical elisions are mandatory sandhi before vowels:
-  #   - l'ami (le + ami), d'abord (de + abord), qu'il (que + il)
-  #   - These are grammatical function words (articles, prepositions, conjunctions)
-  #   - Required by French orthography, appear in all registers
-  #
-  # DETECTION STRATEGY:
-  # Use POS tags to distinguish the two patterns. Diagnostic analysis of 74K apostrophe
-  # tokens in the French register corpus (data-raw/analyze_apostrophe_patterns.R) showed:
-  #
-  # Elisions have grammatical POS tags:
-  #   - DET: l' (le), d' (de in "d'un")
-  #   - ADP: d' (de)
-  #   - PRON: s' (se), c' (ce), qu' (que), j' (je), m' (me)
-  #   - ADV: n' (ne), jusqu' (jusque), aujourd'hui
-  #   - SCONJ: qu' (que), lorsqu' (lorsque), puisqu' (puisque)
-  #
-  # Contractions have lexical POS tags:
-  #   - ADJ: p'tit (petit), prud'homal
-  #   - NOUN: prud'hommes, m'sieur (when tagged as noun)
-  #   - PROPN: M'sieur (when used as title)
-  #
-  # This approach avoids enumerating all elision combinations (j'aime, j'arrive, etc.)
-  # and works consistently with both UDPipe and spaCy parsers.
-  
-  apostrophe_pattern <- "[\\u2019']"
-  
-  # POS tags that indicate grammatical elisions (never contractions)
-  elision_pos_tags <- c("DET", "ADP", "PRON", "ADV", "SCONJ")
-
-  # Identify all tokens with apostrophes
-  contraction_tokens <- tokens %>%
-    dplyr::mutate(
-      lower_token = stringr::str_to_lower(.data$token),
-      apostrophe_idx = stringr::str_locate(.data$lower_token, apostrophe_pattern)[, "start"],
-      has_apostrophe = !is.na(.data$apostrophe_idx),
-      suffix = dplyr::if_else(
-        .data$has_apostrophe,
-        stringr::str_sub(.data$lower_token, .data$apostrophe_idx + 1L, -1L),
-        ""
-      ),
-      prefix_letters = stringr::str_detect(stringr::str_sub(.data$lower_token, 1, pmax(.data$apostrophe_idx - 1L, 1L)), "[[:alpha:]]"),
-      suffix_letters = stringr::str_detect(.data$suffix, "[[:alpha:]]")
-    ) %>%
-    dplyr::filter(
-      .data$has_apostrophe,
-      .data$prefix_letters,
-      # Must have letters after apostrophe (not terminal apostrophe like "jusqu'")
-      .data$suffix_letters
-    ) %>%
-    # Exclude elisions by POS tag: grammatical function words
-    dplyr::filter(!.data$pos %in% elision_pos_tags) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int)
-
-  f59 <- contraction_tokens %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::summarise(f_59_contractions = dplyr::n(), .groups = "drop")
-
-  doc_ids %>%
-    dplyr::left_join(f59, by = "doc_id") %>%
-    dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
+block_contractions_es <- function(tokens, doc_ids) {
+  f59 <- tibble::tibble(doc_id = doc_ids$doc_id, f_59_contractions = 0L)
+  f59
 }
 
-#' Extract stranded preposition and split infinitive features
+#' Extract stranded preposition and split infinitive features (Spanish)
+#'
+#' The UD-based logic is largely language-agnostic and reused here.
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
 #' @return Data frame with f_61_stranded_preposition and f_62_split_infinitive
 #' @keywords internal
-block_stranded_split_fr <- function(tokens, doc_ids) {
+block_stranded_split_es <- function(tokens, doc_ids) {
   tokens_ctx <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::arrange(.data$sentence_id, .data$token_id_int, .by_group = TRUE) %>%
@@ -105,7 +47,7 @@ block_stranded_split_fr <- function(tokens, doc_ids) {
     ) %>%
     dplyr::ungroup()
 
-  stranded_pronouns <- c("qui", "quoi")
+  stranded_pronouns <- c("quien", "quienes", "que")
 
   f61 <- tokens_ctx %>%
     dplyr::filter(
@@ -124,7 +66,7 @@ block_stranded_split_fr <- function(tokens, doc_ids) {
     dplyr::tally() %>%
     dplyr::rename(f_61_stranded_preposition = "n")
 
-  inf_prepositions <- c("\u00e0", "a", "au", "aux", "de", "d'", "d\u2019", "du", "des", "pour")
+  inf_prepositions <- c("a", "al", "del", "de", "por", "para")
   filler_pos <- c("ADV", "PART", "PRON", "DET")
 
   candidate_inf <- tokens_ctx %>%
@@ -180,7 +122,7 @@ block_stranded_split_fr <- function(tokens, doc_ids) {
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract coordination features
+#' Extract coordination features (Spanish)
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
@@ -190,7 +132,7 @@ block_stranded_split_fr <- function(tokens, doc_ids) {
 #' @param negation_part_lemmas Negation particle lemmas
 #' @return Data frame with f_63_split_auxiliary, f_64_phrasal_coordination, f_65_clausal_coordination
 #' @keywords internal
-block_split_coordination_fr <- function(
+block_split_coordination_es <- function(
     tokens,
     doc_ids,
     token_lookup,
@@ -228,35 +170,7 @@ block_split_coordination_fr <- function(
       span_max = pmax(.data$token_id_int, .data$head_token_id_int)
     )
 
-  # French compound verbs: avoir/être + participle parsed as head + xcomp/ccomp
-  french_compound_verbs <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% c("avoir", "\u00eatre"),
-      .data$pos %in% c("VERB", "AUX")
-    ) %>%
-    dplyr::left_join(
-      tokens %>%
-        dplyr::filter(
-          .data$dep_rel %in% c("xcomp", "ccomp"),
-          stringr::str_detect(dplyr::coalesce(.data$morph_verbform, ""), "Part")
-        ) %>%
-        dplyr::transmute(
-          .data$doc_id,
-          .data$sentence_id,
-          head_token_id_int = .data$head_token_id_int,
-          participle_token_id_int = .data$token_id_int
-        ),
-      by = c("doc_id", "sentence_id", "token_id_int" = "head_token_id_int")
-    ) %>%
-    dplyr::filter(!is.na(.data$participle_token_id_int)) %>%
-    dplyr::mutate(
-      span_min = pmin(.data$token_id_int, .data$participle_token_id_int),
-      span_max = pmax(.data$token_id_int, .data$participle_token_id_int),
-      head_token_id_int = .data$participle_token_id_int
-    )
-
-  # Combine both patterns
-  all_aux_dependencies <- dplyr::bind_rows(aux_dependencies, french_compound_verbs)
+  all_aux_dependencies <- aux_dependencies
 
   split_auxiliary_tokens <- all_aux_dependencies %>%
     dplyr::left_join(
@@ -330,7 +244,7 @@ block_split_coordination_fr <- function(
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract negation features
+#' Extract negation features (Spanish)
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
@@ -339,7 +253,7 @@ block_split_coordination_fr <- function(
 #' @param negation_adverbs Negation adverb lemmas
 #' @return Data frame with f_66_neg_synthetic and f_67_neg_analytic
 #' @keywords internal
-block_negation_fr <- function(
+block_negation_es <- function(
     tokens,
     doc_ids,
     neg_synthetic_terms,
@@ -360,7 +274,7 @@ block_negation_fr <- function(
       .data$doc_id,
       .data$sentence_id,
       head_token_id_int = .data$head_token_id_int,
-      has_ne = TRUE
+      has_no = TRUE
     ) %>%
     dplyr::distinct()
 
@@ -373,7 +287,7 @@ block_negation_fr <- function(
       negation_particles_df,
       by = c("doc_id", "sentence_id", "head_token_id_int")
     ) %>%
-    dplyr::filter(.data$has_ne) %>%
+    dplyr::filter(.data$has_no) %>%
     dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::tally() %>%
@@ -385,18 +299,16 @@ block_negation_fr <- function(
     dplyr::mutate(dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L)))
 }
 
-#' Extract lexical membership features
+#' Extract lexical membership features (Spanish)
 #'
 #' @param tokens Annotated token data frame
 #' @param doc_ids Document IDs
 #' @param word_lists_lookup Word lists lookup
 #' @return Data frame with f_10_demonstrative_pronoun through f_51_demonstratives
 #' @keywords internal
-block_lexical_membership_fr <- function(tokens, doc_ids, word_lists_lookup) {
+block_lexical_membership_es <- function(tokens, doc_ids, word_lists_lookup) {
   pronoun_terms <- get_word_list(word_lists_lookup, "pronoun_matchlist")
 
-  # Use fallback logic: if token is in pronoun_matchlist AND tagged as PRON,
-  # accept it even if morphological PronType feature is missing (udpipe parser bug)
   f10 <- tokens %>%
     dplyr::filter(
       .data$token %in% pronoun_terms,
@@ -446,7 +358,7 @@ block_lexical_membership_fr <- function(tokens, doc_ids, word_lists_lookup) {
     dplyr::arrange(.data$sentence_id, .data$token_id_int, .by_group = TRUE) |>
     dplyr::filter(
       .data$pos %in% c("NOUN", "PROPN"),
-      stringr::str_detect(.data$lemma, "ant$"),
+      stringr::str_detect(.data$lemma, "ando$|iendo$"),
       dplyr::lag(.data$token, default = "") == "en",
       dplyr::lag(.data$pos, default = "") == "ADP",
       stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^(nmod|obl|advcl)")
