@@ -115,9 +115,15 @@ block_personal_pronouns_es <- function(
     de_markers,
     que_markers,
     clause_complements,
-    weather_lemmas,
-    raising_verbs,
-    wh_question_lemmas) {
+    weather_lemmas = c("llover", "nevar", "granizar", "lloviznar", "tronar"),
+    raising_verbs = c("parecer", "resultar", "continuar", "seguir", "bastar", "convenir"),
+    wh_question_lemmas = c(
+      "quien", "quién", "que", "qué",
+      "cual", "cuál", "cuales", "cuáles",
+      "donde", "dónde", "cuando", "cuándo",
+      "como", "cómo",
+      "cuanto", "cuánta", "cuantos", "cuántos", "cuantas", "cuántas"
+    )) {
   pronoun_it_candidates <- tokens %>%
     dplyr::filter(
       .data$pos == "PRON",
