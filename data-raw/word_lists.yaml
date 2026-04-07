@@ -3,11 +3,22 @@
 # TOKENIZATION AND PATTERN FORMATTING:
 #
 # Patterns use underscores for token boundaries, following pseudobibeR conventions:
-#   - Multiword: "por ejemplo" → "por_ejemplo"
-#   - Clitic sequences: "darse cuenta" → "darse_cuenta"
+#   - Multiword: "por ejemplo" -> "por_ejemplo"
+#   - Clitic sequences: "darse cuenta" -> "darse_cuenta"
 #   - Keep entries in lower case; matching may occur over lemmas or
 #     surface forms depending on the feature.
 #
+# FUENTES:
+#   Biber, D. (1988). Variation across speech and writing. Cambridge UP.
+#   Real Academia Espanola (2009). Nueva gramatica de la lengua espanola.
+#   Lang, M. F. (1990). Spanish word formation. Routledge.
+#   Alvar Ezquerra, M. (1993). La formacion de palabras en espanol. Arco Libros.
+
+# ---------------------------------------------------------------------------
+# PRONOMBRES
+# Usados como fallback lexico en block_personal_pronouns_es();
+# la logica principal corre via UD POS + dep_rel en el codigo.
+# ---------------------------------------------------------------------------
 
 pronoun_matchlist:
   - yo
@@ -24,20 +35,32 @@ pronoun_matchlist:
   - ello
   - nosotros
   - nosotras
+  - vosotros
+  - vosotras
   - mi
+  - mí
   - mis
   - mio
   - mío
   - mia
   - mía
+  - mios
+  - míos
+  - mias
+  - mías
   - nuestro
   - nuestra
   - nuestros
   - nuestras
+  - tu
+  - tú  # ya incluido arriba; se repite para formas posesivas
+  - tus
   - tuyo
   - tuya
   - tuyos
   - tuyas
+  - su
+  - sus
   - suyo
   - suya
   - suyos
@@ -47,8 +70,17 @@ pronoun_matchlist:
   - se
   - nos
   - os
+  - le
+  - les
+  - lo
+  - la
+  - los
+  - las
   - si
-  - sí
+  - sí   # reflexivo tonico
+  - conmigo
+  - contigo
+  - consigo
   - uno
   - una
   - uno_mismo
@@ -59,9 +91,18 @@ pronoun_matchlist:
   - alguien
   - nadie
   - todo_el_mundo
+  - todo_el_que
+
+# Pronombres reflexivos: usados para excluir de f_06–f_08
+reflexive_clitic_matchlist:
+  - se
+  - me
+  - te
+  - nos
+  - os
 
 proverb_object_pronouns:
-  # Direct and indirect object clitics commonly used with hacer as pro-verb
+  # Cliticos de objeto directo/indirecto usados con hacer como pro-verbo
   - lo
   - la
   - los
@@ -69,76 +110,284 @@ proverb_object_pronouns:
   - le
   - les
 
+# ---------------------------------------------------------------------------
+# VERBOS COPULATIVOS / IMPERSONALES
+# ---------------------------------------------------------------------------
+
 impersonal_verbs:
-  # Verbs that typically occur in impersonal constructions
+  # Verbos que aparecen en construcciones impersonales
   - llover
   - nevar
   - granizar
   - tronar
+  - relampaguear
   - amanecer
   - anochecer
-  - haber  # hay, había, hubo, habrá, etc.
-  - hacer  # hace_frio, hace_calor
+  - atardecer
+  - haber    # hay, habia, hubo, habra, etc.
+  - hacer    # hace_frio, hace_calor, hace_tiempo
+  - ser      # es tarde, era de noche
 
 linking_matchlist:
-  # Copular / linking verbs in Spanish
+  # Verbos copulativos / semicopulativos en espanol
   - ser
   - estar
   - parecer
   - resultar
   - volverse
   - quedarse
+  - quedar
+  - ponerse
+  - hacerse
+  - tornarse
+  - lucir
+  - verse
+  - salir   # "salió elegido"
+  - andar   # "anda cansado" (coloquial)
+
+# ---------------------------------------------------------------------------
+# VERB_MATCHLIST
+# Lista sincronizada con f_55–f_57 de dict.yaml (verbos publicos,
+# privados y suasorios). Usada por logica de patrones generica.
+# ---------------------------------------------------------------------------
 
 verb_matchlist:
-  # Public / private / suasive verbs used by multiple feature families;
-  # this list mirrors dict$f_55_verb_public, f_56_verb_private, and
-  # f_57_verb_suasive but is kept separate for generic verb pattern logic.
+  # --- Publicos (f_55) ---
+  - admitir
+  - acordar
   - afirmar
+  - agregar
+  - alegar
   - anunciar
+  - anadir
+  - añadir
+  - argumentar
+  - asegurar
+  - aseverar
+  - atestiguar
+  - clamar
+  - comentar
+  - comunicar
+  - concluir
+  - confirmar
+  - contestar
+  - convenir
+  - criticar
   - declarar
+  - defender
+  - denegar
+  - denunciar
+  - describir
+  - destacar
+  - discutir
+  - enfatizar
+  - establecer
+  - exigir
   - explicar
+  - exponer
+  - expresar
+  - indicar
   - informar
+  - insistir
+  - mantener
+  - manifestar
   - mencionar
+  - narrar
+  - negar
+  - objetar
+  - observar
+  - opinar
+  - plantear
+  - preguntar
+  - presentar
   - proclamar
   - prometer
+  - proponer
   - protestar
-  - relatar
-  - contar
-  - señalar
+  - publicar
+  - recalcar
   - reconocer
-  - creer
+  - referir
+  - relatar
+  - repetir
+  - reportar
+  - responder
+  - revelar
+  - señalar
+  - senalar
+  - sostener
+  - subrayar
+  - sugerir
+  - testificar
+  # --- Privados (f_56) ---
+  - aceptar
+  - advertir
+  - anticipar
   - asumir
+  - calcular
+  - concebir
   - conocer
-  - comprender
   - considerar
+  - convencer
+  - creer
   - darse_cuenta
+  - decidir
+  - deducir
+  - desear
+  - detectar
+  - determinar
+  - discernir
   - dudar
   - entender
   - esperar
+  - estimar
+  - evaluar
+  - experimentar
+  - hallar
+  - ignorar
   - imaginar
+  - inferir
+  - intuir
+  - juzgar
+  - lamentar
   - notar
   - olvidar
   - pensar
+  - percibir
+  - prever
+  - querer
+  - razonar
   - recordar
+  - reflexionar
   - saber
+  - sentir
+  - sospechar
   - suponer
+  - temer
+  - valorar
+  - ver
+  # --- Suasorios (f_57) ---
   - aconsejar
-  - advertir
+  - alentar
   - animar
-  - convencer
-  - exigir
+  - aprobar
+  - autorizar
+  - conceder
+  - conminar
+  - demandar
+  - disponer
+  - encargar
+  - exhortar
+  - forzar
+  - impedir
+  - imponer
+  - incitar
+  - instar
+  - instruir
+  - invitar
+  - lograr
   - mandar
+  - motivar
+  - necesitar
+  - obligar
   - ordenar
   - pedir
-  - proponer
+  - permitir
+  - persuadir
+  - posibilitar
+  - preferir
+  - presionar
+  - prohibir
+  - reclamar
   - recomendar
+  - requerir
   - rogar
-  - sugerir
+  - solicitar
+  - suplicar
 
+# ---------------------------------------------------------------------------
+# SUFIJOS DE NOMINALIZACION (f_60)
+# Biber (1988): nouns ending in -tion, -ment, -ness, -ity.
+# En espanol los patrones equivalentes son morfologicamente ricos.
+#
+# IMPLEMENTACION: block_nominalizations_es() busca tokens con
+# upos == "NOUN" cuyo form (en minusc.) termina en alguno de estos
+# sufijos Y no esta en nominalization_stoplist.
+# Los sufijos se listan sin la vocal tematica variable; el codigo
+# debe usar endsWith() o regex ("(sufijo)s?$") para cubrir plurales.
+# ---------------------------------------------------------------------------
+
+nominalization_suffixes:
+  # Equivalentes de -tion / -sion
+  - cion      # -cion  -> accion, relacion, comunicacion
+  - ción      # con tilde
+  - ciones    # plural
+  - ciónes    # plural con tilde (forma no normativa pero presente en corpus)
+  - sion      # -sion  -> extension, confusion
+  - sión
+  - siones
+  - siónes
+  - xion      # -xion  -> conexion, reflexion (variante ortografica)
+  - xión
+  - xiones
+  # Equivalentes de -ment
+  - miento    # -miento -> pensamiento, conocimiento, procedimiento
+  - mientos
+  - mento     # -mento  -> argumento, documento, elemento
+  - mentos
+  - menta     # -menta  -> herramienta, pimienta (semilexicalizados)
+  - mentas
+  # Equivalentes de -ness / -ity
+  - dad       # -dad   -> capacidad, libertad, sociedad
+  - dades
+  - tad       # -tad   -> voluntad, facultad, lealtad
+  - tades
+  - tud       # -tud   -> actitud, aptitud, virtud
+  - tudes
+  - itud      # -itud  -> exactitud, similitud, magnitud
+  - itudes
+  - dumbre    # -dumbre -> incertidumbre, servidumbre
+  - dumbres
+  # Equivalentes de -ness (cualidad)
+  - ncia      # -ncia  -> inteligencia, violencia, tendencia
+  - ncias
+  - ncia      # ya incluido
+  - nza       # -nza   -> confianza, esperanza, enseñanza
+  - nzas
+  # Sufijos de agente/proceso
+  - ura       # -ura   -> estructura, temperatura, literatura
+  - uras
+  - tura      # -tura  -> lectura, escritura, ruptura
+  - turas
+  - dura      # -dura  -> herida (poco productivo)
+  - duras
+  # Sufijos de accion / resultado
+  - aje       # -aje   -> aprendizaje, porcentaje, lenguaje
+  - ajes
+  - ado       # -ado   -> resultado, estado, tratado (nominaliz. de part.)
+  - ados
+  - ada       # -ada   -> llegada, entrada, jugada
+  - adas
+  - ido       # -ido   -> sonido, pedido, partido
+  - idos
+  - ida       # -ida   -> salida, caida, herida
+  - idas
+  # Sufijos de cualidad
+  - ez        # -ez    -> sencillez, estrechez, vejez
+  - eza       # -eza   -> naturaleza, riqueza, pobreza
+  - ezas
+  - ia        # -ia    -> democracia, filosofia, teoria
+  - ía
+  - ias
+  - ías
+  - ismo      # -ismo  -> capitalismo, realismo, comunismo
+  - ismos
+
+# Sustantivos que terminan en sufijo de nominalizacion pero son
+# palabras lexicalizadas no relacionadas con un verbo base.
+# Ampliar segun inspeccion de corpus.
 nominalization_stoplist:
-  # Spanish nouns ending in typical nominalization suffixes but
-  # functioning as lexicalized items, to avoid over-counting.
-  # Extend this list based on corpus inspection.
+  # Terminados en -cion/-sion no derivados
   - avion
   - avión
   - camion
@@ -151,71 +400,241 @@ nominalization_stoplist:
   - patrón
   - melon
   - melón
-  - camion
-  - camión
+  - salmon
+  - salmón
+  - boton
+  - botón
+  - carbon
+  - carbón
+  - canon
+  - cañón
+  - corazon
+  - corazón
   - razon
   - razón
+  - nacion
+  - nación  # <- debatible; puede incluirse si se quiere
+  # Terminados en -dad no derivados
+  - ciudad
+  - verdad
+  - bondad
+  - maldad
+  # Terminados en -ura no derivados
+  - figura
+  - basura
+  - centura
+  -atura
+  - cintura
+  - gordura  # si se considera lexicalizado
+  # Terminados en -aje no derivados
+  - personaje
+  - viaje
+  - paisaje
+  - garaje
+  - traje
+  - equipaje  # derivado pero altamente lexicalizado
+  # Terminados en -ismo (nombres propios / movimientos politicos)
+  # generalmente SI se cuentan como nominalizaciones en Biber;
+  # excluir solo si el corpus exige limpieza especifica.
+  # Terminados en -miento no derivados
+  - aliento    # de alentar, pero muy lexicalizado
+  - tormento
+  - talento
+  - argumento  # debatible
+  - monumento
+  - cemento
+  - elemento
+  - fragmento
+  - instrumento
+  - momento
+  - alimento
+  - continente
+  # Terminados en -ez / -eza no derivados
+  - pez
+  - vez
+  - mes
+  - res
+  - vez
 
-gerund_stoplist:
-  # Lexical items ending in -ando / -iendo that are not gerunds
-  # in Spanish, or are highly lexicalized.
+# ---------------------------------------------------------------------------
+# SUFIJOS DERIVATIVOS — DENSIDAD LEXICA (f_61–f_64)
+#
+# Biber (1988) mide cuatro tipos de complejidad morfoléxica:
+#   f_61 type/token ratio (TTR)          -> calculado en codigo, sin lista
+#   f_62 word length (media de caracteres) -> calculado en codigo, sin lista
+#   f_63 words with -ly suffix            -> equivalentes en espanol:
+#          adverbios en -mente
+#   f_64 words >= 6 letters               -> calculado en codigo, sin lista
+#
+# Para f_63 en espanol se usa la terminacion -mente como proxy del
+# sufijo adverbial derivativo productivo. Se detecta via endsWith();
+# la lista de exclusiones evita adverbios lexicalizados no formados
+# por adjetivo + -mente productivo.
+# ---------------------------------------------------------------------------
+
+adverb_mente_stoplist:
+  # Adverbios en -mente altamente lexicalizados que no reflejan
+  # derivacion productiva adjetivo -> adverbio y por tanto NO
+  # deben contarse en f_63.
+  - mente       # la palabra "mente" por si sola
+  - solamente   # <- opcionalmente excluir; funciona como foco, no como RR
+  - unicamente
+  - únicamente
+  - simplemente
+  - meramente
+  - puramente
+  - realmente    # muy frecuente; debatible si excluir
+  - verdaderamente
+  - exactamente
+  - precisamente
+  - justamente
+  - actualmente  # temporal, no derivado adjetival prototipico
+  - anteriormente
+  - posteriormente
+  - finalmente
+  - ultimamente
+  - últimamente
+  - primeramente
+  - primeramente
+  - nuevamente   # "de nuevo" -> muy lexicalizado
+  - nuevamente
+  - tampoco      # no termina en -mente; incluido por error historico
+
+# ---------------------------------------------------------------------------
+# FRASES PREPOSICIONALES / PATRONES DE SUBORDINACION
+# Usados en la deteccion de clausulas adverbiales (f_21–f_26) y
+# clausulas condicionales / concesivas (f_27–f_30).
+# ---------------------------------------------------------------------------
+
+conditional_subordinators:
+  # Subordinadores condicionales (f_27)
+  - si
+  - con_tal_de_que
+  - con_tal_que
+  - siempre_que
+  - siempre_y_cuando
+  - a_menos_que
+  - a_no_ser_que
+  - en_caso_de_que
+  - en_caso_que
+  - dado_que   # tb causal; segun contexto
+  - siempre_que
+  - de_no_ser_asi
+  - de_no_ser_así
+  - de_lo_contrario  # no subordinador en sentido estricto, pero funciona como tal
+
+concessive_subordinators:
+  # Subordinadores concesivos (f_28)
+  - aunque
+  - si_bien
+  - aun_cuando
+  - aún_cuando
+  - a_pesar_de_que
+  - pese_a_que
+  - por_mas_que
+  - por_más_que
+  - por_mucho_que
+  - por_poco_que
+  - siquiera  # "ni siquiera que"
+  - bien_que  # literario
+  - a_pesar_de  # + infinitivo
+
+causal_subordinators:
+  # Subordinadores causales (f_29)
+  - porque
+  - pues
+  - ya_que
+  - debido_a_que
+  - dado_que
+  - puesto_que
+  - como  # causal antepuesto: "Como llovía, no salimos"
+  - en_vista_de_que
+  - a_causa_de_que
+  - por_razon_de_que
+  - por_el_hecho_de_que
+  - visto_que
+  - considerando_que
+  - supuesto_que
+
+temporal_subordinators:
+  # Subordinadores temporales (f_30)
   - cuando
-  - hablando  # as noun/title
-  - viviendo   # as noun/title
-  - destacando # as noun/title in some contexts
+  - mientras
+  - mientras_que
+  - tan_pronto_como
+  - en_cuanto
+  - antes_de_que
+  - despues_de_que
+  - después_de_que
+  - una_vez_que
+  - hasta_que
+  - desde_que
+  - cada_vez_que
+  - siempre_que  # tb condicional
+  - al  # al + infinitivo: "al llegar"
+  - nada_mas  # nada más + infinitivo: "nada más llegar"
+  - nada_más
+  - no_bien  # literario: "no bien salió"
 
-nominalization_suffixes:
-  # Common Spanish nominalization suffixes; used to detect
-  # candidate nominalizations when combined with POS/morphology.
-  - cion
-  - ciones
-  - sion
-  - siones
-  - miento
-  - mientos
-  - dad
-  - dades
-  - tud
-  - tudes
-  - ncia
-  - ncias
-  - ura
-  - uras
-  - aje
-  - ajes
-  - ez
-  - eza
-  - ezas
+final_subordinators:
+  # Subordinadores de finalidad (para complementar f_23)
+  - para_que
+  - a_fin_de_que
+  - con_el_fin_de_que
+  - con_el_objeto_de_que
+  - con_el_proposito_de_que
+  - con_el_propósito_de_que
+  - con_miras_a_que
+  - a_que  # directivo: "viene a que lo ayuden"
 
-multiword_patterns:
-  # Common multiword expressions used by various features
-  - por_ejemplo
-  - en_cambio
-  - por_otro_lado
-  - por_otra_parte
-  - en_resumen
-  - en_suma
-  - sin_embargo
-  - no_obstante
-  - tal_vez
-  - en_cierto_modo
-  - en_parte
-  - de_alguna_manera
-  - de_algún_modo
-  - mas_o_menos
-  - más_o_menos
-  - un_poco
-  - desde_luego
-  - por_supuesto
-  - de_verdad
-  - en_fin
-  - a_veces
-  - de_vez_en_cuando
-  - a_menudo
-  - con_frecuencia
+# ---------------------------------------------------------------------------
+# COORDINADORES (f_64–f_67 coordinacion y negacion)
+# ---------------------------------------------------------------------------
+
+coordinating_conjunctions:
+  # Conjunciones coordinantes copulativas
+  copulative:
+    - y
+    - e  # ante i-, hi-
+    - ni
+    - que  # copulativa en estructuras binarias: "dale que dale"
+  # Disyuntivas
+  disjunctive:
+    - o
+    - u  # ante o-, ho-
+    - o_bien
+    - ya_sea
+    - ya_sea_que
+    - bien_sea
+  # Adversativas
+  adversative:
+    - pero
+    - sino
+    - sino_que
+    - mas   # literario: equivalent de 'pero'
+    - más   # cuidado: puede ser adverbio comparativo
+    - aunque  # coordinante cuando va con indicativo
+    - sin_embargo  # no conjuncion pero funciona como nexo coordinante
+    - no_obstante
+  # Causales coordinantes
+  causal_coord:
+    - pues   # pospuesto: "estaba cansado, pues habia caminado mucho"
+    - porque  # coordinante en registro coloquial
+  # Consecutivas coordinantes
+  consecutive:
+    - conque
+    - luego   # silogistico: "pienso, luego existo"
+    - asi_que  # coloquial
+    - de_modo_que
+    - de_manera_que
+    - de_forma_que
+
+# ---------------------------------------------------------------------------
+# NEGACION
+# ---------------------------------------------------------------------------
 
 neg_synthetic_determiners:
-  # Determiners that carry inherent negation
+  # Determinantes / pronombres con negacion inherente (f_65)
   - ningun
   - ningún
   - ninguno
@@ -225,19 +644,195 @@ neg_synthetic_determiners:
   - ni
   - nada
   - nadie
-
-negation_particles:
-  # Core analytic negation particle
-  - no
+  - nunca
+  - jamas
+  - jamás
+  - tampoco
 
 neg_analytic_adverbs:
-  # Adverbs and quantifiers used in analytic negation
+  # Adverbios de negacion analitica (f_66): acompanan al verbo
+  - no
   - nunca
   - jamas
   - jamás
   - tampoco
   - en_absoluto
+  - de_ninguna_manera
+  - de_ningun_modo
+  - de_ningún_modo
   - en_lo_mas_minimo
+  - en_lo_más_mínimo
   - para_nada
-  - nada
-  - nadie
+
+negation_particles:
+  # Particula principal de negacion (usada como check rapido)
+  - no
+
+# ---------------------------------------------------------------------------
+# FRASES PREPOSICIONALES (f_44 preposition phrases)
+# Lista de preposiciones simples y locucion preposicional frecuentes
+# usadas para contar sintagmas preposicionales en bloque_pp_es().
+# ---------------------------------------------------------------------------
+
+prepositions_simple:
+  - a
+  - ante
+  - bajo
+  - cabe   # arcaico/literario
+  - con
+  - contra
+  - de
+  - desde
+  - durante
+  - en
+  - entre
+  - hacia
+  - hasta
+  - mediante
+  - para
+  - por
+  - segun
+  - según
+  - sin
+  - sobre
+  - tras
+  - versus
+  - via
+  - vía
+  - excepto
+  - salvo
+  - incluso  # preposicion en algunas gramáticas
+  - incluyendo
+
+prepositions_compound:
+  # Locuciones preposicionales frecuentes que UD anota como un grupo
+  - a_traves_de
+  - a_través_de
+  - a_partir_de
+  - a_pesar_de
+  - a_lo_largo_de
+  - a_lo_ancho_de
+  - acerca_de
+  - ademas_de
+  - además_de
+  - alrededor_de
+  - antes_de
+  - cerca_de
+  - debajo_de
+  - dentro_de
+  - despues_de
+  - después_de
+  - detras_de
+  - detrás_de
+  - debido_a
+  - en_cuanto_a
+  - en_lugar_de
+  - en_vez_de
+  - encima_de
+  - enfrente_de
+  - frente_a
+  - fuera_de
+  - gracias_a
+  - junto_a
+  - junto_con
+  - lejos_de
+  - por_encima_de
+  - por_debajo_de
+  - por_delante_de
+  - por_detras_de
+  - por_detrás_de
+  - respecto_a
+  - respecto_de
+  - con_respecto_a
+  - en_relacion_con
+  - en_relación_con
+  - a_causa_de
+  - con_el_fin_de
+  - con_el_objeto_de
+  - a_raiz_de
+  - a_raíz_de
+  - a_diferencia_de
+  - en_comparacion_con
+  - en_comparación_con
+  - a_excepcion_de
+  - a_excepción_de
+  - con_base_en
+  - en_base_a     # frecuente en LAm; prescriptivamente discutido
+
+# ---------------------------------------------------------------------------
+# GERUNDIO — STOPLIST (para f_63 o filtros de forma verbal)
+# ---------------------------------------------------------------------------
+
+gerund_stoplist:
+  # Elementos terminados en -ando / -iendo que NO son gerundios
+  - cuando
+  - mientras   # no termina en -ando/-iendo pero convive en misma logica
+  - comando    # sustantivo
+  - demando    # forma verbal pero altamente lexicalizada como nombre
+  - bando      # sustantivo
+  - nando      # nombre propio
+  - orlando    # nombre propio
+  - fernando   # nombre propio
+  - rolando    # nombre propio
+  - armando    # nombre propio (tb gerundio de armar: excluir con cuidado)
+  - viviendo   # cuando funciona como topico/titulo
+  - corriendo  # cuando funciona como titulo
+
+# ---------------------------------------------------------------------------
+# MULTIWORD PATTERNS — registro de expresiones multipalabra
+# frecuentes usadas por varias familias de features
+# ---------------------------------------------------------------------------
+
+multiword_patterns:
+  - por_ejemplo
+  - en_cambio
+  - por_otro_lado
+  - por_otra_parte
+  - en_resumen
+  - en_suma
+  - en_definitiva
+  - sin_embargo
+  - no_obstante
+  - tal_vez
+  - en_cierto_modo
+  - en_cierto_sentido
+  - en_parte
+  - de_alguna_manera
+  - de_algún_modo
+  - de_algun_modo
+  - mas_o_menos
+  - más_o_menos
+  - un_poco
+  - un_tanto
+  - desde_luego
+  - por_supuesto
+  - de_verdad
+  - de_hecho
+  - en_realidad
+  - en_fin
+  - al_fin_y_al_cabo
+  - a_veces
+  - de_vez_en_cuando
+  - a_menudo
+  - con_frecuencia
+  - es_decir
+  - o_sea
+  - esto_es
+  - a_saber
+  - en_otras_palabras
+  - a_lo_mejor
+  - puede_que
+  - por_lo_tanto
+  - por_consiguiente
+  - en_consecuencia
+  - sin_duda
+  - sin_lugar_a_dudas
+  - por_cierto
+  - en_primer_lugar
+  - en_segundo_lugar
+  - en_ultimo_lugar
+  - en_último_lugar
+  - a_continuacion
+  - a_continuación
+  - para_concluir
+  - para_terminar
