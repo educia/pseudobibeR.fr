@@ -3,7 +3,7 @@
 Paquete compañero de `pseudobibeR` que apunta a recursos de análisis para textos en **español** y extracción de rasgos lingüísticos tipo Biber.
 El código está en desarrollo activo; la cobertura de rasgos sigue el mapeo A–P de Biber (1985) documentado en los scripts y en los archivos YAML bajo `data-raw/`.[cite:47]
 
-El paquete **pseudobibeR.es** calcula los rasgos lexicogramaticales y funcionales descritos por Biber (1985) y ampliamente usados para estudiar tipos de texto, registro y género.
+El paquete **pseudobibeR.es** calcula los rasgos lexicogrammaticales y funcionales descritos por Biber (1985) y ampliamente usados para estudiar tipos de texto, registro y género.
 Comparte el mismo catálogo de 67 rasgos que la versión inglesa, pero esta variante se apoya en recursos de análisis morfosintáctico para español (UDPipe, y potencialmente spaCy) y en heurísticas específicas del idioma implementadas en los bloques `*_es`.[cite:36][cite:37][cite:38][cite:39][cite:40][cite:41][cite:42][cite:43][cite:46][cite:48]
 
 ---
@@ -177,6 +177,21 @@ Para regenerar los diccionarios tras editar los YAML:
 ```r
 source("data-raw/build_french_dictionaries.R")  # en tu fork genera dict/word_lists para es
 ```
+
+---
+
+## Nombres heredados del paquete francés
+
+Este repositorio parte del código original de `pseudobibeR.fr`.
+Por compatibilidad histórica, algunos archivos y scripts mantienen la palabra `french` en el nombre (por ejemplo, `data-raw/build_french_dictionaries.R`, `data-raw/french_examples.yaml`, tests `test-french-*.R`).[cite:52][cite:57]
+
+En **este fork**, esos recursos se usan para **español**:
+
+- los YAML bajo `data-raw/` recogen diccionarios, listas de palabras y ejemplos pensados para textos en español,[cite:57]
+- los scripts `build_french_*` regeneran los objetos `dict`, `word_lists` y ejemplos españoles que utiliza el extractor.
+
+Si exploras el código fuente, ten en cuenta que cualquier referencia a `french` en rutas de archivos o nombres de scripts es un vestigio del proyecto original y **no implica que el paquete actual esté orientado al francés**.
+La API recomendada para español es siempre `biber_es()` sobre modelos UD de español.
 
 ---
 
