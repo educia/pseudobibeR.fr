@@ -6,6 +6,7 @@ Authors@R:
            family = "Cordovez",
            email = "maximiliano.cf@outlook.es",
            role = c("aut", "cre"))
+Description: Calculates lexicogrammatical and functional features for
     Spanish texts following the framework introduced by Biber (1985)
     <doi:10.1515/ling.1985.23.2.337>. Provides a companion implementation
     to the English-focused 'pseudobibeR' package, including data sets and
