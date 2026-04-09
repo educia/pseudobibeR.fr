@@ -26,13 +26,24 @@ count_modal_periphrasis <- function(tokens, lemmas) {
   if (length(lemmas) == 0)
     return(tibble::tibble(doc_id = character(), n = integer()))
 
+  modal_toks <- tokens %>%
+    dplyr::filter(
+      .data$lemma %in% lemmas,
+      .data$pos %in% c("VERB", "AUX"),
+      !stringr::str_detect(
+        dplyr::coalesce(.data$dep_rel, ""),
+        "^(nsubj|obj|iobj|nmod|det|appos)$"
+      )
+    )
+
+  # Case 1: modal is the head, INF is a dependent (dep_rel = xcomp/ccomp/...)
   inf_deps <- tokens %>%
     dplyr::filter(
       .data$pos %in% c("VERB", "AUX"),
       dplyr::coalesce(extract_feat(.data$feats, "VerbForm"), "") == "Inf",
       stringr::str_detect(
         dplyr::coalesce(.data$dep_rel, ""),
-        "^(xcomp|ccomp|advcl|aux|obj)"
+        "^(xcomp|ccomp|advcl|obj)"
       ),
       !is.na(.data$head_token_id_int)
     ) %>%
@@ -43,21 +54,37 @@ count_modal_periphrasis <- function(tokens, lemmas) {
     ) %>%
     dplyr::distinct()
 
-  tokens %>%
-    dplyr::filter(
-      .data$lemma %in% lemmas,
-      .data$pos %in% c("VERB", "AUX"),
-      !stringr::str_detect(
-        dplyr::coalesce(.data$dep_rel, ""),
-        "^(nsubj|obj|iobj|nmod|det|appos)$"
-      )
-    ) %>%
+  case1 <- modal_toks %>%
     dplyr::left_join(
       inf_deps,
       by = c("doc_id", "sentence_id", "token_id_int" = "head_token_id_int")
     ) %>%
     dplyr::filter(!is.na(.data$has_inf_dep)) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int)
+
+  # Case 2: modal is AUX dependent whose head has VerbForm=Inf
+  # (canonical UD Spanish structure: INF is root, modal is aux)
+  inf_heads <- tokens %>%
+    dplyr::transmute(
+      .data$doc_id, .data$sentence_id,
+      head_token_id_int = .data$token_id_int,
+      head_verbform = extract_feat(.data$feats, "VerbForm")
+    )
+
+  case2 <- modal_toks %>%
+    dplyr::filter(
+      stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^aux"),
+      !is.na(.data$head_token_id_int)
+    ) %>%
+    dplyr::left_join(
+      inf_heads,
+      by = c("doc_id", "sentence_id", "head_token_id_int")
+    ) %>%
+    dplyr::filter(dplyr::coalesce(.data$head_verbform, "") == "Inf") %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int)
+
+  dplyr::bind_rows(case1, case2) %>%
+    dplyr::distinct() %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::tally()
 }

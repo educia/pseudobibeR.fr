@@ -1,0 +1,401 @@
+# spanish_examples.yaml
+# Ejemplos por rasgo para pseudobibeR.es
+#
+# Formato: cada entrada tiene tres campos:
+#   feature: nombre del rasgo (f_XX_nombre)
+#   example: oración en español que activa exactamente ese rasgo
+#   count:   número esperado de ocurrencias del rasgo en ese ejemplo
+#
+# Las oraciones son sintéticas (construidas a propósito) para maximizar
+# la precisión del conteo. Se asume modelo UDPipe spanish-gsd.
+#
+# NOTAS:
+#  - Algunos rasgos requieren contexto discursivo (f_45, f_50) y pueden
+#    devolver 0 en oraciones aisladas; se indica con count: 0 + comentario.
+#  - f_09 (expletivo/impersonal) activa con "hay" existencial.
+#  - f_43 (TTR) y f_44 (longitud media) dependen del texto completo;
+#    no se incluyen aquí.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TIEMPO VERBAL
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_01_past_tense
+  example: "El niño caminaba despacio por el parque."
+  count: 1.0
+
+- feature: f_01_past_tense
+  example: "Nosotros estudiábamos cuando ella llegaba."
+  count: 2.0
+
+- feature: f_01b_preterit
+  example: "María llegó tarde a la reunión."
+  count: 1.0
+
+- feature: f_01b_preterit
+  example: "Los estudiantes presentaron el informe y aprobaron el examen."
+  count: 2.0
+
+- feature: f_02_perfect_aspect
+  example: "He terminado el informe esta mañana."
+  count: 1.0
+
+- feature: f_02_perfect_aspect
+  example: "Han llegado los paquetes que habías pedido."
+  count: 2.0
+
+- feature: f_03_present_tense
+  example: "El profesor explica la lección con claridad."
+  count: 1.0
+
+- feature: f_03_present_tense
+  example: "Los datos muestran que el modelo funciona bien."
+  count: 2.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ADVERBIALES
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_04_place_adverbials
+  example: "El gato está aquí, encima de la mesa."
+  count: 2.0
+
+- feature: f_04_place_adverbials
+  example: "Viven lejos, en las afueras de la ciudad."
+  count: 1.0
+
+- feature: f_05_time_adverbials
+  example: "Ayer llegaron tarde, pero hoy están puntales."
+  count: 2.0
+
+- feature: f_05_time_adverbials
+  example: "Siempre llega a tiempo; nunca se retrasa."
+  count: 2.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PRONOMBRES PERSONALES (pro-drop: solo explícitos)
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_06_first_person_pronouns
+  example: "Yo creo que nosotros podemos mejorar."
+  count: 2.0
+
+- feature: f_06_first_person_pronouns
+  example: "Me parece bien la propuesta."
+  count: 1.0
+
+- feature: f_07_second_person_pronouns
+  example: "Tú debes presentar el informe mañana."
+  count: 1.0
+
+- feature: f_07_second_person_pronouns
+  example: "Usted tiene razón en este asunto."
+  count: 1.0
+
+- feature: f_08_third_person_pronouns
+  example: "Él llegó primero y ella lo saludó."
+  count: 3.0
+
+- feature: f_09_pronoun_it
+  example: "Hay muchos problemas por resolver."
+  count: 1.0
+
+- feature: f_09_pronoun_it
+  example: "Se dice que la economía mejorará."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PRONOMBRES INDEFINIDOS Y DEMOSTRATIVOS
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_11_indefinite_pronouns
+  example: "Alguien dejó algo sobre la mesa."
+  count: 2.0
+
+- feature: f_11_indefinite_pronouns
+  example: "Nadie sabe nada sobre el accidente."
+  count: 2.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VOZ PASIVA
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_17_agentless_passives
+  example: "La propuesta fue aprobada sin debate."
+  count: 1.0
+
+- feature: f_17_agentless_passives
+  example: "Los datos fueron analizados y los resultados fueron publicados."
+  count: 2.0
+
+- feature: f_18_by_passives
+  example: "La novela fue escrita por García Márquez."
+  count: 1.0
+
+- feature: f_18_by_passives
+  example: "El informe fue revisado por el comité."
+  count: 1.0
+
+- feature: f_19_be_main_verb
+  example: "El libro es interesante y el autor es muy conocido."
+  count: 2.0
+
+- feature: f_20_existential_there
+  example: "Hay tres errores en el documento."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COMPLEMENTIZADORES Y SUBORDINACIÓN
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_21_that_verb_comp
+  example: "Creo que el proyecto tendrá éxito."
+  count: 1.0
+
+- feature: f_21_that_verb_comp
+  example: "Dijo que vendría y prometió que traería los documentos."
+  count: 2.0
+
+- feature: f_22_that_adj_comp
+  example: "Es importante que todos participen."
+  count: 1.0
+
+- feature: f_23_wh_clause
+  example: "No sé quién llamó ni cuándo llegó."
+  count: 2.0
+
+- feature: f_24_infinitives
+  example: "Quiero terminar el trabajo para poder descansar."
+  count: 2.0
+
+- feature: f_25_present_participle
+  example: "Caminando por el parque, encontré a mi vecino."
+  count: 1.0
+
+- feature: f_26_past_participle
+  example: "Terminado el examen, los alumnos salieron."
+  count: 1.0
+
+- feature: f_35_because_clauses
+  example: "No pudo asistir porque estaba enfermo."
+  count: 1.0
+
+- feature: f_35_because_clauses
+  example: "Lo hicieron así ya que era la única opción."
+  count: 1.0
+
+- feature: f_36_concessive_clauses
+  example: "Aunque llovía, salimos a caminar."
+  count: 1.0
+
+- feature: f_37_conditional_clauses
+  example: "Si estudias, aprobarás el examen."
+  count: 1.0
+
+- feature: f_37_conditional_clauses
+  example: "Te ayudaré siempre que me lo pidas."
+  count: 1.0
+
+- feature: f_60_that_deletion
+  example: "Creo puede hacerlo sin ayuda."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CLÁUSULAS RELATIVAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_29_that_subject
+  example: "El estudiante que llegó tarde no pudo entrar."
+  count: 1.0
+
+- feature: f_30_that_object
+  example: "El libro que compré ayer es muy bueno."
+  count: 1.0
+
+- feature: f_31_wh_subject
+  example: "La persona quien resolvió el problema recibió un premio."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ADJETIVOS, ADVERBIOS, PREPOSICIONES
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_39_prepositions
+  example: "El libro está sobre la mesa de la biblioteca."
+  count: 3.0
+
+- feature: f_40_attributive_adj
+  example: "Un brillante estudiante presentó una nueva solución."
+  count: 2.0
+
+- feature: f_41_predicative_adj
+  example: "El resultado es positivo y el análisis parece correcto."
+  count: 2.0
+
+- feature: f_42_adverbs
+  example: "Habla muy rápidamente y siempre llega puntualmente."
+  count: 3.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MARCADORES DE POSICIÓN (STANCE)
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_45_conjuncts
+  example: "No aprobaron el presupuesto. Sin embargo, continuaron con el proyecto."
+  count: 1.0
+
+- feature: f_45_conjuncts
+  example: "El modelo fue calibrado. Además, se validaron los resultados."
+  count: 1.0
+
+- feature: f_46_downtoners
+  example: "El error es casi imperceptible."
+  count: 1.0
+
+- feature: f_46_downtoners
+  example: "Apenas hay diferencia entre las dos versiones."
+  count: 1.0
+
+- feature: f_47_hedges
+  example: "Quizás el resultado depende de otros factores."
+  count: 1.0
+
+- feature: f_47_hedges
+  example: "Tal vez sea necesario revisar el procedimiento."
+  count: 1.0
+
+- feature: f_48_amplifiers
+  example: "El rendimiento mejoró enormemente con el nuevo algoritmo."
+  count: 1.0
+
+- feature: f_48_amplifiers
+  example: "La diferencia es muy significativa y totalmente esperada."
+  count: 2.0
+
+- feature: f_49_emphatics
+  example: "De hecho, los resultados confirman la hipótesis."
+  count: 1.0
+
+- feature: f_49_emphatics
+  example: "Sin duda, este es el mejor enfoque posible."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MODALES
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_52_modal_possibility
+  example: "Podemos mejorar los resultados con más datos."
+  count: 1.0
+
+- feature: f_52_modal_possibility
+  example: "Puede que el modelo no converja si los parámetros son incorrectos."
+  count: 1.0
+
+- feature: f_53_modal_necessity
+  example: "Debemos revisar los datos antes de publicar."
+  count: 1.0
+
+- feature: f_53_modal_necessity
+  example: "Hay que validar los supuestos del modelo."
+  count: 1.0
+
+- feature: f_54_modal_predictive
+  example: "El equipo presentará los resultados el viernes."
+  count: 1.0
+
+- feature: f_54_modal_predictive
+  example: "Vamos a analizar los datos esta tarde."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VERBOS ESPECIALIZADOS
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_55_verb_public
+  example: "El ministro afirmó que la reforma es necesaria."
+  count: 1.0
+
+- feature: f_55_verb_public
+  example: "La empresa anunció nuevos despidos y declaró pérdidas."
+  count: 2.0
+
+- feature: f_56_verb_private
+  example: "Creo que el análisis es correcto."
+  count: 1.0
+
+- feature: f_56_verb_private
+  example: "Pienso que deberíamos reconsiderar el enfoque."
+  count: 1.0
+
+- feature: f_57_verb_suasive
+  example: "El comité recomendó revisar el protocolo."
+  count: 1.0
+
+- feature: f_57_verb_suasive
+  example: "Le pidió que presentara el informe antes del viernes."
+  count: 1.0
+
+- feature: f_58_verb_seem
+  example: "Parece que los resultados no son concluyentes."
+  count: 1.0
+
+- feature: f_58_verb_seem
+  example: "Resulta difícil interpretar estos datos sin más contexto."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COORDINACIÓN Y CONTRACCIONES
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_59_contractions
+  example: "Voy al mercado y vengo del trabajo."
+  count: 2.0
+
+- feature: f_59_contractions
+  example: "Habló del tema con el director."
+  count: 2.0
+
+- feature: f_64_phrasal_coordination
+  example: "Los estudiantes y los profesores asistieron a la ceremonia."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# NEGACIÓN
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_66_neg_synthetic
+  example: "Nadie sabe nada sobre ese asunto."
+  count: 2.0
+
+- feature: f_66_neg_synthetic
+  example: "Nunca llegó a tiempo; tampoco avisó."
+  count: 2.0
+
+- feature: f_67_neg_analytic
+  example: "No entiendo por qué no llamaste."
+  count: 2.0
+
+- feature: f_67_neg_analytic
+  example: "El resultado no es válido en este contexto."
+  count: 1.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COMPLEJIDAD LÉXICA
+# ─────────────────────────────────────────────────────────────────────────────
+
+- feature: f_60_nominalization
+  example: "La organización del trabajo y la distribución de tareas mejoran la productividad."
+  count: 3.0
+
+- feature: f_60_nominalization
+  example: "La investigación requiere planificación y dedicación."
+  count: 3.0
+
+- feature: f_63_mente_adverbs
+  example: "El proceso fue completamente rediseñado y actualmente funciona correctamente."
+  count: 3.0
+
+- feature: f_63_mente_adverbs
+  example: "Finalmente, el modelo convergió rápidamente."
+  count: 2.0

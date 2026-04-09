@@ -76,21 +76,22 @@ block_stranded_split_es <- function(tokens, doc_ids) {
     dplyr::mutate(
       lead1_pos      = dplyr::lead(.data$pos,   default = NA_character_),
       lead1_lemma    = dplyr::lead(.data$lemma, default = NA_character_),
-      lead1_sent     = dplyr::lead(.data$sentence_id, default = NA_character_),
+      lead1_sent     = dplyr::lead(.data$sentence_id, default = NA_integer_),
       lead1_prontype = dplyr::lead(
         extract_feat(.data$feats, "PronType"), default = NA_character_
       ),
       lag1_pos    = dplyr::lag(.data$pos,          default = NA_character_),
       lag1_lemma  = dplyr::lag(.data$lemma,        default = NA_character_),
-      lag1_sent   = dplyr::lag(.data$sentence_id,  default = NA_character_),
+      lag1_sent   = dplyr::lag(.data$sentence_id,  default = NA_integer_),
       lag2_pos    = dplyr::lag(.data$pos,    2,    default = NA_character_),
       lag2_lemma  = dplyr::lag(.data$lemma,  2,    default = NA_character_),
-      lag2_sent   = dplyr::lag(.data$sentence_id, 2, default = NA_character_),
+      lag2_sent   = dplyr::lag(.data$sentence_id, 2, default = NA_integer_),
       lag3_pos    = dplyr::lag(.data$pos,    3,    default = NA_character_),
-      lag3_sent   = dplyr::lag(.data$sentence_id, 3, default = NA_character_),
+      lag3_lemma  = dplyr::lag(.data$lemma, 3,    default = NA_character_),
+      lag3_sent   = dplyr::lag(.data$sentence_id, 3, default = NA_integer_),
       lag4_pos    = dplyr::lag(.data$pos,    4,    default = NA_character_),
       lag4_lemma  = dplyr::lag(.data$lemma,  4,    default = NA_character_),
-      lag4_sent   = dplyr::lag(.data$sentence_id, 4, default = NA_character_)
+      lag4_sent   = dplyr::lag(.data$sentence_id, 4, default = NA_integer_)
     ) %>%
     dplyr::ungroup()
 
@@ -309,7 +310,8 @@ block_split_coordination_es <- function(tokens, doc_ids, token_lookup,
 #' @keywords internal
 block_negation_es <- function(tokens, doc_ids,
                                neg_synthetic_terms,
-                               negation_part_lemmas) {
+                               negation_part_lemmas,
+                               negation_adverbs = NULL) {
 
   # ── Tabla auxiliar de heads verbales negados analíticamente ───────────────
   # Columnas: doc_id, sentence_id, neg_head_id

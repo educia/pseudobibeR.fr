@@ -423,7 +423,7 @@ nominalization_stoplist:
   - figura
   - basura
   - centura
-  -atura
+  - atura
   - cintura
   - gordura  # si se considera lexicalizado
   # Terminados en -aje no derivados
@@ -666,7 +666,7 @@ neg_analytic_adverbs:
 
 negation_particles:
   # Particula principal de negacion (usada como check rapido)
-  - no
+  - "no"
 
 # ---------------------------------------------------------------------------
 # FRASES PREPOSICIONALES (f_44 preposition phrases)

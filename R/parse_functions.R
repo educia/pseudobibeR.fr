@@ -197,76 +197,6 @@ parse_biber_features <- function(tokens, measure, normalize,
   }
 
   # ---------------------------------------------------------------------------
-  # f_01  Pasado imperfecto   (Dimension 3 en Davies et al. 2006: narrativa)
-  # f_01b Pretérito indefinido (Dimension 5: discurso informativo de eventos)
-  # Mantenemos f_01 como imperfecto para máxima fidelidad al análisis MD.
-  # f_01b es un rasgo extra que NO existe en pseudobibeR.fr pero sí en la
-  # taxonomía de Davies et al. para español.
-  # ---------------------------------------------------------------------------
-  df[["f_01_past_tense"]] <- tokens %>%
-    dplyr::filter(
-      .data$pos == "VERB",
-      .data$morph_tense == "Imp",
-      is.na(.data$morph_verbform) | .data$morph_verbform == "Fin"
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_01_past_tense = "n")
-
-  df[["f_01b_preterit"]] <- tokens %>%
-    dplyr::filter(
-      .data$pos == "VERB",
-      .data$morph_tense == "Past",
-      is.na(.data$morph_verbform) | .data$morph_verbform == "Fin"
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_01b_preterit = "n")
-
-  df[["f_03_present_tense"]] <- tokens %>%
-    dplyr::filter(
-      .data$pos == "VERB",
-      .data$morph_tense == "Pres",
-      is.na(.data$morph_verbform) | .data$morph_verbform == "Fin"
-    ) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_03_present_tense = "n")
-
-  # f_54 Modal predictivo: construcción «ir a + infinitivo»
-  # (Davies et al. 2006: feature 44 «future time with ir a», Dim 1 positivo)
-  df[["f_54_modal_predictive_ira"]] <- tokens %>%
-    dplyr::filter(.data$lemma == "ir", .data$pos %in% c("AUX", "VERB"),
-                  !is.na(.data$head_token_id_int)) %>%
-    dplyr::left_join(
-      tokens %>%
-        dplyr::filter(.data$lemma == "a", .data$pos == "ADP",
-                      .data$dep_rel %in% c("mark", "case", "fixed")) %>%
-        dplyr::transmute(.data$doc_id, .data$sentence_id,
-                         head_token_id_int = .data$head_token_id_int,
-                         has_a = TRUE) %>%
-        dplyr::distinct(),
-      by = c("doc_id", "sentence_id", "token_id_int" = "head_token_id_int")
-    ) %>%
-    dplyr::filter(!is.na(.data$has_a)) %>%
-    # the dependent infinitive hangs from ir
-    dplyr::left_join(
-      tokens %>%
-        dplyr::filter(.data$morph_verbform == "Inf",
-                      .data$dep_rel %in% c("xcomp", "ccomp", "advcl")) %>%
-        dplyr::transmute(.data$doc_id, .data$sentence_id,
-                         head_token_id_int = .data$head_token_id_int,
-                         has_inf = TRUE) %>%
-        dplyr::distinct(),
-      by = c("doc_id", "sentence_id", "token_id_int" = "head_token_id_int")
-    ) %>%
-    dplyr::filter(!is.na(.data$has_inf)) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::tally() %>%
-    dplyr::rename(f_54_modal_predictive_ira = "n")
-
-  # ---------------------------------------------------------------------------
   head_lookup <- tokens %>%
     dplyr::select(
       "doc_id", "sentence_id", "token_id_int",
@@ -292,9 +222,14 @@ parse_biber_features <- function(tokens, measure, normalize,
     df[["lexical_membership"]] <- block_lexical_membership_fr(
       tokens = tokens, doc_ids = doc_ids, word_lists_lookup = word_lists_lookup)
   } else if (language == "es") {
-    df[["auxiliary_tense"]] <- block_aux_tense_es(
+    place_advs  <- dictionary_to_lemmas(dict_lookup, "f_04_place_adverbials")
+    time_advs   <- dictionary_to_lemmas(dict_lookup, "f_05_time_adverbials")
+    indef_prons <- dictionary_to_lemmas(dict_lookup, "f_11_indefinite_pronoun")
+    df[["tense_features"]] <- block_tense_es(
       tokens = tokens, doc_ids = doc_ids, head_lookup = head_lookup,
-      proverb_pronouns = proverb_pronouns)
+      place_adverbials    = place_advs,
+      time_adverbials     = time_advs,
+      indefinite_pronouns = indef_prons)
     df[["personal_pronouns"]] <- block_personal_pronouns_es(
       tokens = tokens, doc_ids = doc_ids, head_lookup = head_lookup,
       de_markers = de_markers, que_markers = que_markers,
@@ -411,8 +346,8 @@ parse_biber_features <- function(tokens, measure, normalize,
   } else if (language == "es") {
     df[["passive_voice"]]     <- block_passive_voice_es(tokens, doc_ids, head_lookup, passive_rel_values)
     df[["clause_embedding"]]  <- block_clause_embedding_es(tokens, doc_ids, head_lookup)
-    df[["participial_clauses"]]<- block_participial_clauses_es(tokens, doc_ids)
-    df[["relative_clauses"]]  <- block_relatives_es(tokens, doc_ids)
+    df[["participial_clauses"]]<- block_participial_clauses_es(tokens, doc_ids, head_lookup)
+    df[["relative_clauses"]]  <- block_relatives_es(tokens, doc_ids, head_lookup)
     df[["contractions"]]      <- block_contractions_es(tokens, doc_ids)
     df[["adj_prep_adverbs"]]  <- block_adj_prep_adv_es(tokens, doc_ids, dict_lookup, word_lists_lookup, negation_adverbs)
     df[["specialized_verbs"]] <- block_specialized_verbs_es(tokens, doc_ids, dict_lookup)
@@ -420,6 +355,17 @@ parse_biber_features <- function(tokens, measure, normalize,
     df[["stranded_split"]]    <- block_stranded_split_es(tokens, doc_ids)
     df[["split_coordination"]]<- block_split_coordination_es(tokens, doc_ids, token_lookup, subject_heads, head_lookup, negation_part_lemmas)
     df[["negation"]]          <- block_negation_es(tokens, doc_ids, neg_synthetic_terms, negation_part_lemmas, negation_adverbs)
+    nom_suf   <- get_word_list(word_lists_lookup, "nominalization_suffixes")
+    nom_stop  <- get_word_list(word_lists_lookup, "nominalization_stoplist")
+    ment_stop <- tryCatch(
+      get_word_list(word_lists_lookup, "adverb_mente_stoplist"),
+      warning = function(w) character(0)
+    )
+    df[["lexical_complexity"]] <- block_lexical_complexity_es(
+      tokens = tokens, doc_ids = doc_ids,
+      nominalization_suffixes = nom_suf,
+      nominalization_stoplist = nom_stop,
+      mente_stoplist          = ment_stop)
   }
 
   biber_tks <- biber_tks %>%
@@ -433,6 +379,12 @@ parse_biber_features <- function(tokens, measure, normalize,
 
   # Merge duplicate columns that appear from both dict and code paths
   combine_features <- c(
+    "f_04_place_adverbials",
+    "f_05_time_adverbials",
+    "f_06_first_person_pronouns",
+    "f_07_second_person_pronouns",
+    "f_08_third_person_pronouns",
+    "f_11_indefinite_pronoun",
     "f_51_demonstratives",
     "f_52_modal_possibility",
     "f_53_modal_necessity",
@@ -448,20 +400,13 @@ parse_biber_features <- function(tokens, measure, normalize,
     if (all(c(x_col, y_col) %in% colnames(biber_counts))) {
       x_vals <- dplyr::coalesce(biber_counts[[x_col]], 0L)
       y_vals <- dplyr::coalesce(biber_counts[[y_col]], 0L)
-      biber_counts[[feature]] <- if (feature == "f_51_demonstratives") pmax(x_vals, y_vals) else x_vals + y_vals
+      pmax_features <- c("f_04_place_adverbials", "f_05_time_adverbials",
+                         "f_06_first_person_pronouns", "f_07_second_person_pronouns",
+                         "f_08_third_person_pronouns", "f_11_indefinite_pronoun",
+                         "f_51_demonstratives")
+      biber_counts[[feature]] <- if (feature %in% pmax_features) pmax(x_vals, y_vals) else x_vals + y_vals
       biber_counts <- dplyr::select(biber_counts, -dplyr::any_of(c(x_col, y_col)))
     }
-  }
-
-  # Merge f_54 from dict (future tense tokens) + ir_a heuristic
-  if (all(c("f_54_modal_predictive", "f_54_modal_predictive_ira") %in% colnames(biber_counts))) {
-    biber_counts <- biber_counts %>%
-      dplyr::mutate(f_54_modal_predictive =
-                      dplyr::coalesce(.data$f_54_modal_predictive, 0L) +
-                      dplyr::coalesce(.data$f_54_modal_predictive_ira, 0L)) %>%
-      dplyr::select(-"f_54_modal_predictive_ira")
-  } else if ("f_54_modal_predictive_ira" %in% colnames(biber_counts)) {
-    biber_counts <- dplyr::rename(biber_counts, f_54_modal_predictive = "f_54_modal_predictive_ira")
   }
 
   if ("f_11_indefinite_pronoun" %in% colnames(biber_counts))

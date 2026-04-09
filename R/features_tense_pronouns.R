@@ -23,11 +23,12 @@
 
 # Extrae un rasgo morfológico concreto de la columna `feats` (formato UD).
 # Ej.: extract_feat("Tense=Past|VerbForm=Fin", "Tense") -> "Past"
+# Segura con NAs: usa stringr::str_match() que devuelve NA para no-coincidencias,
+# siempre con la misma longitud que feats_vec.
 extract_feat <- function(feats_vec, feat_name) {
   pattern <- paste0("(?:^|\\|)", feat_name, "=([^|]+)")
-  m <- regmatches(feats_vec, regexpr(pattern, feats_vec, perl = TRUE))
-  ifelse(nchar(m) == 0, NA_character_,
-         sub(paste0(".*", feat_name, "="), "", m))
+  m <- stringr::str_match(dplyr::coalesce(feats_vec, ""), pattern)
+  m[, 2L]
 }
 
 # Cuenta ocurrencias distintas (doc, sent, tok) y agrega a nivel doc_id.
@@ -65,23 +66,31 @@ block_tense_es <- function(
     indefinite_pronouns
 ) {
 
-  # ── f_01  Tiempo pasado ────────────────────────────────────────────────────
-  # Cubre:
-  #   (a) Pretérito indefinido / perfecto simple (Tense=Past, Mood=Ind)
-  #   (b) Pretérito imperfecto de indicativo (Tense=Imp, Mood=Ind)
-  #   (c) Pretérito pluscuamperfecto → ya capturado en f_02 (haber+Part Past)
-  #   (d) Condicional simple (Mood=Cnd) — lo excluimos de f_01 por
-  #       convención Biber (el condicional no es tiempo del pasado en sentido
-  #       estricto, aunque morfológicamente derive del imperfecto).
+  # ── f_01  Tiempo pasado (imperfecto) ─────────────────────────────────────
+  # Biber (1988) mapea el pasado narrativo al imperfecto en español.
+  # Solo Tense=Imp (pretérito imperfecto de indicativo).
+  # El pretérito indefinido se recoge aparte en f_01b.
   f01 <- tokens %>%
     dplyr::filter(
       .data$pos %in% c("VERB", "AUX"),
-      dplyr::coalesce(extract_feat(.data$feats, "Tense"), "") %in%
-        c("Past", "Imp"),
+      dplyr::coalesce(extract_feat(.data$feats, "Tense"), "") == "Imp",
       dplyr::coalesce(extract_feat(.data$feats, "Mood"),  "") == "Ind",
       dplyr::coalesce(extract_feat(.data$feats, "VerbForm"), "") == "Fin"
     ) %>%
     count_feature("f_01_past_tense")
+
+  # ── f_01b  Pretérito indefinido (español: rasgo extra) ───────────────────
+  # Tense=Past, Mood=Ind, VerbForm=Fin.
+  # No existe en pseudobibeR.fr; se añade como rasgo extendido del español
+  # siguiendo Davies et al. (2006) Dimension 5.
+  f01b <- tokens %>%
+    dplyr::filter(
+      .data$pos %in% c("VERB", "AUX"),
+      dplyr::coalesce(extract_feat(.data$feats, "Tense"), "") == "Past",
+      dplyr::coalesce(extract_feat(.data$feats, "Mood"),  "") == "Ind",
+      dplyr::coalesce(extract_feat(.data$feats, "VerbForm"), "") == "Fin"
+    ) %>%
+    count_feature("f_01b_preterit")
 
   # ── f_02  Aspecto perfecto: HABER + participio ────────────────────────────
   # Excluye ESTAR copulativo (pasiva de estado).
@@ -178,13 +187,14 @@ block_tense_es <- function(
 
   # ── Ensamblar ──────────────────────────────────────────────────────────────
   doc_ids %>%
-    dplyr::left_join(f01, by = "doc_id") %>%
-    dplyr::left_join(f02, by = "doc_id") %>%
-    dplyr::left_join(f03, by = "doc_id") %>%
-    dplyr::left_join(f04, by = "doc_id") %>%
-    dplyr::left_join(f05, by = "doc_id") %>%
-    dplyr::left_join(f10, by = "doc_id") %>%
-    dplyr::left_join(f11, by = "doc_id") %>%
+    dplyr::left_join(f01,  by = "doc_id") %>%
+    dplyr::left_join(f01b, by = "doc_id") %>%
+    dplyr::left_join(f02,  by = "doc_id") %>%
+    dplyr::left_join(f03,  by = "doc_id") %>%
+    dplyr::left_join(f04,  by = "doc_id") %>%
+    dplyr::left_join(f05,  by = "doc_id") %>%
+    dplyr::left_join(f10,  by = "doc_id") %>%
+    dplyr::left_join(f11,  by = "doc_id") %>%
     dplyr::mutate(
       dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L))
     )

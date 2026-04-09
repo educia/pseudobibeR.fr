@@ -146,7 +146,7 @@ block_lexical_complexity_es <- function(
         NA_real_
       )
     ) %>%
-    dplyr::select(".data$doc_id", "f_61_ttr")
+    dplyr::select("doc_id", "f_61_ttr")
 
   # ── f_62  Longitud media de palabra ──────────────────────────────────────
   # Sobre tokens léxicos; se mide en nchar() de la forma superficial.

@@ -73,8 +73,11 @@ dictionary_to_lemmas <- function(dict_lookup, feature) {
   
   patterns <- dict_lookup[[feature]]
   
+  # For multi-word patterns (e.g. "haber_de", "tener_que"), extract the head
+  # word (first token) as the lemma for syntax-based matching. Single-word
+  # patterns pass through unchanged.
   lemmas <- patterns %>%
-    stringr::str_remove_all("_") %>%
+    stringr::str_extract("^[^_]+") %>%
     stringr::str_to_lower() %>%
     unique()
   
