@@ -1,12 +1,20 @@
 # features_lexical_complexity.R
-# Lexical complexity and nominalization features for Spanish (f_60–f_64)
+# Lexical complexity and nominalization features for Spanish
 #
-# EQUIVALENCIAS CON BIBER (1988):
-#   f_60  nominalization          -> sustantivos en sufijos de nominalización
-#   f_61  type/token ratio (TTR) -> diversidad léxica (tipos / tokens)
-#   f_62  mean word length        -> longitud media de tokens léxicos
-#   f_63  -ly adverbs             -> adverbios en -mente (derivados productivos)
-#   f_64  words >= 6 letters      -> proporción de palabras "largas"
+# MAPEO A CÓDIGOS DE SALIDA:
+#   f_43_type_token          <- TTR (type/token ratio); se fusiona con f_43
+#                               de parse_functions cuando measure != "none"
+#   f_44_mean_word_length    <- longitud media de tokens léxicos; se fusiona
+#                               con f_44 de parse_functions (pmax)
+#   f_68_nominalization      <- sustantivos en sufijos de nominalización
+#   f_68_nominalization_rate <- tasa por 1000 tokens léxicos
+#   f_69_mente_adverbs       <- adverbios en -mente (equivalente a -ly)
+#   f_69_mente_adverbs_rate  <- tasa por 1000 tokens léxicos
+#   f_70_long_words          <- palabras >= 6 letras
+#   f_70_long_words_rate     <- tasa por 1000 tokens léxicos
+#
+# NOTA: f_68–f_71 son extensiones específicas del español que no tienen
+#   equivalente directo en el catálogo original de Biber (1985) para inglés.
 #
 # NOTA METODOLÓGICA — normalización:
 #   Biber normaliza los rasgos por 1.000 palabras para hacerlos
@@ -56,11 +64,11 @@ PUNCT_UPOS <- c("PUNCT", "SYM", "SPACE", "X")
 #'   f_63 (highly lexicalized items that are not productive derivations).
 #' @return Data frame: one row per doc, columns:
 #'   n_tokens, n_lex_tokens,
-#'   f_60_nominalization, f_60_nominalization_rate,
-#'   f_61_ttr,
-#'   f_62_mean_word_length,
-#'   f_63_mente_adverbs, f_63_mente_adverbs_rate,
-#'   f_64_long_words, f_64_long_words_rate
+#'   f_43_type_token,
+#'   f_44_mean_word_length,
+#'   f_68_nominalization, f_68_nominalization_rate,
+#'   f_69_mente_adverbs, f_69_mente_adverbs_rate,
+#'   f_70_long_words, f_70_long_words_rate
 #' @keywords internal
 block_lexical_complexity_es <- function(
     tokens,
@@ -124,7 +132,7 @@ block_lexical_complexity_es <- function(
                     .data$token_id_int) %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::tally() %>%
-    dplyr::rename(f_60_nominalization = "n")
+    dplyr::rename(f_68_nominalization = "n")
 
   # ── f_61  Type-Token Ratio (TTR) ──────────────────────────────────────────
   # TTR = n tipos léxicos únicos / n tokens léxicos totales.
@@ -140,13 +148,13 @@ block_lexical_complexity_es <- function(
       .groups   = "drop"
     ) %>%
     dplyr::mutate(
-      f_61_ttr = dplyr::if_else(
+      f_43_type_token = dplyr::if_else(
         .data$n_lex_tok > 0,
         round(.data$n_types / .data$n_lex_tok, 4),
         NA_real_
       )
     ) %>%
-    dplyr::select("doc_id", "f_61_ttr")
+    dplyr::select("doc_id", "f_43_type_token")
 
   # ── f_62  Longitud media de palabra ──────────────────────────────────────
   # Sobre tokens léxicos; se mide en nchar() de la forma superficial.
@@ -159,7 +167,7 @@ block_lexical_complexity_es <- function(
     dplyr::filter(.data$tok_len >= 2) %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::summarise(
-      f_62_mean_word_length = round(mean(.data$tok_len, na.rm = TRUE), 3),
+      f_44_mean_word_length = round(mean(.data$tok_len, na.rm = TRUE), 3),
       .groups = "drop"
     )
 
@@ -187,7 +195,7 @@ block_lexical_complexity_es <- function(
                     .data$token_id_int) %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::tally() %>%
-    dplyr::rename(f_63_mente_adverbs = "n")
+    dplyr::rename(f_69_mente_adverbs = "n")
 
   # ── f_64  Palabras largas (>= 6 caracteres) ───────────────────────────────
   # Biber (1988) usa >= 6 letras sobre tokens ortográficos.
@@ -201,37 +209,37 @@ block_lexical_complexity_es <- function(
                     .data$token_id_int) %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::tally() %>%
-    dplyr::rename(f_64_long_words = "n")
+    dplyr::rename(f_70_long_words = "n")
 
   # ── Ensamblar + tasas normalizadas ────────────────────────────────────────
   doc_ids %>%
-    dplyr::left_join(doc_n,      by = "doc_id") %>%
-    dplyr::left_join(doc_n_lex,  by = "doc_id") %>%
-    dplyr::left_join(f60,        by = "doc_id") %>%
-    dplyr::left_join(ttr_tbl,    by = "doc_id") %>%
+    dplyr::left_join(doc_n,        by = "doc_id") %>%
+    dplyr::left_join(doc_n_lex,    by = "doc_id") %>%
+    dplyr::left_join(ttr_tbl,      by = "doc_id") %>%
     dplyr::left_join(word_len_tbl, by = "doc_id") %>%
-    dplyr::left_join(f63,        by = "doc_id") %>%
-    dplyr::left_join(f64,        by = "doc_id") %>%
+    dplyr::left_join(f60,          by = "doc_id") %>%
+    dplyr::left_join(f63,          by = "doc_id") %>%
+    dplyr::left_join(f64,          by = "doc_id") %>%
     dplyr::mutate(
       n_tokens              = dplyr::coalesce(.data$n_tokens,     0L),
       n_lex_tokens          = dplyr::coalesce(.data$n_lex_tokens, 0L),
-      f_60_nominalization   = dplyr::coalesce(.data$f_60_nominalization, 0L),
-      f_63_mente_adverbs    = dplyr::coalesce(.data$f_63_mente_adverbs,  0L),
-      f_64_long_words       = dplyr::coalesce(.data$f_64_long_words,     0L),
+      f_68_nominalization   = dplyr::coalesce(.data$f_68_nominalization, 0L),
+      f_69_mente_adverbs    = dplyr::coalesce(.data$f_69_mente_adverbs,  0L),
+      f_70_long_words       = dplyr::coalesce(.data$f_70_long_words,     0L),
       # Tasas por 1000 tokens léxicos
-      f_60_nominalization_rate = dplyr::if_else(
+      f_68_nominalization_rate = dplyr::if_else(
         .data$n_lex_tokens > 0,
-        round(.data$f_60_nominalization / .data$n_lex_tokens * 1000, 3),
+        round(.data$f_68_nominalization / .data$n_lex_tokens * 1000, 3),
         NA_real_
       ),
-      f_63_mente_adverbs_rate = dplyr::if_else(
+      f_69_mente_adverbs_rate = dplyr::if_else(
         .data$n_lex_tokens > 0,
-        round(.data$f_63_mente_adverbs / .data$n_lex_tokens * 1000, 3),
+        round(.data$f_69_mente_adverbs / .data$n_lex_tokens * 1000, 3),
         NA_real_
       ),
-      f_64_long_words_rate = dplyr::if_else(
+      f_70_long_words_rate = dplyr::if_else(
         .data$n_lex_tokens > 0,
-        round(.data$f_64_long_words / .data$n_lex_tokens * 1000, 3),
+        round(.data$f_70_long_words / .data$n_lex_tokens * 1000, 3),
         NA_real_
       )
     )

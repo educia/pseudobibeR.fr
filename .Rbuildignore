@@ -7,3 +7,5 @@
 ^\.lintr$
 ^\.github$
 ^CONTRIBUTING\.md$
+^.*\.Rproj$
+^\.Rproj\.user$

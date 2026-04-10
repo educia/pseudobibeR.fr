@@ -377,15 +377,19 @@ parse_biber_features <- function(tokens, measure, normalize,
   biber_counts <- dplyr::full_join(biber_1, biber_2, by = "doc_id") %>%
     replace_nas()
 
-  # Merge duplicate columns that appear from both dict and code paths
+  # Merge duplicate columns that appear from both dict and code paths.
+  # pmax_features: counts the same thing twice → take max (not sum).
+  # sum_features:  complementary counts → add together.
+  pmax_features <- c(
+    "f_04_place_adverbials", "f_05_time_adverbials",
+    "f_06_first_person_pronouns", "f_07_second_person_pronouns",
+    "f_08_third_person_pronouns", "f_11_indefinite_pronoun",
+    "f_43_type_token",        # lexical complexity block vs textstat_lexdiv
+    "f_44_mean_word_length",  # lexical complexity block vs standalone
+    "f_51_demonstratives"
+  )
   combine_features <- c(
-    "f_04_place_adverbials",
-    "f_05_time_adverbials",
-    "f_06_first_person_pronouns",
-    "f_07_second_person_pronouns",
-    "f_08_third_person_pronouns",
-    "f_11_indefinite_pronoun",
-    "f_51_demonstratives",
+    pmax_features,
     "f_52_modal_possibility",
     "f_53_modal_necessity",
     "f_54_modal_predictive",
@@ -400,14 +404,12 @@ parse_biber_features <- function(tokens, measure, normalize,
     if (all(c(x_col, y_col) %in% colnames(biber_counts))) {
       x_vals <- dplyr::coalesce(biber_counts[[x_col]], 0L)
       y_vals <- dplyr::coalesce(biber_counts[[y_col]], 0L)
-      pmax_features <- c("f_04_place_adverbials", "f_05_time_adverbials",
-                         "f_06_first_person_pronouns", "f_07_second_person_pronouns",
-                         "f_08_third_person_pronouns", "f_11_indefinite_pronoun",
-                         "f_51_demonstratives")
       biber_counts[[feature]] <- if (feature %in% pmax_features) pmax(x_vals, y_vals) else x_vals + y_vals
       biber_counts <- dplyr::select(biber_counts, -dplyr::any_of(c(x_col, y_col)))
     }
   }
+  # Drop ghost f_10_be_main_verb if it somehow survived (feature now lives in f_19)
+  biber_counts <- dplyr::select(biber_counts, -dplyr::any_of("f_10_be_main_verb"))
 
   if ("f_11_indefinite_pronoun" %in% colnames(biber_counts))
     biber_counts <- dplyr::rename(biber_counts, f_11_indefinite_pronouns = "f_11_indefinite_pronoun")
@@ -468,17 +470,58 @@ parse_biber_features <- function(tokens, measure, normalize,
     biber_counts <- dplyr::full_join(biber_counts, f_43_type_token, by = "doc_id")
   }
 
-  f_44_mean_word_length <- tokens %>%
-    dplyr::filter(stringr::str_detect(.data$token, "^[a-z]+$")) %>%
-    dplyr::mutate(mean_word_length = stringr::str_length(.data$token)) %>%
-    dplyr::group_by(.data$doc_id) %>%
-    dplyr::summarise(f_44_mean_word_length = mean(.data$mean_word_length))
+  # f_44 fallback: if not already provided by block_lexical_complexity_es,
+  # compute mean word length from all lowercase tokens (French path or Spanish
+  # with measure="none" and no lexical block result yet).
+  if (!"f_44_mean_word_length" %in% colnames(biber_counts)) {
+    f_44_mean_word_length <- tokens %>%
+      dplyr::filter(stringr::str_detect(.data$token, "^[a-z]+$")) %>%
+      dplyr::mutate(mean_word_length = stringr::str_length(.data$token)) %>%
+      dplyr::group_by(.data$doc_id) %>%
+      dplyr::summarise(f_44_mean_word_length = mean(.data$mean_word_length))
+    biber_counts <- dplyr::full_join(biber_counts, f_44_mean_word_length, by = "doc_id")
+  }
 
-  biber_counts <- dplyr::full_join(biber_counts, f_44_mean_word_length, by = "doc_id") %>%
-    replace_nas()
+  biber_counts <- biber_counts %>% replace_nas()
 
+  # ── Enforce canonical column order (Fix 5) ─────────────────────────────────
+  canonical_order <- c(
+    "doc_id",
+    "f_01_past_tense", "f_02_perfect_aspect", "f_03_present_tense",
+    "f_04_place_adverbials", "f_05_time_adverbials",
+    "f_06_first_person_pronouns", "f_07_second_person_pronouns",
+    "f_08_third_person_pronouns", "f_09_pronoun_it",
+    "f_10_demonstrative_pronoun", "f_11_indefinite_pronouns", "f_12_proverb_do",
+    "f_13_wh_question",
+    "f_14_nominalizations", "f_15_gerunds", "f_16_other_nouns",
+    "f_17_agentless_passives", "f_18_by_passives",
+    "f_19_be_main_verb", "f_20_existential_there",
+    "f_21_that_verb_comp", "f_22_that_adj_comp", "f_23_wh_clause",
+    "f_24_infinitives", "f_25_present_participle", "f_26_past_participle",
+    "f_27_past_participle_whiz", "f_28_present_participle_whiz",
+    "f_29_that_subj", "f_30_that_obj", "f_31_wh_subj", "f_32_wh_obj",
+    "f_33_pied_piping", "f_34_sentence_relatives",
+    "f_35_because", "f_36_though", "f_37_if", "f_38_other_adv_sub",
+    "f_39_prepositions", "f_40_adj_attr", "f_41_adj_pred", "f_42_adverbs",
+    "f_43_type_token", "f_44_mean_word_length",
+    "f_45_conjuncts", "f_46_downtoners", "f_47_hedges", "f_48_amplifiers",
+    "f_49_emphatics", "f_50_discourse_particles", "f_51_demonstratives",
+    "f_52_modal_possibility", "f_53_modal_necessity", "f_54_modal_predictive",
+    "f_55_verb_public", "f_56_verb_private", "f_57_verb_suasive", "f_58_verb_seem",
+    "f_59_contractions", "f_60_that_deletion",
+    "f_61_stranded_preposition", "f_62_split_infinitive", "f_63_split_auxiliary",
+    "f_64_phrasal_coordination", "f_65_clausal_coordination",
+    "f_66_neg_synthetic", "f_67_neg_analytic",
+    "f_68_nominalization", "f_68_nominalization_rate",
+    "f_69_mente_adverbs", "f_69_mente_adverbs_rate",
+    "f_70_long_words", "f_70_long_words_rate",
+    "f_71_preterit",
+    "n_tokens", "n_lex_tokens"
+  )
+  present_ordered <- canonical_order[canonical_order %in% colnames(biber_counts)]
+  remaining       <- setdiff(colnames(biber_counts), present_ordered)
   biber_counts <- biber_counts %>%
-    dplyr::select(order(colnames(biber_counts)))
+    dplyr::select(dplyr::all_of(present_ordered), dplyr::any_of(remaining))
 
   biber_counts[] <- lapply(biber_counts, as.vector)
   biber_counts

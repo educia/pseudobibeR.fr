@@ -28,17 +28,17 @@ test_that("f_01_past_tense cuenta imperfecto de indicativo", {
   )
   res <- run_es(tks)
   expect_equal(res$f_01_past_tense, 1)
-  expect_equal(res$f_01b_preterit,  0)
+  expect_equal(res$f_71_preterit,  0)
 })
 
-test_that("f_01b_preterit cuenta pretérito indefinido", {
+test_that("f_71_preterit cuenta pretérito indefinido", {
   tks <- make_es_tokens(
     ~doc_id, ~sentence_id, ~token_id, ~token,   ~lemma,   ~upos,  ~xpos,  ~dep_rel, ~head_token_id, ~feats,
     "d1",    1L,           1L,        "llegó",  "llegar", "VERB", "VERB", "root",   NA_integer_,    "Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin",
     "d1",    1L,           2L,        ".",      ".",      "PUNCT","PUNCT","punct",  1L,             NA_character_
   )
   res <- run_es(tks)
-  expect_equal(res$f_01b_preterit,  1)
+  expect_equal(res$f_71_preterit,  1)
   expect_equal(res$f_01_past_tense, 0)
 })
 
@@ -180,7 +180,7 @@ test_that("biber_es devuelve una fila por documento sin errores", {
   expect_equal(nrow(res), 2)
   expect_true("doc_id" %in% colnames(res))
   expect_true("f_01_past_tense" %in% colnames(res))
-  expect_true("f_01b_preterit"  %in% colnames(res))
+  expect_true("f_71_preterit"  %in% colnames(res))
   expect_true("f_03_present_tense" %in% colnames(res))
 })
 

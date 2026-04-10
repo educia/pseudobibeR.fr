@@ -42,9 +42,10 @@ count_feature <- function(tbl, col_name) {
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 1.  block_tense_es
-#     f_01 tiempo pasado   f_02 aspecto perfecto   f_03 tiempo presente
-#     f_04 adv. de lugar   f_05 adv. de tiempo     f_10 formas de "be"
-#     f_11 pronombres indefinidos
+#     f_01  tiempo pasado (imperfecto)   f_02  aspecto perfecto
+#     f_03  tiempo presente              f_04  adv. de lugar
+#     f_05  adv. de tiempo              f_11  pronombres indefinidos
+#     f_12  pro-verbo hacer             f_71  pretérito indefinido (ext. española)
 # ─────────────────────────────────────────────────────────────────────────────
 
 #' Tense, aspect, adverbial, and indefinite-pronoun features (Spanish)
@@ -55,7 +56,7 @@ count_feature <- function(tbl, col_name) {
 #' @param place_adverbials Character vector of place-adverbial lemmas (f_04)
 #' @param time_adverbials  Character vector of time-adverbial lemmas (f_05)
 #' @param indefinite_pronouns Character vector of indefinite pronoun lemmas (f_11)
-#' @return Data frame: one row per doc, columns f_01 … f_11 (selected)
+#' @return Data frame: one row per doc, columns f_01–f_05, f_11, f_12, f_71
 #' @keywords internal
 block_tense_es <- function(
     tokens,
@@ -79,18 +80,19 @@ block_tense_es <- function(
     ) %>%
     count_feature("f_01_past_tense")
 
-  # ── f_01b  Pretérito indefinido (español: rasgo extra) ───────────────────
+  # ── f_71  Pretérito indefinido (extensión española) ──────────────────────
   # Tense=Past, Mood=Ind, VerbForm=Fin.
-  # No existe en pseudobibeR.fr; se añade como rasgo extendido del español
-  # siguiendo Davies et al. (2006) Dimension 5.
-  f01b <- tokens %>%
+  # No existe en pseudobibeR.fr ni en el catálogo original de Biber (1985).
+  # Se añade como rasgo extendido del español (f_71) siguiendo
+  # Davies et al. (2006) Dimension 5.
+  f71 <- tokens %>%
     dplyr::filter(
       .data$pos %in% c("VERB", "AUX"),
       dplyr::coalesce(extract_feat(.data$feats, "Tense"), "") == "Past",
       dplyr::coalesce(extract_feat(.data$feats, "Mood"),  "") == "Ind",
       dplyr::coalesce(extract_feat(.data$feats, "VerbForm"), "") == "Fin"
     ) %>%
-    count_feature("f_01b_preterit")
+    count_feature("f_71_preterit")
 
   # ── f_02  Aspecto perfecto: HABER + participio ────────────────────────────
   # Excluye ESTAR copulativo (pasiva de estado).
@@ -163,20 +165,6 @@ block_tense_es <- function(
     ) %>%
     count_feature("f_05_time_adverbials")
 
-  # ── f_10  Formas del verbo copulativo (ser / estar) ───────────────────────
-  # Equivalente de Biber's "be" as main verb (no auxiliar).
-  # Contamos ser y estar cuando su dep_rel es "root", "cop", "ccomp",
-  # "xcomp" o "acl", pero NO cuando son auxiliares perfectivos o progresivos.
-  f10 <- tokens %>%
-    dplyr::filter(
-      .data$lemma %in% c("ser", "estar"),
-      .data$pos   %in% c("VERB", "AUX"),
-      !stringr::str_detect(
-        dplyr::coalesce(.data$dep_rel, ""), "^aux"
-      )
-    ) %>%
-    count_feature("f_10_be_main_verb")
-
   # ── f_11  Pronombres indefinidos ──────────────────────────────────────────
   f11 <- tokens %>%
     dplyr::filter(
@@ -185,16 +173,44 @@ block_tense_es <- function(
     ) %>%
     count_feature("f_11_indefinite_pronoun")
 
+  # ── f_12  Pro-verbo "hacer" ───────────────────────────────────────────────
+  # Equivalente español de Biber's "pro-verb do".
+  # Detectamos "hacer" como VERB (no AUX) cuando tiene como dependiente
+  # directo un clítico de objeto (lo/la/los/las) con dep_rel obj/iobj/expl.
+  # Este patrón captura usos proverbales como "lo hace", "hazlo", etc.
+  # Se excluye "hacer" en locuciones fijas (hacer_falta, hacer_caso…) que
+  # el tokenizador puede dejar como token único (handled by semi_join scope).
+  hacer_clitic_deps <- tokens %>%
+    dplyr::filter(
+      .data$lemma %in% c("lo", "la", "los", "las"),
+      .data$pos   == "PRON",
+      dplyr::coalesce(.data$dep_rel, "") %in% c("obj", "iobj", "expl"),
+      !is.na(.data$head_token_id_int)
+    ) %>%
+    dplyr::select("doc_id", "sentence_id",
+                  token_id_int = "head_token_id_int")
+
+  f12 <- tokens %>%
+    dplyr::filter(
+      .data$lemma == "hacer",
+      .data$pos   == "VERB"
+    ) %>%
+    dplyr::semi_join(
+      hacer_clitic_deps,
+      by = c("doc_id", "sentence_id", "token_id_int")
+    ) %>%
+    count_feature("f_12_proverb_do")
+
   # ── Ensamblar ──────────────────────────────────────────────────────────────
   doc_ids %>%
     dplyr::left_join(f01,  by = "doc_id") %>%
-    dplyr::left_join(f01b, by = "doc_id") %>%
+    dplyr::left_join(f71,  by = "doc_id") %>%
     dplyr::left_join(f02,  by = "doc_id") %>%
     dplyr::left_join(f03,  by = "doc_id") %>%
     dplyr::left_join(f04,  by = "doc_id") %>%
     dplyr::left_join(f05,  by = "doc_id") %>%
-    dplyr::left_join(f10,  by = "doc_id") %>%
     dplyr::left_join(f11,  by = "doc_id") %>%
+    dplyr::left_join(f12,  by = "doc_id") %>%
     dplyr::mutate(
       dplyr::across(-dplyr::any_of("doc_id"), ~ dplyr::coalesce(., 0L))
     )
